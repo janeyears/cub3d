@@ -1,3 +1,3 @@
 # cube3d
 
-This is MYIN project!
+This is NOT project!
