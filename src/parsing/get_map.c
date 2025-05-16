@@ -1,7 +1,7 @@
 
 # include "cub3d.h"
 
-int	config(t_game *game)
+static int	config(t_game *game)
 {
 	if (get_texture(game) < 0)
 		return (-1);
@@ -17,14 +17,14 @@ static int	read_map(t_map **map, char *fname)
 
 	fd = open(fname, O_RDONLY);
 	if (fd < 0)
-		return (err_msg("Can't open file\n"), -1);
+		return (err_msg(ERR_OPEN), -1);
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
 		if (lstadd(map, line) < 0)
-			return (err_msg("Calloc failed\n"), -1);
+			return (err_msg(ERR_MALLOC), -1);
 		free(line);
 	}
 	close(fd);
@@ -34,18 +34,15 @@ static int	read_map(t_map **map, char *fname)
 int	get_map(t_game *game, char *fname)
 {
 	if (!fname || file_check(fname))
-		return (err_msg("Wrong name of file"), -1);
+		return (err_msg(ERR_NOTCUB), -1);
 	game->map = NULL;
 	if (read_map(&game->map, fname) < 0)
-		return (err_msg("Read of map failed\n"), -1); // FREE MAP FUNCTION
+		return (err_msg(ERR_OPEN), -1); // FREE MAP FUNCTION
 	game->size_y = lstsize(game->map) -1;
 	if (config(game) < 0)
-		return (-1); // FREE MAP FUNCTION
-
-
-	// code = fill_check(map);
-	// if (code)
-	// 	return (map_error(map, code), NULL);
+		return (-1);					// FREE MAP FUNCTION
+	if (map_val(game->map) < 0)
+		return (-1);					// FREE MAP FUNCTION
 	return (1);
 }
 
