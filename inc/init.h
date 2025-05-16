@@ -3,14 +3,6 @@
 
 # include "cub3d.h"
 
-typedef struct s_rgb
-{
-	unsigned int	red;
-	unsigned int	green;
-	unsigned int	blue;
-}	t_rgb;
-
-
 typedef struct s_map
 {
 	char			*content; // t_list
@@ -21,11 +13,9 @@ typedef struct s_map
 typedef struct s_game
 {
 	t_map			*map;
-	int				size_y; // list size and number of rows
-	t_rgb			ceiling;
-	t_rgb			floor;
-	char*			ceiling_str;
-	char*			floor_str;
+	int				size_y; 	// list size and number of rows
+	int				*ceiling;	// int array [red, green, blue]
+	int				*floor;		// int array [red, green, blue]
 	char*			no_path;
 	char*			so_path;
 	char*			we_path;

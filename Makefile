@@ -15,7 +15,7 @@
 
 NAME		:= cub3D
 
-CC = cc
+CC 			:= cc
 CFLAGS		:= -Wextra -Wall -Werror -Wunused
 MLX_FLAGS	:= -ldl -lglfw -pthread -lm
 
@@ -28,7 +28,7 @@ LIBFT		:= $(LIBFT_PATH)/libft.a
 MLX42_PATH	:= ./MLX42
 MLX42		:= $(MLX42_PATH)/build/libmlx42.a
 
-PARSING		:= get_map config
+PARSING		:= get_map config map_val
 
 #INIT		:= 
 
