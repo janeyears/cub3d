@@ -1,6 +1,15 @@
 
 # include "cub3d.h"
 
+int	config(t_game *game)
+{
+	if (get_texture(game) < 0)
+		return (-1);
+	if (get_color(game) < 0)
+		return (-1);
+	return (1);
+}
+
 static int	read_map(t_map **map, char *fname)
 {
 	int		fd;
@@ -22,12 +31,6 @@ static int	read_map(t_map **map, char *fname)
 	return (1);
 }
 
-int	file_check(char *fname)
-{
-	return (!ft_strchr(fname, '.') 
-			|| ft_strncmp((ft_strrchr(fname, '.')), ".cub\0", 5));
-}
-
 int	get_map(t_game *game, char *fname)
 {
 	if (!fname || file_check(fname))
@@ -36,6 +39,8 @@ int	get_map(t_game *game, char *fname)
 	if (read_map(&game->map, fname) < 0)
 		return (err_msg("Read of map failed\n"), -1); // FREE MAP FUNCTION
 	game->size_y = lstsize(game->map) -1;
+	if (config(game) < 0)
+		return (-1); // FREE MAP FUNCTION
 
 
 	// code = fill_check(map);

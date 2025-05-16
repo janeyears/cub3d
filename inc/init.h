@@ -24,6 +24,8 @@ typedef struct s_game
 	int				size_y; // list size and number of rows
 	t_rgb			ceiling;
 	t_rgb			floor;
+	char*			ceiling_str;
+	char*			floor_str;
 	char*			no_path;
 	char*			so_path;
 	char*			we_path;

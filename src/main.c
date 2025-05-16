@@ -11,6 +11,14 @@ int	main(int argc, char **argv)
 		return (err_msg("Can't get map\n"), 1);
 	printf("This is cub 3d\n");
 	print_linked_list(game.map);
+	printf("-----------------------------------------\n");
 	printf("The Y size of ma is >%d<\n", game.size_y);
+	printf("The Y size of ma is >%s<\n", game.no_path);
+	printf("The Y size of ma is >%s<\n", game.so_path);
+	printf("The Y size of ma is >%s<\n", game.we_path);
+	printf("The Y size of ma is >%s<\n", game.ea_path);
+	printf("The Y size of ma is >%s<\n", game.ceiling_str);
+	printf("The Y size of ma is >%s<\n", game.floor_str);
+	printf("-----------------------------------------\n");
 	return (0);
 }

@@ -28,7 +28,7 @@ LIBFT		:= $(LIBFT_PATH)/libft.a
 MLX42_PATH	:= ./MLX42
 MLX42		:= $(MLX42_PATH)/build/libmlx42.a
 
-PARSING		:= get_map
+PARSING		:= get_map config
 
 #INIT		:= 
 
@@ -36,7 +36,7 @@ MAIN		:= main errors
 
 #SMTHNG		:= 
 
-UTILS		:= lst_utils
+UTILS		:= lst_utils utils
 
 SRCS	:= $(addsuffix .c, $(addprefix src/, $(MAIN))) \
 			$(addsuffix .c, $(addprefix src/parsing/, $(PARSING))) \
