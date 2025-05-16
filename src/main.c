@@ -17,8 +17,13 @@ int	main(int argc, char **argv)
 	printf("The Y size of ma is >%s<\n", game.so_path);
 	printf("The Y size of ma is >%s<\n", game.we_path);
 	printf("The Y size of ma is >%s<\n", game.ea_path);
-	printf("The Y size of ma is >%s<\n", game.ceiling_str);
-	printf("The Y size of ma is >%s<\n", game.floor_str);
+	printf("-----------------------------------------\n");
+	int	i=0;
+	while (i < 3)
+		printf("The Ceiling color >%d<\n", game.ceiling[i++]);
+	i=0;
+	while (i < 3)
+		printf("The Flooor color >%d<\n", game.floor[i++]);
 	printf("-----------------------------------------\n");
 	return (0);
 }
