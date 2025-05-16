@@ -5,13 +5,13 @@ void	print_linked_list(t_map *lst)
 	t_map	*current;
 
 	current = lst;
-	printf("\033[1;93mThis is your MAP\n\n");
+	printf("\033[1;93m");
 	while (current)
 	{
 		printf("%s",current->content);
 		current = current->next;
 	}
-	printf("\033\n");
+	printf("\n\033[0m");
 }
 
 int	lstadd(t_map **lst, char *content)
@@ -58,4 +58,23 @@ int	lstsize(t_map *lst)
 		lst = lst->next;
 	}
 	return (cnt);
+}
+
+void	lst_del_first(t_map **lst)
+{
+	t_map *temp;
+
+	if (!lst || !*lst)
+		return;
+	temp = *lst;		// Store current head
+	*lst = temp->next;	// Move head to the next node
+	free(temp);			// Free the old head
+}
+
+void	skip_new_line(t_map **map)
+{
+	if (!map)
+		return ;
+	while ((*map)->content[0] == '\n')
+		lst_del_first(map);
 }
