@@ -1,4 +1,4 @@
-# cube3d
+# cub3d
 
 ## The RayCaster with miniLibX
 
