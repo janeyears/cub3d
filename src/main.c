@@ -1,12 +1,23 @@
 
 #include "cub3d.h"
 
+void	init_game_struct(t_game *game)
+{
+	game->map = NULL;
+	game->window = NULL;
+	game->ceiling = NULL;
+	game->floor = NULL;
+	game->wall = NULL;
+}
+
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
 
 	if (argc !=2)
 		return (err_msg(ERR_USAGE), 1);
+	init_game_struct(&game);
 	if (get_map(&game, argv[1]) < 0)
 		return (err_msg("Can't get map\n"), 1);
 	printf("This is cub 3d\n");
@@ -25,5 +36,14 @@ int	main(int argc, char **argv)
 	while (i < 3)
 		printf("The Flooor color >%d<\n", game.floor[i++]);
 	printf("-----------------------------------------\n");
+	//player_pos(&game);
+	game.mlx = mlx_init(800, 600, "cub3d", false);
+	//mlx_hook(&game.window, KEY_PRESS, key_hook_press, &game);
+	//mlx_hook(&game.window, KEY_RELEASE, key_hook_release, &game);
+	//mlx_hook(&game.window, EVENT_DESTROY, destroy_cub3d, &game);
+	get_color_code(&game);
+	if (rerender_image(&game) == 1)
+		return (1); // free exit
+	mlx_loop(game.mlx);
 	return (0);
 }

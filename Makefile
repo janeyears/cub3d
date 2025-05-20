@@ -34,14 +34,14 @@ PARSING		:= get_map config map_val
 
 MAIN		:= main errors
 
-#SMTHNG		:= 
+GRAPHIC		:= floor_and_ceiling image
 
 UTILS		:= lst_utils utils
 
 SRCS	:= $(addsuffix .c, $(addprefix src/, $(MAIN))) \
 			$(addsuffix .c, $(addprefix src/parsing/, $(PARSING))) \
-			$(addsuffix .c, $(addprefix src/utils/, $(UTILS)))
-#			$(addsuffix .c, $(addprefix src/builtins/, $(BUILTINS))) \
+			$(addsuffix .c, $(addprefix src/utils/, $(UTILS))) \
+			$(addsuffix .c, $(addprefix src/graphic/, $(GRAPHIC))) 
 #			$(addsuffix .c, $(addprefix src/tokenization/, $(TOKENS))) \
 
 

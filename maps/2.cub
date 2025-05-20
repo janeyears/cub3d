@@ -8,7 +8,7 @@ EA ./path_to_the_east_texture
 
 
 
-F 220,100,0 // should be one new_line
+F 220,100,0
 C 225,30,0
 
 

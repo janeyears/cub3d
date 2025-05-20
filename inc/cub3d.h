@@ -12,5 +12,7 @@
 # include "init.h"
 # include "utils.h"
 # include "parsing.h"
+# include "graphic.h"
+# include "events.h"
 
 #endif
