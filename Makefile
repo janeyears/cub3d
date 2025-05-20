@@ -18,6 +18,7 @@ NAME		:= cub3D
 CC = cc
 CFLAGS		:= -Wextra -Wall -Werror -Wunused
 MLX_FLAGS	:= -ldl -lglfw -pthread -lm
+#-framework Cocoa -framework OpenGL -framework IOKit
 
 HEADERS		:= -I ./inc -I ./MLX42/include/MLX42/
 

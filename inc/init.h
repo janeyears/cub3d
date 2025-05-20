@@ -18,8 +18,19 @@ typedef struct s_map
 	struct s_map	*next;
 }	t_map;
 
+typedef struct s_img
+{
+	mlx_image_t		*img;
+	char			*address;
+	int				width;
+	int				height;
+}	t_img;
+
 typedef struct s_game
 {
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	void			*window;
 	t_map			*map;
 	int				size_y; // list size and number of rows
 	t_rgb			ceiling;
