@@ -8,8 +8,8 @@ void	init_game_struct(t_game *game)
 	game->ceiling = NULL;
 	game->floor = NULL;
 	game->wall = NULL;
+	game->player = NULL;
 }
-
 
 int	main(int argc, char **argv)
 {
@@ -38,9 +38,7 @@ int	main(int argc, char **argv)
 	printf("-----------------------------------------\n");
 	//player_pos(&game);
 	game.mlx = mlx_init(800, 600, "cub3d", false);
-	//mlx_hook(&game.window, KEY_PRESS, key_hook_press, &game);
-	//mlx_hook(&game.window, KEY_RELEASE, key_hook_release, &game);
-	//mlx_hook(&game.window, EVENT_DESTROY, destroy_cub3d, &game);
+	mlx_key_hook(game.mlx, key_hook, &game);
 	get_color_code(&game);
 	if (rerender_image(&game) == 1)
 		return (1); // free exit

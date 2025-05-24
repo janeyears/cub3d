@@ -13,6 +13,13 @@ typedef struct s_rgb
 	unsigned int	blue;
 }	t_rgb;
 
+typedef struct s_player
+{
+	double	x;
+	double	y;
+	double	angle;
+}	t_player;
+
 typedef struct s_map
 {
 	char			*content; // t_list
@@ -36,6 +43,7 @@ typedef struct s_game
 	t_img			*wall;
 	void			*window;
 	t_map			*map;
+	t_player		*player;
 	int				size_y; 	// list size and number of rows
 	int				*ceiling;	// int array [red, green, blue]
 	int				*floor;		// int array [red, green, blue]

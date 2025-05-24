@@ -17,7 +17,7 @@ NAME		:= cub3D
 
 CC 			:= cc
 CFLAGS		:= -Wextra -Wall -Werror -Wunused
-MLX_FLAGS	:= -ldl -lglfw -pthread -lm
+MLX_FLAGS	:= -ldl -lglfw -pthread -lm 
 
 HEADERS		:= -I ./inc -I ./MLX42/include/MLX42/
 
@@ -34,14 +34,14 @@ PARSING		:= get_map config map_val
 
 MAIN		:= main errors
 
-GRAPHIC		:= floor_and_ceiling image
+GAME		:= floor_and_ceiling image key_hook
 
 UTILS		:= lst_utils utils
 
 SRCS	:= $(addsuffix .c, $(addprefix src/, $(MAIN))) \
 			$(addsuffix .c, $(addprefix src/parsing/, $(PARSING))) \
 			$(addsuffix .c, $(addprefix src/utils/, $(UTILS))) \
-			$(addsuffix .c, $(addprefix src/graphic/, $(GRAPHIC))) 
+			$(addsuffix .c, $(addprefix src/game/, $(GAME))) 
 #			$(addsuffix .c, $(addprefix src/tokenization/, $(TOKENS))) \
 
 

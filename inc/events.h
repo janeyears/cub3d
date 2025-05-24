@@ -1,6 +1,8 @@
 #ifndef EVENTS_H
 # define EVENTS_H
 
+# include "cub3d.h"
+
 # define W 119
 # define A 97
 # define S 115
