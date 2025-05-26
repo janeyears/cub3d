@@ -6,6 +6,7 @@
 //# include <unistd.h>
 # include <fcntl.h>
 # include <sys/time.h>
+#include <stdbool.h>
 
 # include "errors.h"
 # include "libft.h"
