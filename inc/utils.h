@@ -15,5 +15,6 @@ t_list	*lstnew_m(void *content);
 void	skip_new_line(t_list **map);
 void	lst_del_first(t_list **lst);
 char	**list_to_arr(t_list *list);
+void	free_game(t_game *game);
 
 #endif

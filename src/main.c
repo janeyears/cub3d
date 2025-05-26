@@ -1,6 +1,17 @@
 
 #include "cub3d.h"
 
+int	init_game(t_game *game)
+{
+	game->mlx = mlx_init(800, 600, "cub3d", false);
+	if (!game->mlx)
+		return (err_msg(ERR_MLXINIT), 1);
+	get_color_code(game);
+	if (upload_wall_textures(game) != 0)
+		return (1);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -28,5 +39,18 @@ int	main(int argc, char **argv)
 		printf("The Floor color >%d<\n", game.floor[i++]);
 	printf("-----------------------------------------\n");
 	printf("x: %f y: %f pov: %c\n", game.player->x, game.player->y, game.player->pov);
+	//player_pos(&game);
+	if (init_game(&game) != 0)
+	{
+		//free something
+		return (1);
+	}
+	if (rerender_image(&game) == 1)
+	{
+		//free something
+		return (1);
+	}	
+	mlx_key_hook(game.mlx, key_hook, &game);
+	mlx_loop(game.mlx);
 	return (0);
 }

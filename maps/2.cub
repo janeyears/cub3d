@@ -1,9 +1,10 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
+NO ./textures/dogs.png
+SO ./textures/dogs.png
+
 
 C 225,30,0
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+WE ./textures/dogs.png
+EA ./textures/dogs.png
 
 
 
