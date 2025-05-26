@@ -50,8 +50,7 @@ OBJS		:= $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 all: $(NAME)
 
 $(NAME): $(MLX42_PATH) $(MLX42) $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) $(HEADERS) $(LIBFT) $(MLX42) -o $(NAME) -lreadline 
-#-fsanitize=address
+	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) $(HEADERS) $(LIBFT) $(MLX42) -o $(NAME) -lreadline -fsanitize=address
 	@echo "\033[1;95m💻 $(NAME) building completed...\033[0m"
 
 $(OBJS_PATH):
