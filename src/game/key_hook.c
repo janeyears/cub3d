@@ -20,7 +20,14 @@ void	key_hook(mlx_key_data_t input, void *data)
 	if (input.key == MLX_KEY_D && input.action == MLX_PRESS)
 		printf("Right key pressed\n");
 	if (input.key == MLX_KEY_LEFT && input.action == MLX_PRESS)
+	{
+		rotate_player(game, LEFT);
 		printf("Left arrow key pressed\n");
+	}
 	if (input.key == MLX_KEY_RIGHT && input.action == MLX_PRESS)
+	{
+		rotate_player(game, RIGHT);
 		printf("Right arrow key pressed\n");
+	}
+	
 }

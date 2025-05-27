@@ -9,6 +9,8 @@ int	init_game(t_game *game)
 	get_color_code(game);
 	if (upload_wall_textures(game) != 0)
 		return (1);
+	init_player(game);
+	printf("Player initialized at x: %f y: %f pov: %c, angle: %f\n", game->player->x, game->player->y, game->player->pov, game->player->angle);
 	return (0);
 }
 
@@ -39,7 +41,6 @@ int	main(int argc, char **argv)
 		printf("The Floor color >%d<\n", game.floor[i++]);
 	printf("-----------------------------------------\n");
 	printf("x: %f y: %f pov: %c\n", game.player->x, game.player->y, game.player->pov);
-	//player_pos(&game);
 	if (init_game(&game) != 0)
 	{
 		//free something

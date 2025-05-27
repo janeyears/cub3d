@@ -34,7 +34,7 @@ PARSING		:= get_map config map_val
 
 MAIN		:= main errors
 
-GAME		:= floor_and_ceiling image key_hook
+GAME		:= background_player image key_hook movements
 
 UTILS		:= lst_utils utils
 

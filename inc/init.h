@@ -22,7 +22,7 @@ typedef struct s_player
 
 typedef struct s_game
 {
-	void		*mlx;
+	mlx_t		*mlx;
 	char		**map;
 	t_player	*player;
 	mlx_image_t		*background;
