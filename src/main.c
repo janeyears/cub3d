@@ -46,12 +46,13 @@ int	main(int argc, char **argv)
 		//free something
 		return (1);
 	}
-	if (rerender_image(&game) == 1)
+	if (init_image(&game) == 1)
 	{
 		//free something
 		return (1);
 	}	
-	mlx_key_hook(game.mlx, key_hook, &game);
+	mlx_key_hook(game.mlx, close_hook, &game);
+	mlx_loop_hook(game.mlx, game_loop, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }
