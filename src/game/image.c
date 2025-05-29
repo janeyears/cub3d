@@ -17,7 +17,7 @@ int	upload_wall_textures(t_game *game)
 	return (0);
 }
 
-int	rerender_image(t_game *game)
+int	init_image(t_game *game)
 {
 	game->background = mlx_new_image(game->mlx, 800, 600);
 	if (!game->background)

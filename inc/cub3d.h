@@ -6,7 +6,7 @@
 //# include <unistd.h>
 # include <fcntl.h>
 # include <sys/time.h>
-#include <stdbool.h>
+# include <stdbool.h>
 # include <math.h>
 
 # include "errors.h"
@@ -15,6 +15,5 @@
 # include "utils.h"
 # include "parsing.h"
 # include "graphic.h"
-# include "events.h"
 
 #endif
