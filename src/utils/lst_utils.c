@@ -49,8 +49,8 @@ void	skip_new_line(t_list **map)
 {
 	if (!map)
 		return ;
-	if ((*map)->content && ((char *)(*map)->content)[0] == '\n')
-		while (((char *)(*map)->content)[0] == '\n')
+	if (*map && (*map)->content && ((char *)(*map)->content)[0] == '\n')
+		while (*map && ((char *)(*map)->content)[0] == '\n')
 			lst_del_first(map);
 }
 

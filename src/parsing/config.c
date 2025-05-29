@@ -3,7 +3,6 @@
 
 int	get_path(t_list *map, char **path, char *prefix)
 {
-	printf("%s\n", *path);
 	if (*path)
 		return (err_msg(ERR_TWOID), -1);
 	if (ft_strncmp(map->content, prefix, 3))
@@ -72,10 +71,10 @@ int	parse_texture(t_list **curr, char *prefix, char **target)
 
 int	parse_color(t_list **curr, const char *prefix, int **target)
 {
-	if (*target)
-		return (err_msg(ERR_TWOID), -1);
 	if (!ft_strncmp((*curr)->content, prefix, ft_strlen(prefix)))
 	{
+		if (*target)
+			return (err_msg(ERR_TWOID), -1);
 		*target = set_color((*curr)->content + ft_strlen(prefix));
 		if (!*target)
 			return (-1);
