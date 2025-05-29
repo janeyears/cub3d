@@ -35,7 +35,10 @@ static int	config(t_game *game, t_list **map)
 	{
 		if (game->no_path && game->so_path && game->we_path && game->ea_path &&
 			game->floor && game->ceiling)
-			break;
+			{
+				printf("All textures and colors are set.\n");
+				break ;
+			}
 		while (curr && ((char *)(curr->content))[0] == '\n')
 			lst_del_first(&curr);
 		if (!curr)

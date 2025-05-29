@@ -36,7 +36,7 @@ MAIN		:= main errors
 
 GAME		:= background_player image hook_and_loop movements
 
-UTILS		:= lst_utils utils
+UTILS		:= lst_utils utils free
 
 SRCS	:= $(addsuffix .c, $(addprefix src/, $(MAIN))) \
 			$(addsuffix .c, $(addprefix src/parsing/, $(PARSING))) \

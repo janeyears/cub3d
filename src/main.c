@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	printf("This is cub 3d\n");
 	int i = 0;
 	while (game.map[i])
-		printf("Ha:%s", game.map[i++]);
+		printf("Ha:%s\n", game.map[i++]);
 	printf("\n-----------------------------------------\n");
 	printf("The Y size of ma is >%d<\n", game.size_y);
 	printf("The path to north texture is >%s<\n", game.no_path);

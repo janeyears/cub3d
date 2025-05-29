@@ -3,6 +3,7 @@
 
 int	get_path(t_list *map, char **path, char *prefix)
 {
+	printf("%s\n", *path);
 	if (*path)
 		return (err_msg(ERR_TWOID), -1);
 	if (ft_strncmp(map->content, prefix, 3))
