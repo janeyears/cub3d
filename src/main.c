@@ -51,7 +51,8 @@ int	main(int argc, char **argv)
 		//free something
 		return (1);
 	}	
-	mlx_key_hook(game.mlx, close_hook, &game);
+	mlx_key_hook(game.mlx, esc_hook, &game);
+	mlx_close_hook(game.mlx, close_hook, &game);
 	mlx_loop_hook(game.mlx, game_loop, &game);
 	mlx_loop(game.mlx);
 	return (0);

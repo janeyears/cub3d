@@ -23,7 +23,8 @@
 void	render_f_and_c(t_game *game);
 void	get_color_code(t_game *game);
 int		init_image(t_game *game);
-void	close_hook(mlx_key_data_t input, void *game);
+void	close_hook(void *game);
+void	esc_hook(mlx_key_data_t input, void *data);
 int		upload_wall_textures(t_game *game);
 void	init_player(t_game *game);
 void	game_loop(void *param);
