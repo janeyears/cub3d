@@ -7,8 +7,9 @@
 # define ERR_MALLOC "Memory allocation has failed\n"
 # define ERR_NOTCUB "Map is not a .cub file\n"
 
-# define ERR_OPEN "Couldn't open and read the map\n" 
+# define ERR_OPEN "Couldn't open and read the map\n"
 # define ERR_IDENT "Invalid identifier in the map file\n"
+# define ERR_TWOID "Duplicate of identifier has been found\n"
 # define ERR_MISS "Missing \\n after identifier\n"
 
 # define ERR_RGB "RGB should have 3 values\n"

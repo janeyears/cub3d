@@ -35,6 +35,11 @@ void	lst_del_first(t_list **lst)
 
 	if (!lst || !*lst)
 		return ;
+	if (!(*lst)->next)
+	{
+		ft_lstclear(lst, free);
+		return ;
+	}
 	temp = *lst;
 	*lst = temp->next;
 	ft_lstdelone(temp, free);
@@ -54,19 +59,25 @@ char	**list_to_arr(t_list *list)
 	char	**arr;
 	int		i;
 	t_list	*current;
+	int		size;
 
 	i = 0;
 	current = list;
-	arr = ft_calloc((ft_lstsize(list) + 1), sizeof(char *));
+	size = ft_lstsize(list);
+	arr = ft_calloc(size + 1, sizeof(char *));
 	if (!arr)
 		return (NULL);
 	while (current)
 	{
-		arr[i] = ft_strdup(current->content);
-		if (!arr[i])
+		if (!current->content)
+			return (NULL);
+		if (i < size - 1)
+			arr[i] = ft_substr(current->content, 0, ft_strlen(current->content) - 1);
+		else
+			arr[i] = ft_strdup(current->content);
+		if (!arr[i++])
 			return (NULL);
 		current = current->next;
-		i++;
 	}
 	arr[i] = NULL;
 	return (arr);
