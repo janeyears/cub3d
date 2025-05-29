@@ -47,34 +47,30 @@ int	composition(t_game *game)
 
 static bool	cell_check(char **map, t_point	p)
 {
-	if (map[p.y][p.x - 1] == ' ' || map[p.y][p.x - 1] == '\n'
-			|| map[p.y][p.x - 1] == '\0' || map[p.y][p.x + 1] == ' '
-			|| map[p.y][p.x + 1] == '\n' || map[p.y][p.x + 1] == '\0'
-			|| map[p.y - 1][p.x] == ' ' || map[p.y - 1][p.x] == '\n'
-			|| map[p.y - 1][p.x] == '\0' || map[p.y + 1][p.x] == ' '
-			|| map[p.y + 1][p.x] == '\n' || map[p.y + 1][p.x] == '\0')
+	if (map[p.y][p.x - 1] == ' ' || map[p.y][p.x - 1] == '\0'
+			|| map[p.y][p.x + 1] == ' ' || map[p.y][p.x + 1] == '\0'
+			|| map[p.y - 1][p.x] == ' ' || map[p.y - 1][p.x] == '\0'
+			|| map[p.y + 1][p.x] == ' ' || map[p.y + 1][p.x] == '\0')
 		return (false);
-	if (map[p.y - 1][p.x - 1] == ' ' || map[p.y - 1][p.x - 1] == '\n'
-			|| map[p.y - 1][p.x - 1] == '\0' || map[p.y - 1][p.x + 1] == ' '
-			|| map[p.y - 1][p.x + 1] == '\n' || map[p.y - 1][p.x + 1] == '\0'
-			|| map[p.y + 1][p.x - 1] == ' ' || map[p.y + 1][p.x - 1] == '\n'
-			|| map[p.y + 1][p.x - 1] == '\0' || map[p.y + 1][p.x + 1] == ' '
-			|| map[p.y + 1][p.x + 1] == '\n' || map[p.y + 1][p.x + 1] == '\0')
+	if (map[p.y - 1][p.x - 1] == ' ' || map[p.y - 1][p.x - 1] == '\0'
+			|| map[p.y - 1][p.x + 1] == ' ' || map[p.y - 1][p.x + 1] == '\0'
+			|| map[p.y + 1][p.x - 1] == ' ' || map[p.y + 1][p.x - 1] == '\0'
+			|| map[p.y + 1][p.x + 1] == ' ' || map[p.y + 1][p.x + 1] == '\0')
 		return (false);
 	return (true);
 }
 
 static int	map_val_loop(t_point p, char **copy)
 {
-	while (p.x < (int)ft_strlen(copy[p.y]))
+	while (p.x < p.w)
 	{
 		if (if_inside(copy[p.y][p.x]) == true)
 		{
-			if (p.y == 0 || p.y == p.h - 1 || p.x == 0 || p.x == p.w - 1)
+			if (p.y == 0 || p.y == p.h - 1 || p.x == 0 || p.x == p.w)
 				return (-1);
 			p.prew = ft_strlen(copy[p.y - 1]);
 			p.next = ft_strlen(copy[p.y + 1]);
-			if (p.x > p.prew - 1 || p.x > p.next - 1)
+			if (p.x >= p.prew || p.x >= p.next)
 				return (-1);
 			if (cell_check(copy, p) == false)
 				return (-1);

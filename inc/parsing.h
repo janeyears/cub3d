@@ -22,8 +22,8 @@ typedef struct s_count
 int		get_map(t_game *game, char *fname);
 int		get_path(t_list *map, char **path, char *prefix);
 int		*set_color(char *str);
-// int		get_texture(t_game *game);
-// int		get_color(t_game *game);
+int		parse_texture(t_list **curr, char *prefix, char **target);
+int		parse_color(t_list **curr, const char *prefix, int **target);
 
 int		composition(t_game *game);
 int		map_val(t_game *game);
