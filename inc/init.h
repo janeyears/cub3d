@@ -3,8 +3,8 @@
 
 # include "cub3d.h"
 
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1200
+# define HEIGHT 1200
 
 
 # define NORTH 0
@@ -26,8 +26,10 @@ typedef struct s_game
 	char		**map;
 	t_player	*player;
 	mlx_image_t		*background;
+	mlx_image_t		*minimap_img; // minimap
 	mlx_texture_t	*texture[4];
-	int			size_y; 	// list size and number of rows
+	int			size_x; 	// max number of columns
+	int			size_y; 	// number of rows
 	int			*ceiling;	// int array [red, green, blue]
 	int			*floor;		// int array [red, green, blue]
 	int				color_f;

@@ -3,7 +3,7 @@
 
 int	init_game(t_game *game)
 {
-	game->mlx = mlx_init(800, 600, "cub3d", false);
+	game->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", false);
 	if (!game->mlx)
 		return (err_msg(ERR_MLXINIT), 1);
 	get_color_code(game);
@@ -14,6 +14,24 @@ int	init_game(t_game *game)
 	return (0);
 }
 
+void	get_map_width(t_game *game)  // MOVE TO PARSING
+{
+	int	width;
+	int	len;
+	int	i;
+
+	i = 0;
+	width = 0;
+	while (game->map[i])
+	{
+		len = ft_strlen(game->map[i]);
+		if (len > width)
+			width = len;
+		i++;
+	}
+	game->size_x = width;
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -22,6 +40,8 @@ int	main(int argc, char **argv)
 		return (err_msg(ERR_USAGE), 1);
 	if (get_map(&game, argv[1]) < 0)
 		return (err_msg("Can't get map\n"), 1);
+	get_map_width(&game); // MOVE TO PARSING
+	printf("The X size of map is >%d<\n", game.size_x);
 	printf("This is cub 3d\n");
 	int i = 0;
 	while (game.map[i])
@@ -46,7 +66,7 @@ int	main(int argc, char **argv)
 		//free something
 		return (1);
 	}
-	if (init_image(&game) == 1)
+	if (init_image(&game) == 1) // ADDED MINIMAP IMG
 	{
 		//free something
 		return (1);
@@ -54,6 +74,10 @@ int	main(int argc, char **argv)
 	mlx_key_hook(game.mlx, esc_hook, &game);
 	mlx_close_hook(game.mlx, close_hook, &game);
 	mlx_loop_hook(game.mlx, game_loop, &game);
+	mlx_loop_hook(game.mlx, draw_minimap, &game); // MINIMAP
 	mlx_loop(game.mlx);
 	return (0);
 }
+
+	// NEED ADJUST DIRECTIONS to KEYS
+
