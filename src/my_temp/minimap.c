@@ -32,14 +32,22 @@ void	put_minimap(t_game *game)
 			}
 			map_x = game->player->x / TILE_SIZE + dx / (float)MINIMAP_SCALE;
 			map_y = game->player->y / TILE_SIZE + dy / (float)MINIMAP_SCALE;
-			tile_x = (int)map_x;
-			tile_y = (int)map_y;
+			if (map_x >= 0)
+				tile_x = (int)map_x;
+			else
+				tile_x = (int)floorf(map_x); // Allowed floorf? tile_x = (int)map_x;
+			if (map_y >= 0)
+				tile_y = (int)map_y; // Allowed floorf? tile_y = (int)map_y;
+			else
+				tile_y = (int)floorf(map_y);
 			if (tile_y >= 0 && tile_y < game->size_y && tile_x >= 0 && tile_x < game->size_x)
 			{
 				if (game->map[tile_y][tile_x] == '1')
 					color = 0x444444FF;
-				else
+				else if (if_inside(game->map[tile_y][tile_x]))
 					color = 0xAAAAAAFF;
+				else
+					color = 0x00000000;
 				put_pixel_safe(game->minimap_img, center_x + dx, center_y + dy, color);
 			}
 			dx++;
