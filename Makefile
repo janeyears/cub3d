@@ -30,7 +30,7 @@ MLX42		:= $(MLX42_PATH)/build/libmlx42.a
 
 PARSING		:= get_map config map_val
 
-#INIT		:= 
+TEST		:= minimap
 
 MAIN		:= main errors
 
@@ -41,16 +41,16 @@ UTILS		:= lst_utils utils free
 SRCS	:= $(addsuffix .c, $(addprefix src/, $(MAIN))) \
 			$(addsuffix .c, $(addprefix src/parsing/, $(PARSING))) \
 			$(addsuffix .c, $(addprefix src/utils/, $(UTILS))) \
-			$(addsuffix .c, $(addprefix src/game/, $(GAME))) 
-#			$(addsuffix .c, $(addprefix src/tokenization/, $(TOKENS))) \
-
+			$(addsuffix .c, $(addprefix src/game/, $(GAME))) \
+			$(addsuffix .c, $(addprefix src/my_temp/, $(TEST)))
 
 OBJS		:= $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 
 all: $(NAME)
 
 $(NAME): $(MLX42_PATH) $(MLX42) $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) $(HEADERS) $(LIBFT) $(MLX42) -o $(NAME) -lreadline -fsanitize=address
+	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) $(HEADERS) $(LIBFT) $(MLX42) -o $(NAME) -lreadline
+# -fsanitize=address
 	@echo "\033[1;95m💻 $(NAME) building completed...\033[0m"
 
 $(OBJS_PATH):

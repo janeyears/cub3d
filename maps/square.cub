@@ -1,0 +1,16 @@
+NO ./textures/dogs.png
+SO ./textures/dogs.png
+WE ./textures/dogs.png
+EA ./textures/dogs.png
+
+F 220,100,0
+C 225,30,0
+
+11111111
+100110N1
+10011001
+10000001
+11100111
+10000001
+10011001
+11111111

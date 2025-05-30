@@ -91,6 +91,8 @@ static void	init_game(t_game *game)
 	game->color_f = 0;
 	game->color_c = 0;
 	game->map = NULL;
+	game->size_x = 0;
+	game->size_y = 0;
 }
 
 int	get_map(t_game *game, char *fname)

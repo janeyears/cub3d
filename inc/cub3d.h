@@ -16,4 +16,6 @@
 # include "parsing.h"
 # include "graphic.h"
 
+# include "minimap.h"
+
 #endif
