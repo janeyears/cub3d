@@ -18,6 +18,7 @@ void	put_minimap(t_game *game)
 	int		tile_x = 0;
 	int		tile_y = 0;
 	uint32_t color;
+	float rotation_angle = -game->player->angle + NORTH_POV;
 
 	dy = -MINIMAP_RADIUS;
 	while (dy < MINIMAP_RADIUS)
@@ -30,14 +31,17 @@ void	put_minimap(t_game *game)
 				dx++;
 				continue;
 			}
-			map_x = game->player->x / TILE_SIZE + dx / (float)MINIMAP_SCALE;
-			map_y = game->player->y / TILE_SIZE + dy / (float)MINIMAP_SCALE;
+			float rdx = dx * cosf(-rotation_angle) - dy * sinf(-rotation_angle);
+			float rdy = dx * sinf(-rotation_angle) + dy * cosf(-rotation_angle);
+
+			map_x = game->player->x / TILE_SIZE + rdx / (float)MINIMAP_SCALE;
+			map_y = game->player->y / TILE_SIZE + rdy / (float)MINIMAP_SCALE;
 			if (map_x >= 0)
 				tile_x = (int)map_x;
 			else
-				tile_x = (int)floorf(map_x); // Allowed floorf? tile_x = (int)map_x;
+				tile_x = (int)floorf(map_x);
 			if (map_y >= 0)
-				tile_y = (int)map_y; // Allowed floorf? tile_y = (int)map_y;
+				tile_y = (int)map_y;
 			else
 				tile_y = (int)floorf(map_y);
 			if (tile_y >= 0 && tile_y < game->size_y && tile_x >= 0 && tile_x < game->size_x)
@@ -66,7 +70,7 @@ void	clean_minimap(t_game *game)
 		x = 0;
 		while (x < MINIMAP_SIZE)
 		{
-			mlx_put_pixel(game->minimap_img, x, y, 0x00000000);  // Black background
+			mlx_put_pixel(game->minimap_img, x, y, 0x00000000);
 			x++;
 		}
 		y++;
