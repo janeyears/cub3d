@@ -3,39 +3,34 @@
 
 
 // Проверка стены по координатам
-bool	is_wall(t_game *game, float x, float y)
+bool is_wall(t_game *game, float x, float y)
 {
-	int mx;
-	int my;
-
-	mx = (int)(x / TILE_SIZE);
-	my = (int)(y / TILE_SIZE);
+	int mx = (int)(x / TILE_SIZE);
+	int my = (int)(y / TILE_SIZE);
 
 	if (mx < 0 || mx >= game->size_x || my < 0 || my >= game->size_y)
-		return true; // за пределами - считаем стеной
+		return true; // Out of bounds = wall
 
 	return (game->map[my][mx] != 0);
 }
 
-// Признаки направления луча
+// Ray direction functions for SCREEN COORDINATES
+// bool ray_facing_right(float angle) {
+//     return cos(angle) > 0;
+// }
 
+// bool ray_facing_left(float angle) {
+//     return cos(angle) < 0;
+// }
 
-bool ray_facing_right(float angle) {
-    return cos(angle) > 0;
-}
+// // In screen coordinates: Y increases downward
+// bool ray_facing_down(float angle) {
+//     return sin(angle) > 0;  // Positive sin = moving down in screen coords
+// }
 
-bool ray_facing_left(float angle) {
-    return cos(angle) < 0;
-}
-
-bool ray_facing_down(float angle) {
-    return sin(angle) > 0;
-}
-
-bool ray_facing_up(float angle) {
-    return sin(angle) < 0;
-}
-
+// bool ray_facing_up(float angle) {
+//     return sin(angle) < 0;  // Negative sin = moving up in screen coords
+// }
 
 // bool ray_facing_down(float angle) { return angle > 0 && angle < M_PI; }
 // bool ray_facing_up(float angle) { return !ray_facing_down(angle); }
@@ -90,39 +85,84 @@ bool ray_facing_up(float angle) {
 // 	return ray; // Если не нашли стену — вернём дальнюю точку
 // }
 
+t_ray vertical_intersection(t_game *game, t_player *player, float angle)
+{
+    t_ray ray = {0};
+    ray.dist = 1000000;
+    ray.hit_vert = true;
+
+    if (fabs(cos(angle)) < 0.0001)
+        return ray;
+
+    float dx = cos(angle) > 0 ? TILE_SIZE : -TILE_SIZE;
+    float dy = dx * tan(angle);
+    
+    float x = floor(player->x / TILE_SIZE) * TILE_SIZE;
+    if (cos(angle) > 0) x += TILE_SIZE;
+    float y = player->y + (x - player->x) * tan(angle);
+
+    for (int i = 0; i < game->size_x + game->size_y; i++)
+    {
+        int map_x = (int)(x / TILE_SIZE);
+        if (cos(angle) < 0) map_x--;
+        int map_y = (int)(y / TILE_SIZE);
+
+        if (map_x < 0 || map_x >= game->size_x || map_y < 0 || map_y >= game->size_y)
+            break;
+
+        if (game->map[map_y][map_x] == '1')
+        {
+            ray.hit_x = x;
+            ray.hit_y = y;
+            ray.dist = hypot(x - player->x, y - player->y);
+            return ray;
+        }
+
+        x += dx;
+        y += dy;
+    }
+    return ray;
+}
+
 t_ray horizontal_intersection(t_game *game, t_player *player, float angle)
 {
-	t_ray ray = {0};
-	ray.dist = 1000000;
-	ray.hit_vert = false;
+    t_ray ray = {0};
+    ray.dist = 1000000;
+    ray.hit_vert = false;
 
-	float y_horz = floor(player->y / TILE_SIZE) * TILE_SIZE;
-	if (ray_facing_down(angle))
-		y_horz += TILE_SIZE;
+    if (fabs(sin(angle)) < 0.0001)
+        return ray;
 
-	float x_horz = player->x + (y_horz - player->y) / tan(angle);
+    float dy = sin(angle) > 0 ? TILE_SIZE : -TILE_SIZE;
+    float dx = dy / tan(angle);
+    
+    float y = floor(player->y / TILE_SIZE) * TILE_SIZE;
+    if (sin(angle) > 0) y += TILE_SIZE;
+    float x = player->x + (y - player->y) / tan(angle);
 
-	float y_step = ray_facing_up(angle) ? -TILE_SIZE : TILE_SIZE;
-	float x_step = TILE_SIZE / tan(angle);
-	if ((ray_facing_left(angle) && x_step > 0) || (ray_facing_right(angle) && x_step < 0))
-		x_step = -x_step;
+    for (int i = 0; i < game->size_x + game->size_y; i++)
+    {
+        int map_x = (int)(x / TILE_SIZE);
+        int map_y = (int)(y / TILE_SIZE);
+        if (sin(angle) < 0) map_y--;
 
-	while (x_horz >= 0 && x_horz < game->size_x * TILE_SIZE &&
-		   y_horz >= 0 && y_horz < game->size_y * TILE_SIZE)
-	{
-		float check_y = y_horz + (ray_facing_up(angle) ? -1 : 0);
-		if (is_wall(game, x_horz, check_y))
-		{
-			ray.hit_x = x_horz;
-			ray.hit_y = y_horz;
-			ray.dist = hypot(ray.hit_x - player->x, ray.hit_y - player->y);
-			return ray;
-		}
-		x_horz += x_step;
-		y_horz += y_step;
-	}
-	return ray;
+        if (map_x < 0 || map_x >= game->size_x || map_y < 0 || map_y >= game->size_y)
+            break;
+
+        if (game->map[map_y][map_x] == '1')
+        {
+            ray.hit_x = x;
+            ray.hit_y = y;
+            ray.dist = hypot(x - player->x, y - player->y);
+            return ray;
+        }
+
+        x += dx;
+        y += dy;
+    }
+    return ray;
 }
+
 
 
 // Вертикальные пересечения
@@ -177,40 +217,6 @@ t_ray horizontal_intersection(t_game *game, t_player *player, float angle)
 
 // 	return ray;
 // }
-
-t_ray vertical_intersection(t_game *game, t_player *player, float angle)
-{
-	t_ray ray = {0};
-	ray.dist = 1000000;
-	ray.hit_vert = true;
-
-	float x_vert = floor(player->x / TILE_SIZE) * TILE_SIZE;
-	if (ray_facing_right(angle))
-		x_vert += TILE_SIZE;
-
-	float y_vert = player->y + (x_vert - player->x) * tan(angle);
-
-	float x_step = ray_facing_left(angle) ? -TILE_SIZE : TILE_SIZE;
-	float y_step = TILE_SIZE * tan(angle);
-	if ((ray_facing_up(angle) && y_step > 0) || (ray_facing_down(angle) && y_step < 0))
-		y_step = -y_step;
-
-	while (x_vert >= 0 && x_vert < game->size_x * TILE_SIZE &&
-		   y_vert >= 0 && y_vert < game->size_y * TILE_SIZE)
-	{
-		float check_x = x_vert + (ray_facing_left(angle) ? -1 : 0);
-		if (is_wall(game, check_x, y_vert))
-		{
-			ray.hit_x = x_vert;
-			ray.hit_y = y_vert;
-			ray.dist = hypot(ray.hit_x - player->x, ray.hit_y - player->y);
-			return ray;
-		}
-		x_vert += x_step;
-		y_vert += y_step;
-	}
-	return ray;
-}
 
 
 // Основная функция raycast с выбором ближайшего пересечения

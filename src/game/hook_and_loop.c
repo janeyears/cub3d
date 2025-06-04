@@ -32,4 +32,6 @@ void	game_loop(void *param)
 	game = (t_game *)param;
 	handle_movement(game);
 	render_scene(game);
+	printf("Player position: x: %f, y: %f, angle: %f\n",
+		game->player->x, game->player->y, game->player->angle);
 }

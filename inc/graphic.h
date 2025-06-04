@@ -3,10 +3,10 @@
 
 # include "cub3d.h"
 
-# define EAST_POV 0		// 0 degrees in radians		
-# define NORTH_POV M_PI + M_PI_2	// 90 degrees in radians
-# define WEST_POV M_PI		// 180 degrees in radians
-# define SOUTH_POV M_PI_2	// 270 degrees in radians
+# define EAST_POV 0		    // pointing right
+# define SOUTH_POV M_PI_2	    // pointing down (positive Y in screen coords)
+# define WEST_POV M_PI		    // pointing left  
+# define NORTH_POV 3*M_PI_2	    // pointing up (negative Y in screen coords)
 
 
 # define FOV (M_PI / 3.0f) 
