@@ -22,7 +22,7 @@ void render_f_and_c(t_game *game)
 		x = 0;
 		while (x < WIDTH)
 		{
-			if (y < 300)
+			if (y < HEIGHT / 2)
 				mlx_put_pixel(game->background, x, y, game->color_c); // put pixel safe??? Checks borders
 			else
 				mlx_put_pixel(game-> background, x, y, game->color_f); // put pixel safe??? Checks borders
