@@ -3,16 +3,16 @@
 
 
 // Проверка стены по координатам
-bool is_wall(t_game *game, float x, float y)
-{
-	int mx = (int)(x / TILE_SIZE);
-	int my = (int)(y / TILE_SIZE);
+// bool is_wall(t_game *game, float x, float y)
+// {
+// 	int mx = (int)(x / TILE_SIZE);
+// 	int my = (int)(y / TILE_SIZE);
 
-	if (mx < 0 || mx >= game->size_x || my < 0 || my >= game->size_y)
-		return true; // Out of bounds = wall
+// 	if (mx < 0 || mx >= game->size_x || my < 0 || my >= game->size_y)
+// 		return true; // Out of bounds = wall
 
-	return (game->map[my][mx] != 0);
-}
+// 	return (game->map[my][mx] != 0);
+// }
 
 // Ray direction functions for SCREEN COORDINATES
 // bool ray_facing_right(float angle) {
@@ -87,83 +87,80 @@ bool is_wall(t_game *game, float x, float y)
 
 t_ray vertical_intersection(t_game *game, t_player *player, float angle)
 {
-    t_ray ray = {0};
-    ray.dist = 1000000;
-    ray.hit_vert = true;
+	t_ray ray = {0};
+	ray.dist = 1000000;
+	ray.hit_vert = true;
 
-    if (fabs(cos(angle)) < 0.0001)
-        return ray;
+	if (fabs(cos(angle)) < 0.0001)
+		return ray;
 
-    float dx = cos(angle) > 0 ? TILE_SIZE : -TILE_SIZE;
-    float dy = dx * tan(angle);
-    
-    float x = floor(player->x / TILE_SIZE) * TILE_SIZE;
-    if (cos(angle) > 0) x += TILE_SIZE;
-    float y = player->y + (x - player->x) * tan(angle);
+	float dx = cos(angle) > 0 ? TILE_SIZE : -TILE_SIZE;
+	float dy = dx * tan(angle);
+		
+	float x = floor(player->x / TILE_SIZE) * TILE_SIZE;
+	if (cos(angle) > 0) x += TILE_SIZE;
+	float y = player->y + (x - player->x) * tan(angle);
 
-    for (int i = 0; i < game->size_x + game->size_y; i++)
-    {
-        int map_x = (int)(x / TILE_SIZE);
-        if (cos(angle) < 0) map_x--;
-        int map_y = (int)(y / TILE_SIZE);
+	for (int i = 0; i < game->size_x + game->size_y; i++)
+	{
+		int map_x = (int)(x / TILE_SIZE);
+		if (cos(angle) < 0) map_x--;
+		int map_y = (int)(y / TILE_SIZE);
 
-        if (map_x < 0 || map_x >= game->size_x || map_y < 0 || map_y >= game->size_y)
-            break;
+		if (map_x < 0 || map_x >= game->size_x || map_y < 0 || map_y >= game->size_y)
+			break;
 
-        if (game->map[map_y][map_x] == '1')
-        {
-            ray.hit_x = x;
-            ray.hit_y = y;
-            ray.dist = hypot(x - player->x, y - player->y);
-            return ray;
-        }
+		if (game->map[map_y][map_x] == '1')
+		{
+			ray.hit_x = x;
+			ray.hit_y = y;
+			ray.dist = hypot(x - player->x, y - player->y);
+			return ray;
+		}
 
-        x += dx;
-        y += dy;
-    }
-    return ray;
+		x += dx;
+		y += dy;
+	}
+	return ray;
 }
 
 t_ray horizontal_intersection(t_game *game, t_player *player, float angle)
 {
-    t_ray ray = {0};
-    ray.dist = 1000000;
-    ray.hit_vert = false;
+	t_ray ray = {0};
+	ray.dist = 1000000;
+	ray.hit_vert = false;
 
-    if (fabs(sin(angle)) < 0.0001)
-        return ray;
+	if (fabs(sin(angle)) < 0.0001)
+		return ray;
+	float dy = sin(angle) > 0 ? TILE_SIZE : -TILE_SIZE;
+	float dx = dy / tan(angle);
+		
+	float y = floor(player->y / TILE_SIZE) * TILE_SIZE;
+	if (sin(angle) > 0) y += TILE_SIZE;
+	float x = player->x + (y - player->y) / tan(angle);
 
-    float dy = sin(angle) > 0 ? TILE_SIZE : -TILE_SIZE;
-    float dx = dy / tan(angle);
-    
-    float y = floor(player->y / TILE_SIZE) * TILE_SIZE;
-    if (sin(angle) > 0) y += TILE_SIZE;
-    float x = player->x + (y - player->y) / tan(angle);
+	for (int i = 0; i < game->size_x + game->size_y; i++)
+	{
+		int map_x = (int)(x / TILE_SIZE);
+		int map_y = (int)(y / TILE_SIZE);
+		if (sin(angle) < 0) map_y--;
 
-    for (int i = 0; i < game->size_x + game->size_y; i++)
-    {
-        int map_x = (int)(x / TILE_SIZE);
-        int map_y = (int)(y / TILE_SIZE);
-        if (sin(angle) < 0) map_y--;
+		if (map_x < 0 || map_x >= game->size_x || map_y < 0 || map_y >= game->size_y)
+			break;
 
-        if (map_x < 0 || map_x >= game->size_x || map_y < 0 || map_y >= game->size_y)
-            break;
+		if (game->map[map_y][map_x] == '1')
+		{
+			ray.hit_x = x;
+			ray.hit_y = y;
+			ray.dist = hypot(x - player->x, y - player->y);
+			return ray;
+		}
 
-        if (game->map[map_y][map_x] == '1')
-        {
-            ray.hit_x = x;
-            ray.hit_y = y;
-            ray.dist = hypot(x - player->x, y - player->y);
-            return ray;
-        }
-
-        x += dx;
-        y += dy;
-    }
-    return ray;
+		x += dx;
+		y += dy;
+	}
+	return ray;
 }
-
-
 
 // Вертикальные пересечения
 // t_ray vertical_intersection(t_game *game, t_player *player, float angle)
