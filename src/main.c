@@ -10,6 +10,7 @@ int	init_game(t_game *game)
 	if (upload_wall_textures(game) != 0)
 		return (1);
 	init_player(game);
+	game->rays = NULL;
 	printf("Player initialized at x: %f y: %f pov: %c, angle: %f\n", game->player->x, game->player->y, game->player->pov, game->player->angle);
 	return (0);
 }

@@ -1,7 +1,7 @@
 NO ./textures/dogs.png
 SO ./textures/dogs.png
-WE ./sprites/left.png
-EA ./sprites/right.png
+WE ./textures/left.png
+EA ./textures/right.png
 
 F 220,100,0
 C 225,30,0

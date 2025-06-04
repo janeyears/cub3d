@@ -31,6 +31,5 @@ void	game_loop(void *param)
 
 	game = (t_game *)param;
 	handle_movement(game);
-	//raycasting(game);
-	//render_scene(game);
+	render_scene(game);
 }

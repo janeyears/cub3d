@@ -8,6 +8,9 @@
 # define WEST_POV M_PI		// 180 degrees in radians
 # define SOUTH_POV M_PI_2	// 270 degrees in radians
 
+
+# define FOV (M_PI / 3.0f) 
+
 # define TILE_SIZE 64
 # define ROT_SPEED 2.5
 # define SPEED 5
@@ -29,5 +32,10 @@ int		upload_wall_textures(t_game *game);
 void	init_player(t_game *game);
 void	game_loop(void *param);
 void	handle_movement(t_game *game);
+
+//void	raycasting(t_game *game);
+t_ray raycast(t_game *game, t_player *player, float angle);
+
+void	render_scene(t_game *game);
 
 #endif

@@ -30,11 +30,11 @@ MLX42		:= $(MLX42_PATH)/build/libmlx42.a
 
 PARSING		:= get_map config map_val
 
-TEST		:= minimap
+TEST		:= minimap ray_cast
 
 MAIN		:= main errors
 
-GAME		:= background_player image hook_and_loop movements
+GAME		:= background_player image hook_and_loop movements render_image
 
 UTILS		:= lst_utils utils free
 

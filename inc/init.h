@@ -23,9 +23,9 @@ typedef struct s_player
 typedef struct s_ray
 {
 	// float		ang;			// curr RAY aNGLE 
-	float		hit_x;			//hip point by x
-	float		hit_y;			// hit point by y
-	float		dist;			// dist to wall
+	double		hit_x;			//hip point by x
+	double		hit_y;			// hit point by y
+	double		dist;			// dist to wall
 	bool		hit_vert;		// hit vertical - 1, hit horizontal - 0
 }	t_ray;
 
@@ -37,6 +37,7 @@ typedef struct s_game
 	t_ray		*rays;		// array of rays
 	mlx_image_t		*background;
 	mlx_image_t		*minimap_img; // minimap
+	mlx_image_t		*scene;		// image for rendering
 	mlx_texture_t	*texture[4];
 	int			size_x; 	// max number of columns
 	int			size_y; 	// number of rows

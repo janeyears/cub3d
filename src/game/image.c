@@ -27,9 +27,19 @@ int	init_image(t_game *game)
 		return (1);
 	printf("Textures uploaded successfully\n");
 
+	game->scene = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	if (!game->scene)
+		return (1);
+	if (mlx_image_to_window(game->mlx, game->scene, 0, 0) == -1)
+		return (1);
+
 	/////////////////////////////////////
+
 	game->minimap_img = mlx_new_image(game->mlx, MINIMAP_SIZE, MINIMAP_SIZE);	// MY TEST
-	mlx_image_to_window(game->mlx, game->minimap_img, 10, 10); 					// MY TEST
+	if (!game->minimap_img)
+		return (1);
+	if (mlx_image_to_window(game->mlx, game->minimap_img, 10, 10) == -1)
+		return (1); 					// MY TEST
 	//////////////////////////////////////////
 	return (0);
 }
