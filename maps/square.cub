@@ -3,8 +3,8 @@ SO ./textures/dogs.png
 WE ./textures/dogs.png
 EA ./textures/dogs.png
 
-F 220,100,0
-C 225,30,0
+F 27, 27, 27
+C 62, 180, 137
 
 11111111
 100110N1

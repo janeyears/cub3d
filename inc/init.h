@@ -6,7 +6,6 @@
 # define WIDTH 1200
 # define HEIGHT 1200
 
-
 # define NORTH 0
 # define SOUTH 1
 # define WEST 2
@@ -27,6 +26,7 @@ typedef struct s_ray
 	double		hit_y;			// hit point by y
 	double		dist;			// dist to wall
 	bool		hit_vert;		// hit vertical - 1, hit horizontal - 0
+	int			dir;
 }	t_ray;
 
 typedef struct s_game
