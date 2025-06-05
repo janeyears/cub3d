@@ -30,19 +30,16 @@ MLX42		:= $(MLX42_PATH)/build/libmlx42.a
 
 PARSING		:= get_map config map_val
 
-TEST		:= minimap ray_cast
-
 MAIN		:= main errors
 
-GAME		:= background_player image hook_and_loop movements render_image
+GAME		:= background_player image hook_and_loop movements render_image minimap ray_cast
 
 UTILS		:= lst_utils utils free
 
 SRCS	:= $(addsuffix .c, $(addprefix src/, $(MAIN))) \
 			$(addsuffix .c, $(addprefix src/parsing/, $(PARSING))) \
 			$(addsuffix .c, $(addprefix src/utils/, $(UTILS))) \
-			$(addsuffix .c, $(addprefix src/game/, $(GAME))) \
-			$(addsuffix .c, $(addprefix src/my_temp/, $(TEST)))
+			$(addsuffix .c, $(addprefix src/game/, $(GAME)))
 
 OBJS		:= $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 

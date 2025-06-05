@@ -19,27 +19,15 @@ int	upload_wall_textures(t_game *game)
 
 int	init_image(t_game *game)
 {
-	game->background = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	if (!game->background)
-		return (1);
-	render_f_and_c(game);
-	if (mlx_image_to_window(game->mlx, game->background, 0, 0) == -1)
-		return (1);
-	printf("Textures uploaded successfully\n");
-
 	game->scene = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	if (!game->scene)
 		return (1);
 	if (mlx_image_to_window(game->mlx, game->scene, 0, 0) == -1)
 		return (1);
-
-	/////////////////////////////////////
-
-	game->minimap_img = mlx_new_image(game->mlx, MINIMAP_SIZE, MINIMAP_SIZE);	// MY TEST
+	game->minimap_img = mlx_new_image(game->mlx, MINIMAP_SIZE, MINIMAP_SIZE);
 	if (!game->minimap_img)
 		return (1);
 	if (mlx_image_to_window(game->mlx, game->minimap_img, 10, 10) == -1)
-		return (1); 					// MY TEST
-	//////////////////////////////////////////
+		return (1);
 	return (0);
 }

@@ -11,27 +11,6 @@ void get_color_code(t_game *game)
 					| (game->floor[2] << 8) | 0xFF;
 }
 
-void render_f_and_c(t_game *game)
-{
-	int y;
-	int x;
-
-	y = 0;
-	while (y < HEIGHT)
-	{
-		x = 0;
-		while (x < WIDTH)
-		{
-			if (y < HEIGHT / 2)
-				mlx_put_pixel(game->background, x, y, game->color_c); // put pixel safe??? Checks borders
-			else
-				mlx_put_pixel(game-> background, x, y, game->color_f); // put pixel safe??? Checks borders
-			x++;
-		}
-		y++;
-	}
-}
-
 void	get_player_pov(t_game **game)
 {
 	if ((*game)->player->pov == 'E')

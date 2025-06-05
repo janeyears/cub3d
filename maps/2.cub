@@ -2,7 +2,7 @@ NO ./textures/dogs.png
 SO ./textures/dogs.png
 
 
-C 225,30,0
+C 62, 180, 137
 WE ./textures/dogs.png
 EA ./textures/dogs.png
 
@@ -10,7 +10,7 @@ EA ./textures/dogs.png
 
 
 
-F 220,100,0
+F 27, 27, 27
 
 
 
