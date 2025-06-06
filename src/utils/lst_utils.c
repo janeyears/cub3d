@@ -1,19 +1,4 @@
-
 #include "cub3d.h"
-
-void	print_linked_list(t_list *lst)
-{
-	t_list	*current;
-
-	current = lst;
-	printf("\033[1;93m");
-	while (current)
-	{
-		printf("%s",(char *)current->content);
-		current = current->next;
-	}
-	printf("\n\033[0m");
-}
 
 t_list	*lstnew_m(void *content)
 {
@@ -67,12 +52,11 @@ char	**list_to_arr(t_list *list)
 	arr = ft_calloc(size + 1, sizeof(char *));
 	if (!arr)
 		return (NULL);
-	while (current)
+	while (current && current->content)
 	{
-		if (!current->content)
-			return (NULL);
 		if (i < size - 1)
-			arr[i] = ft_substr(current->content, 0, ft_strlen(current->content) - 1);
+			arr[i] = ft_substr(current->content, 0,
+					ft_strlen(current->content) - 1);
 		else
 			arr[i] = ft_strdup(current->content);
 		if (!arr[i++])

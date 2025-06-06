@@ -1,5 +1,3 @@
-
-
 #include "cub3d.h"
 
 static void	rotate_player(t_game *game, int direction)
@@ -8,8 +6,7 @@ static void	rotate_player(t_game *game, int direction)
 		game->player->angle -= ROT_SPEED * game->mlx->delta_time;
 	else if (direction == RIGHT)
 		game->player->angle += ROT_SPEED * game->mlx->delta_time;
-	// Keep angle within [0, 2*PI] for consistency
-	if (game->player->angle < 0)
+	if (game->player->angle < 0) // Keep angle within [0, 2*PI] for consistency
 		game->player->angle += 2 * M_PI;
 	else if (game->player->angle > 2 * M_PI)
 		game->player->angle -= 2 * M_PI;
@@ -17,8 +14,8 @@ static void	rotate_player(t_game *game, int direction)
 
 static int	check_collision(t_game *game, double new_x, double new_y)
 {
-	int tile_x;
-	int tile_y;
+	int	tile_x;
+	int	tile_y;
 
 	tile_x = (int)(new_x / TILE_SIZE);
 	tile_y = (int)(new_y / TILE_SIZE);
@@ -29,21 +26,21 @@ static int	check_collision(t_game *game, double new_x, double new_y)
 
 static int	move_player_horiz(t_game *game, int direction)
 {
-	double new_x;
-	double new_y;
-	double vector;
+	double	new_x;
+	double	new_y;
+	double	vector;
 
 	if (direction == A)
 	{
 		vector = game->player->angle - M_PI_2;
-		new_x = game->player->x + cos(vector) * TILE_SIZE * game->mlx->delta_time; 
-		new_y = game->player->y + sin(vector) * TILE_SIZE * game->mlx->delta_time; 
+		new_x = move_cos(game->player->x, vector, game->mlx->delta_time);
+		new_y = move_sin(game->player->y, vector, game->mlx->delta_time);
 	}
 	else
 	{
 		vector = game->player->angle + M_PI_2;
-		new_x = game->player->x + cos(vector) * TILE_SIZE * game->mlx->delta_time; 
-		new_y = game->player->y + sin(vector) * TILE_SIZE * game->mlx->delta_time;
+		new_x = move_cos(game->player->x, vector, game->mlx->delta_time);
+		new_y = move_sin(game->player->y, vector, game->mlx->delta_time);
 	}
 	if (check_collision(game, new_x, new_y))
 	{
@@ -56,18 +53,22 @@ static int	move_player_horiz(t_game *game, int direction)
 
 static int	move_player_vertic(t_game *game, int direction)
 {
-	double new_x;
-	double new_y;
+	double	new_x;
+	double	new_y;
 
 	if (direction == W)
 	{
-		new_x = game->player->x + cos(game->player->angle) * TILE_SIZE * game->mlx->delta_time; // MAYBE NOT TILE_SIZE
-		new_y = game->player->y + sin(game->player->angle) * TILE_SIZE * game->mlx->delta_time; // MAYBE NOT TILE_SIZE
+		new_x = move_cos(game->player->x, game->player->angle,
+				game->mlx->delta_time);
+		new_y = move_sin(game->player->y, game->player->angle,
+				game->mlx->delta_time);
 	}
 	else
 	{
-		new_x = game->player->x - cos(game->player->angle) * TILE_SIZE * game->mlx->delta_time; // MAYBE NOT TILE_SIZE
-		new_y = game->player->y - sin(game->player->angle) * TILE_SIZE * game->mlx->delta_time; // MAYBE NOT TILE_SIZE
+		new_x = game->player->x - cos(game->player->angle)
+			* TILE_SIZE * game->mlx->delta_time;
+		new_y = game->player->y - sin(game->player->angle)
+			* TILE_SIZE * game->mlx->delta_time;
 	}
 	if (check_collision(game, new_x, new_y))
 	{
@@ -80,32 +81,31 @@ static int	move_player_vertic(t_game *game, int direction)
 
 void	handle_movement(t_game *game)
 {
-
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
 	{
 		if (move_player_vertic(game, S) == 0)
-			printf("Down key pressed. New player coordinates: x: %f y: %f\n", game->player->x, game->player->y);
+			printf("Down key pressed.\n");
 		else
 			printf("Collision detected, cannot move down\n");
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
 	{
 		if (move_player_horiz(game, A) == 0)
-			printf("Left key pressed. New player coordinates: x: %f y: %f\n", game->player->x, game->player->y);
+			printf("Left key pressed.\n");
 		else
 			printf("Collision detected, cannot move left\n");
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 	{
 		if (move_player_vertic(game, W) == 0)
-			printf("Up key pressed. New player coordinates: x: %f y: %f\n", game->player->x, game->player->y);
+			printf("Up key pressed.\n");
 		else
 			printf("Collision detected, cannot move up\n");
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 	{
 		if (move_player_horiz(game, D) == 0)
-			printf("Right key pressed. New player coordinates: x: %f y: %f\n", game->player->x, game->player->y);
+			printf("Right key pressed\n");
 		else
 			printf("Collision detected, cannot move right\n");
 	}

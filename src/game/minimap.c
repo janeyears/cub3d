@@ -1,106 +1,110 @@
-
 #include "cub3d.h"
 
-void	put_pixel_safe(mlx_image_t *img, int x, int y, uint32_t color)
+static void	put_pixel_mini(t_game *game, t_mini mini)
 {
-	if (x >= 0 && y >= 0 && x < (int)img->width && y < (int)img->height)
-		mlx_put_pixel(img, x, y, color);
+	uint32_t	color;
+	int			x;
+	int			y;
+
+	x = mini.center_x + mini.dx;
+	y = mini.center_y + mini.dy;
+	if (game->map[mini.tile_y][mini.tile_x] == '1')
+		color = 0x444444FF;
+	else if (if_inside(game->map[mini.tile_y][mini.tile_x]))
+		color = 0xAAAAAAFF;
+	else
+		color = 0x00000000;
+	mlx_put_pixel(game->minimap_img, x, y, color);
 }
 
-void	put_minimap(t_game *game)
+static void	mini_init(t_mini *mini)
 {
-	int		center_x = MINIMAP_RADIUS;
-	int		center_y = MINIMAP_RADIUS;
-	int		dy;
-	int		dx;
-	float	map_x = 0;
-	float	map_y = 0;
-	int		tile_x = 0;
-	int		tile_y = 0;
-	uint32_t color;
-	float rotation_angle = -game->player->angle + NORTH_POV;
-
-	dy = -MINIMAP_RADIUS;
-	while (dy < MINIMAP_RADIUS)
-	{
-		dx = -MINIMAP_RADIUS;
-		while (dx < MINIMAP_RADIUS)
-		{
-			if (dx*dx + dy*dy > MINIMAP_RADIUS * MINIMAP_RADIUS)
-			{
-				dx++;
-				continue;
-			}
-			float rdx = dx * cosf(-rotation_angle) - dy * sinf(-rotation_angle);
-			float rdy = dx * sinf(-rotation_angle) + dy * cosf(-rotation_angle);
-
-			map_x = game->player->x / TILE_SIZE + rdx / (float)MINIMAP_SCALE;
-			map_y = game->player->y / TILE_SIZE + rdy / (float)MINIMAP_SCALE;
-			if (map_x >= 0)
-				tile_x = (int)map_x;
-			else
-				tile_x = (int)floorf(map_x);
-			if (map_y >= 0)
-				tile_y = (int)map_y;
-			else
-				tile_y = (int)floorf(map_y);
-			if (tile_y >= 0 && tile_y < game->size_y && tile_x >= 0 && tile_x < game->size_x)
-			{
-				if (game->map[tile_y][tile_x] == '1')
-					color = 0x444444FF;
-				else if (if_inside(game->map[tile_y][tile_x]))
-					color = 0xAAAAAAFF;
-				else
-					color = 0x00000000;
-				put_pixel_safe(game->minimap_img, center_x + dx, center_y + dy, color);
-			}
-			dx++;
-		}
-		dy++;
-	}
+	mini->center_x = MINIMAP_RADIUS;
+	mini->center_y = MINIMAP_RADIUS;
+	mini->dy = -MINIMAP_RADIUS;
+	mini->dx = 0;
+	mini->map_x = 0;
+	mini->map_y = 0;
+	mini->tile_x = 0;
+	mini->tile_y = 0;
+	mini->rdy = 0;
+	mini->rdx = 0;
+	mini->tile_x = 0;
+	mini->tile_y = 0;
 }
 
-void	clean_minimap(t_game *game)
+static void	get_tile(t_game *game, t_mini *mini)
 {
-	int		x = 0;
-	int		y = 0;
+	float	rotation_angle;
 
-	while (y < MINIMAP_SIZE)
+	rotation_angle = -game->player->angle + NORTH_POV;
+	mini->rdx = mini->dx * cosf(-rotation_angle)
+		- mini->dy * sinf(-rotation_angle);
+	mini->rdy = mini->dx * sinf(-rotation_angle)
+		+ mini->dy * cosf(-rotation_angle);
+	mini->map_x = game->player->x / TILE_SIZE
+		+ mini->rdx / (float)MINIMAP_SCALE;
+	mini->map_y = game->player->y / TILE_SIZE
+		+ mini->rdy / (float)MINIMAP_SCALE;
+	if (mini->map_x >= 0)
+		mini->tile_x = (int)mini->map_x;
+	else
+		mini->tile_x = (int)floorf(mini->map_x);
+	if (mini->map_y >= 0)
+		mini->tile_y = (int)mini->map_y;
+	else
+		mini->tile_y = (int)floorf(mini->map_y);
+}
+
+static void	put_minimap(t_game *game)
+{
+	t_mini		mini;
+
+	mini_init(&mini);
+	while (mini.dy < MINIMAP_RADIUS)
 	{
-		x = 0;
-		while (x < MINIMAP_SIZE)
+		mini.dx = -MINIMAP_RADIUS;
+		while (mini.dx < MINIMAP_RADIUS)
 		{
-			mlx_put_pixel(game->minimap_img, x, y, 0x00000000);
-			x++;
+			if (mini.dx * mini.dx + mini.dy * mini.dy
+				> MINIMAP_RADIUS * MINIMAP_RADIUS)
+			{
+				mini.dx++;
+				continue ;
+			}
+			get_tile(game, &mini);
+			if (mini.tile_y >= 0 && mini.tile_y < game->size_y
+				&& mini.tile_x >= 0 && mini.tile_x < game->size_x)
+			{
+				put_pixel_mini(game, mini);
+			}
+			mini.dx++;
 		}
-		y++;
+		mini.dy++;
 	}
 }
 
 void	draw_minimap(void *param)
 {
-	int		center_x = MINIMAP_RADIUS;
-	int		center_y = MINIMAP_RADIUS;
-	int	dy;
-	int	dx;
-	t_game *game;
+	int		center_x;
+	int		center_y;
+	int		dy;
+	int		dx;
+	t_game	*game;
 
+	center_x = MINIMAP_RADIUS;
+	center_y = MINIMAP_RADIUS;
 	game = (t_game *)param;
-
-	// Clear minimap
-	clean_minimap(game);
-	// Draw map minimap
 	put_minimap(game);
-
-	// Draw green dot for player
 	dy = -4;
 	while (dy <= 4)
 	{
 		dx = -4;
 		while (dx <= 4)
 		{
-			if (dx*dx + dy*dy <= 16)
-				put_pixel_safe(game->minimap_img, center_x + dx, center_y + dy, 0x00FF00FF);
+			if (dx * dx + dy * dy <= 16)
+				mlx_put_pixel(game->minimap_img, center_x + dx,
+					center_y + dy, 0x00FF00FF);
 			dx++;
 		}
 		dy++;

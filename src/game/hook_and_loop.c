@@ -5,7 +5,6 @@ void	close_hook(void *data)
 	t_game	*game;
 
 	game = (t_game *)data;
-
 	printf("Window has been closed\n");
 	mlx_close_window(game->mlx);
 	free_game(game);
