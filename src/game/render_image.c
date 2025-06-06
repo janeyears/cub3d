@@ -2,103 +2,79 @@
 
 #include "cub3d.h"
 
-// Assuming texture->bytes_per_pixel == 4 (RGBA)
-int get_pixel_color(mlx_texture_t *texture, int tex_x, int tex_y)
+static t_column	prepare_column(t_game *game, float ray_angle, float proj_dist)
 {
-	uint32_t offset = (tex_y * texture->width + tex_x) * texture->bytes_per_pixel;
+	t_column	col;
+	float		corrected_dist;
 
-	uint8_t r = texture->pixels[offset + 0];
-	uint8_t g = texture->pixels[offset + 1];
-	uint8_t b = texture->pixels[offset + 2];
-	uint8_t a = texture->pixels[offset + 3];
-
-	// Combine RGBA into a single 32-bit color (MLX42 uses 0xRRGGBBAA format by default)
-	return (r << 24) | (g << 16) | (b << 8) | a;
+	col.ray = raycast(game, game->player, ray_angle);
+	corrected_dist = col.ray.dist * cos(ray_angle - game->player->angle);
+	if (corrected_dist < MIN_DISTANCE)
+		corrected_dist = MIN_DISTANCE;
+	col.wall_height = (TILE_SIZE * proj_dist) / corrected_dist;
+	col.wall_start = (HEIGHT - col.wall_height) / 2;
+	col.wall_end = col.wall_start + col.wall_height;
+	if (col.ray.dir == 0 || col.ray.dir == 1)
+		col.tex_x = ((int)col.ray.hit_x % TILE_SIZE) * TEX_SIZE / TILE_SIZE;
+	else
+		col.tex_x = ((int)col.ray.hit_y % TILE_SIZE) * TEX_SIZE / TILE_SIZE;
+	return (col);
 }
 
-
-void render_scene(t_game *game)
+static int	get_column_color(t_game *game, t_column *col, int y)
 {
-	t_ray ray;
-	
-	ft_memset(game->scene->pixels, 0, WIDTH * HEIGHT * sizeof(uint32_t));
+	int	tex_y;
+	int	tex_x;
+	int	color;
 
-	float distance_to_projection_plane = (WIDTH / 2.0f) / tan(FOV / 2.0f);
-	for (int x = 0; x < WIDTH; x++)
+	if (y < col->wall_start)
+		return (game->color_c);
+	else if (y < col->wall_end)
 	{
-		// Calculate ray angle for this column
-		float ray_angle = game->player->angle - (FOV / 2.0f)
-						+ ((float)x / WIDTH) * FOV;
+		tex_y = (y - col->wall_start) * TEX_SIZE / col->wall_height;
+		if (tex_y >= TEX_SIZE)
+			tex_y = TEX_SIZE - 1;
 
-		// Avoid division by zero in tan()
-		if (fabs(tan(ray_angle)) < 0.0001f)
-			ray_angle += 0.0001f;
-		
-		ray = raycast(game, game->player, ray_angle);
-		// Fish-eye correction
-		float angle_diff = ray_angle - game->player->angle;
-		float corrected_dist = ray.dist * cos(angle_diff);
+		tex_x = col->tex_x;
+		if (tex_x >= TEX_SIZE)
+			tex_x = TEX_SIZE - 1;
 
-		// Simplified wall height calculation
-		float wall_height = (TILE_SIZE / corrected_dist) * distance_to_projection_plane; // NEW
+		color = get_pixel_color(game->texture[col->ray.dir], tex_x, tex_y);
+		return (color);
+	}
+	else
+		return (game->color_f);
+}
 
-		if (wall_height > HEIGHT) // NEW
-			wall_height = HEIGHT; // NEW
+static void	draw_column(t_game *game, int x, float ray_angle, float proj_dist)
+{
+	t_column	col;
+	int			y;
+	int			color;
 
-		// float wall_height = (int)(HEIGHT / corrected_dist); // OLD
-		int wall_top = HEIGHT / 2 - wall_height / 2;  // NEW
-		int wall_bottom = HEIGHT / 2 + wall_height / 2;  // NEW
-		
-		// Calculate wall boundaries
-		int start = (HEIGHT / 2) - (wall_height / 2);
-		int end   = (HEIGHT / 2) + (wall_height / 2);
+	col = prepare_column(game, ray_angle, proj_dist);
+	y = 0;
+	while (y < HEIGHT)
+	{
+		color = get_column_color(game, &col, y);
+		mlx_put_pixel(game->scene, x, y, color);
+		y++;
+	}
+}
 
-		// Draw vertical line
-		for (int y = start; y < end; y++)
-		{
-			if (y >= 0 && y < HEIGHT)
-			{
-				if (ray.hit_vert)
-					mlx_put_pixel(game->scene, x, y, 0xAAAAAAFF); 
-				else
-					mlx_put_pixel(game->scene, x, y, 0xFFFFFFFF);
-			}
-		}
+void	render_scene(t_game *game)
+{	
+	float	proj_dist;
+	float	ray_angle;
+	int		x;
 
-		int tex_x;
-
-		if (ray.dir == 0 || ray.dir == 1)  // North or South (horizontal wall)
-		{
-			// Use x-position of hit to find offset in the texture
-			tex_x = (int)(ray.hit_x) % TILE_SIZE;
-		}
-		else  // East or West (vertical wall)
-		{
-			// Use y-position of hit to find offset in the texture
-			tex_x = (int)(ray.hit_y) % TILE_SIZE;
-		}
-
-		// Scale tex_x to match texture width
-		tex_x = (tex_x * 640) / TILE_SIZE; // 640 size of texture image
-		for (int y = 0; y < HEIGHT; y++)
-		{
-			if (y < wall_top)
-			{
-				// Draw ceiling pixel
-				mlx_put_pixel(game->scene, x, y, game->color_c);
-			}
-			else if (y >= wall_top && y <= wall_bottom)
-			{
-				// Draw wall pixel (use texture or color)
-				int tex_y = (y - wall_top) * 640 / wall_height;  // 640 size of texture image
-				int tex_color = get_pixel_color(game->texture[ray.dir], tex_x, tex_y);
-				mlx_put_pixel(game->scene, x, y, tex_color);  // tex_x depends on hit location
-			}
-			else
-			{
-				// Draw floor pixel
-				mlx_put_pixel(game->scene, x, y, game->color_f);
-			}
-		}
+	ft_memset(game->scene->pixels, 0, WIDTH * HEIGHT * sizeof(uint32_t));
+	proj_dist = (WIDTH / 2.0f) / tan(FOV / 2.0f);
+	x = 0;
+	while (x < WIDTH)
+	{
+		ray_angle = game->player->angle - (FOV / 2.0f) + ((float)x / WIDTH) * FOV;
+		draw_column(game, x, ray_angle, proj_dist);
+		x++;
 	}
 }

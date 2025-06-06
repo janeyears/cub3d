@@ -13,7 +13,9 @@
 
 # define TILE_SIZE 64
 # define ROT_SPEED 2.5
-# define SPEED 5
+//# define SPEED 5
+# define TEX_SIZE 640
+# define MIN_DISTANCE 0.1f
 
 # define W 119
 # define A 97
@@ -32,6 +34,15 @@ typedef struct s_cast
 	int		map_x;
 	int		map_y;
 }	t_cast;
+
+typedef struct s_column
+{
+	t_ray ray;        // already has hit_x, hit_y, dist, dir, hit_vert
+	int wall_height;
+	int wall_start;
+	int wall_end;
+	int tex_x;
+}	t_column;
 
 typedef struct s_mini
 {

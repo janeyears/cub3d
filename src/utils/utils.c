@@ -17,3 +17,16 @@ int	skip_spaces(char *str)
 	}
 	return (i);
 }
+
+int get_pixel_color(mlx_texture_t *texture, int tex_x, int tex_y)
+{
+	uint32_t offset = (tex_y * texture->width + tex_x) * texture->bytes_per_pixel;
+
+	uint8_t r = texture->pixels[offset + 0];
+	uint8_t g = texture->pixels[offset + 1];
+	uint8_t b = texture->pixels[offset + 2];
+	uint8_t a = texture->pixels[offset + 3];
+
+	// Combine RGBA into a single 32-bit color (MLX42 uses 0xRRGGBBAA format by default)
+	return (r << 24) | (g << 16) | (b << 8) | a;
+}
