@@ -1,4 +1,3 @@
-
 #include "cub3d.h"
 
 static void	check_char(t_game *game, t_count *count)
@@ -11,19 +10,18 @@ static void	check_char(t_game *game, t_count *count)
 	size_y = game->size_y;
 	y = 0;
 	while (y < size_y)
-	{	
+	{
 		x = 0;
 		size_x = ft_strlen(game->map[y]) - 1;
 		while (x < size_x)
 		{
-			if (game->map[y][x] == 'S' || game->map[y][x] == 'N' || game->map[y][x] == 'W' || game->map[y][x] == 'E')
+			if (is_player(game->map[y][x]))
 			{
-				game->player->x = x;
-				game->player->y = y;
-				game->player->pov = game->map[y][x];
+				set_player(game, x, y);
 				count->player++;
 			}
-			if (!(if_inside(game->map[y][x]) || game->map[y][x] == '1' || game->map[y][x] == ' '))
+			if (!(if_inside(game->map[y][x]) || game->map[y][x] == '1'
+				|| game->map[y][x] == ' '))
 				count->allowed = false;
 			x++;
 		}

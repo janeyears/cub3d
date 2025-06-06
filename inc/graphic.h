@@ -23,7 +23,32 @@
 # define RIGHT 65363
 # define ESC 65307
 
-void	get_color_code(t_game *game);
+typedef struct s_cast
+{
+	float	x_step;
+	float	y_step;
+	float	x;
+	float	y;
+	int		map_x;
+	int		map_y;
+}	t_cast;
+
+typedef struct s_mini
+{
+	int		center_x;
+	int		center_y;
+	int		dy;
+	int		dx;
+	float	map_x;
+	float	map_y;
+	int		tile_x;
+	int		tile_y;
+	float	rdx;
+	float	rdy;
+}	t_mini;
+
+// void	get_color_code(t_game *game);
+int		get_color_code(int *color);
 int		init_image(t_game *game);
 void	close_hook(void *game);
 void	esc_hook(mlx_key_data_t input, void *data);

@@ -1,4 +1,3 @@
-
 #include "cub3d.h"
 
 static int	handle_line(t_game *game, t_list **curr)
@@ -17,25 +16,25 @@ static int	handle_line(t_game *game, t_list **curr)
 	result = parse_texture(curr, "EA ", &game->ea_path);
 	if (result != 0)
 		return (result);
-	result = parse_color(curr, "F ", &game->floor);
+	result = parse_color(curr, "F ", &game->color_f);
 	if (result != 0)
 		return (result);
-	result = parse_color(curr, "C ", &game->ceiling);
+	result = parse_color(curr, "C ", &game->color_c);
 	if (result != 0)
 		return (result);
-	return (-2); // Unknown identifier
+	return (-2);
 }
 
 static int	config(t_game *game, t_list **map)
 {
-	t_list *curr = *map;
+	t_list	*curr;
 
 	curr = *map;
 	while (curr)
 	{
-		if (game->no_path && game->so_path && game->we_path && game->ea_path &&
-			game->floor && game->ceiling)
-				break ;
+		if (game->no_path && game->so_path && game->we_path && game->ea_path
+			&& game->color_f && game->color_c)
+			break ;
 		while (curr && ((char *)(curr->content))[0] == '\n')
 			lst_del_first(&curr);
 		if (!curr)
@@ -81,8 +80,6 @@ static int	read_map(t_list **map, char *fname)
 
 static void	init_game(t_game *game)
 {
-	game->ceiling = NULL;
-	game->floor = NULL;
 	game->no_path = NULL;
 	game->so_path = NULL;
 	game->we_path = NULL;
@@ -119,9 +116,6 @@ int	get_map(t_game *game, char *fname)
 		return (free_parsing(game), -1);
 	if (map_val(game) < 0)
 		return (free_parsing(game), -1);
-
+	get_map_width(game);
 	return (1);
 }
-	// int i = 0;
-	// while (game->map[i])
-	// 	printf("Ha:%s\n", game->map[i++]);

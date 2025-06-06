@@ -1,14 +1,14 @@
-// "Error\n" followed by an explicit error message of your choice.
+#include "cub3d.h"
 
-# include "cub3d.h"
-
-void err_msg(char *msg)
+void	err_msg(char *msg)
 {
-	char *red = "\033[1;31m";		// Bright red
-	char *reset = "\033[0m";		// Reset color
+	char	*red;
+	char	*reset;
 
-	write(2, red, 7);				// Set text to red
+	red = "\033[1;31m";
+	reset = "\033[0m";
+	write(2, red, 7);
 	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(msg, 2);
-	write(2, reset, 4);			// Reset to normal color
+	write(2, reset, 4);
 }

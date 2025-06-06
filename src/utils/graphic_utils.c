@@ -1,17 +1,21 @@
-
 #include "cub3d.h"
 
-void get_color_code(t_game *game)
+double	move_sin(double val, double vector, double time)
 {
-	game->color_c = (game->ceiling[0] << 24)
-					| (game->ceiling[1] << 16)
-					| (game->ceiling[2] << 8) | 0xFF;
-	game->color_f = (game->floor[0] << 24)
-					| (game->floor[1] << 16)
-					| (game->floor[2] << 8) | 0xFF;
+	return (val + sin(vector) * TILE_SIZE * time);
 }
 
-void	get_player_pov(t_game **game)
+double	move_cos(double val, double vector, double time)
+{
+	return (val + cos(vector) * TILE_SIZE * time);
+}
+
+int	get_color_code(int *color)
+{
+	return ((color[0] << 24) |(color[1] << 16) | (color[2] << 8) | 0xFF);
+}
+
+static void	get_player_pov(t_game **game)
 {
 	if ((*game)->player->pov == 'E')
 		(*game)->player->angle = EAST_POV;

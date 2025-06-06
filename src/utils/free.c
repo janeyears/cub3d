@@ -1,7 +1,4 @@
-
 #include "cub3d.h"
-
-
 
 void	free_arr(char **arr)
 {
@@ -20,10 +17,6 @@ void	free_arr(char **arr)
 
 void	free_parsing(t_game *game)
 {
-	if (game->ceiling)
-		free(game->ceiling);
-	if (game->floor)
-		free(game->floor);
 	if (game->no_path)
 		free(game->no_path);
 	if (game->so_path)
@@ -36,14 +29,10 @@ void	free_parsing(t_game *game)
 		free(game->player);
 	if (game->map)
 		free_arr(game->map);
-	// free(game);
 }
 
 void	free_game(t_game *game)
 {
-
-	if (game->background)
-		mlx_delete_image(game->mlx, game->background);
 	if (game->texture[NORTH])
 		mlx_delete_texture(game->texture[NORTH]);
 	if (game->texture[SOUTH])
@@ -53,5 +42,4 @@ void	free_game(t_game *game)
 	if (game->texture[EAST])
 		mlx_delete_texture(game->texture[EAST]);
 	free_parsing(game);
-	// free(game);
 }
