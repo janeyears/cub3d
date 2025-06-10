@@ -14,8 +14,12 @@
 # define TILE_SIZE 64
 # define ROT_SPEED 2.5
 //# define SPEED 5
-# define TEX_SIZE 640
+# define TEX_SIZE 1024
 # define MIN_DISTANCE 0.1f
+
+
+# define WIDTH 1200
+# define HEIGHT 1200
 
 # define W 119
 # define A 97
@@ -58,8 +62,6 @@ typedef struct s_mini
 	float	rdy;
 }	t_mini;
 
-// void	get_color_code(t_game *game);
-int		get_color_code(int *color);
 int		init_image(t_game *game);
 void	close_hook(void *game);
 void	esc_hook(mlx_key_data_t input, void *data);
@@ -68,8 +70,7 @@ void	init_player(t_game *game);
 void	game_loop(void *param);
 void	handle_movement(t_game *game);
 
-//void	raycasting(t_game *game);
-t_ray raycast(t_game *game, t_player *player, float angle);
+t_ray	raycast(t_game *game, t_player *player, float angle);
 
 void	render_scene(t_game *game);
 
