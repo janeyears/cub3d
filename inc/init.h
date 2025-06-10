@@ -3,9 +3,6 @@
 
 # include "cub3d.h"
 
-# define WIDTH 1200
-# define HEIGHT 1200
-
 # define NORTH 0
 # define SOUTH 1
 # define WEST 2
@@ -36,7 +33,7 @@ typedef struct	s_game
 	t_ray			*rays;				// array of rays
 	mlx_image_t		*minimap_img;	// minimap
 	mlx_image_t		*scene;			// image for rendering
-	mlx_texture_t	*texture[4];
+	mlx_image_t		*img[4];
 	int				size_x; 			// max number of columns
 	int				size_y; 			// number of rows
 	int				color_f;

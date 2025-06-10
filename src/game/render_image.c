@@ -1,5 +1,4 @@
 
-
 #include "cub3d.h"
 
 static t_column	prepare_column(t_game *game, float ray_angle, float proj_dist)
@@ -38,8 +37,7 @@ static int	get_column_color(t_game *game, t_column *col, int y)
 		tex_x = col->tex_x;
 		if (tex_x >= TEX_SIZE)
 			tex_x = TEX_SIZE - 1;
-
-		color = get_pixel_color(game->texture[col->ray.dir], tex_x, tex_y);
+		color = get_pixel_color(game->img[col->ray.dir], tex_x, tex_y);
 		return (color);
 	}
 	else

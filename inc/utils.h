@@ -29,6 +29,10 @@ void	get_map_width(t_game *game);
 
 double	move_cos(double val, double vector, double time);
 double	move_sin(double val, double vector, double time);
-int		get_pixel_color(mlx_texture_t *texture, int tex_x, int tex_y);
+
+
+
+int		get_pixel_color(mlx_image_t *img, int tex_x, int tex_y);
+int		get_color_code(int *color);
 
 #endif

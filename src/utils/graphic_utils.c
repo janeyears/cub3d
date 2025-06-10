@@ -33,3 +33,10 @@ void	init_player(t_game *game)
 	game->player->x = (game->player->x * TILE_SIZE) + (TILE_SIZE / 2);
 	get_player_pov(&game);
 }
+
+int get_pixel_color(mlx_image_t *img, int tex_x, int tex_y)
+{
+	uint8_t *pixel = &img->pixels[(tex_y * img->width + tex_x) * 4];
+
+	return ((pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3]);
+}
