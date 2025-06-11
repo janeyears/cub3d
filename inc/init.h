@@ -42,6 +42,9 @@ typedef struct	s_game
 	char*			so_path;
 	char*			we_path;
 	char*			ea_path;
+	int				prev_mouse_x;
+	int				mouse_initialized;
+	
 }	t_game;
 
 #endif

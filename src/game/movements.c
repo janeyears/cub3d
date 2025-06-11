@@ -79,6 +79,30 @@ static int	move_player_vertic(t_game *game, int direction)
 	return (1);
 }
 
+void	handle_mouse_rotation(t_game *game)
+{
+	int	mouse_x;
+	int	mouse_y;
+	int	delta_x;
+
+	mlx_get_mouse_pos(game->mlx, &mouse_x, &mouse_y);
+
+	if (!game->mouse_initialized)
+	{
+		game->prev_mouse_x = mouse_x;
+		game->mouse_initialized = 1;
+		return ;
+	}
+	delta_x = mouse_x - game->prev_mouse_x;
+	game->player->angle += delta_x * MOUSE_SENSITIVITY;
+	if (game->player->angle < 0)
+		game->player->angle += 2 * M_PI;
+	else if (game->player->angle > 2 * M_PI)
+		game->player->angle -= 2 * M_PI;
+
+	game->prev_mouse_x = mouse_x;
+}
+
 void	handle_movement(t_game *game)
 {
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
