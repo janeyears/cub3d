@@ -9,6 +9,8 @@ int	init_game(t_game *game)
 		return (1);
 	init_player(game);
 	game->rays = NULL;
+	game->mouse_initialized = 0;
+	game->prev_mouse_x = 0;
 	return (0);
 }
 

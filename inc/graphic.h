@@ -16,6 +16,7 @@
 //# define SPEED 5
 # define TEX_SIZE 1024
 # define MIN_DISTANCE 0.1f
+# define MOUSE_SENSITIVITY 0.003
 
 
 # define WIDTH 1200
@@ -69,6 +70,7 @@ int		upload_wall_textures(t_game *game);
 void	init_player(t_game *game);
 void	game_loop(void *param);
 void	handle_movement(t_game *game);
+void	handle_mouse_rotation(t_game *game);
 
 t_ray	raycast(t_game *game, t_player *player, float angle);
 
