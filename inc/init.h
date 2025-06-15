@@ -43,8 +43,7 @@ typedef struct	s_game
 	char*			we_path;
 	char*			ea_path;
 	int				prev_mouse_x;
-	int				mouse_initialized;
-	
+	int				mouse_initialized;		// sprite for animation
 }	t_game;
 
 #endif
