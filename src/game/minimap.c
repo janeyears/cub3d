@@ -84,6 +84,23 @@ static void	put_minimap(t_game *game)
 	}
 }
 
+void	clean_minimap(t_game *game)
+{
+	int		x = 0;
+	int		y = 0;
+
+	while (y < MINIMAP_SIZE)
+	{
+		x = 0;
+		while (x < MINIMAP_SIZE)
+		{
+			mlx_put_pixel(game->minimap_img, x, y, 0x00000000);
+			x++;
+		}
+		y++;
+	}
+}
+
 void	draw_minimap(void *param)
 {
 	int		center_x;
@@ -95,6 +112,7 @@ void	draw_minimap(void *param)
 	center_x = MINIMAP_RADIUS;
 	center_y = MINIMAP_RADIUS;
 	game = (t_game *)param;
+	clean_minimap(game);
 	put_minimap(game);
 	dy = -4;
 	while (dy <= 4)
