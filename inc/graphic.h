@@ -14,7 +14,7 @@
 # define TILE_SIZE 64
 # define ROT_SPEED 2.5
 //# define SPEED 5
-# define TEX_SIZE 1024
+# define TEX_SIZE 1076
 # define MIN_DISTANCE 0.1f
 # define MOUSE_SENSITIVITY 0.003
 
