@@ -7,7 +7,7 @@ RM		=	rm -f
 
 AR		=	ar -rcs
 
-HEADERS		:= -I ../inc
+HEADERS		:= -I ../mandatory/inc
 
 SOURCES	=	ft_atoi.c \
 			ft_bzero.c \
