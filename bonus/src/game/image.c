@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-static int	load_resize(t_game *game, char *path, mlx_image_t **img)
+static int	load_resize(t_game *game, char *path, mlx_image_t **img, int size)
 {
 	mlx_texture_t	*txt = mlx_load_png(path);
 
@@ -9,7 +9,7 @@ static int	load_resize(t_game *game, char *path, mlx_image_t **img)
 	*img = mlx_texture_to_image(game->mlx, txt);
 	if (!img)
 		return (err_msg("IMAGE TO TEXTURE DEAD \n"), 1);
-	if (!mlx_resize_image(*img, TEX_SIZE, TEX_SIZE))
+	if (!mlx_resize_image(*img, size, size))
 		return (err_msg("RESIZE DEAD \n"), 1);
 	mlx_delete_texture(txt);
 	return (0);
@@ -17,13 +17,25 @@ static int	load_resize(t_game *game, char *path, mlx_image_t **img)
 
 int	upload_wall_textures(t_game *game)
 {
-	if (load_resize(game, game->no_path, &game->img[NORTH]))
+	if (load_resize(game, game->no_path, &game->img[NORTH], TEX_SIZE))
 		return (1);
-	if (load_resize(game, game->so_path, &game->img[SOUTH]))
+	if (load_resize(game, game->so_path, &game->img[SOUTH], TEX_SIZE))
 		return (1);
-	if (load_resize(game, game->we_path, &game->img[WEST]))
+	if (load_resize(game, game->we_path, &game->img[WEST], TEX_SIZE))
 		return (1);
-	if (load_resize(game, game->ea_path, &game->img[EAST]))
+	if (load_resize(game, game->ea_path, &game->img[EAST], TEX_SIZE))
+		return (1);
+	if (load_resize(game, PATH_E1, &game->anim[0], TEX_SIZE))
+		return (1);
+	if (load_resize(game, PATH_E2, &game->anim[1], TEX_SIZE))
+		return (1);
+	if (load_resize(game, PATH_E3, &game->anim[2], TEX_SIZE))
+		return (1);
+	if (load_resize(game, PATH_E4, &game->anim[3], TEX_SIZE))
+		return (1);
+	if (load_resize(game, PATH_E5, &game->anim[4], TEX_SIZE))
+		return (1);
+	if (load_resize(game, PATH_E6, &game->anim[5], TEX_SIZE))
 		return (1);
 	return (0);
 }
@@ -64,7 +76,7 @@ int	init_image(t_game *game)
 	game->minimap_img = mlx_new_image(game->mlx, MINIMAP_SIZE, MINIMAP_SIZE);
 	if (!game->minimap_img)
 		return (1);
-	if (mlx_image_to_window(game->mlx, game->minimap_img, 10, 10) == -1)
+	if (mlx_image_to_window(game->mlx, game->minimap_img, 10, HEIGHT - MINIMAP_RADIUS * 2 - 10) == -1)
 		return (1);
 	if (upload_weapon_texture(game, "textures/frog.png") != 0)
 		return (1);

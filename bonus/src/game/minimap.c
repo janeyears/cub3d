@@ -13,7 +13,7 @@ static void	put_pixel_mini(t_game *game, t_mini mini)
 	else if (if_inside(game->map[mini.tile_y][mini.tile_x]))
 		color = 0xAAAAAAFF;
 	else
-		color = 0x00000000;
+		return ;
 	mlx_put_pixel(game->minimap_img, x, y, color);
 }
 
@@ -101,30 +101,57 @@ void	clean_minimap(t_game *game)
 	}
 }
 
-void	draw_minimap(void *param)
+void	put_dot(mlx_image_t *img, int x, int y, uint32_t color)
 {
-	int		center_x;
-	int		center_y;
-	int		dy;
 	int		dx;
-	t_game	*game;
+	int		dy;
 
-	center_x = MINIMAP_RADIUS;
-	center_y = MINIMAP_RADIUS;
-	game = (t_game *)param;
-	clean_minimap(game);
-	put_minimap(game);
 	dy = -4;
 	while (dy <= 4)
 	{
 		dx = -4;
 		while (dx <= 4)
 		{
-			if (dx * dx + dy * dy <= 16)
-				mlx_put_pixel(game->minimap_img, center_x + dx,
-					center_y + dy, 0x00FF00FF);
+			if (dx * dx + dy * dy <= 16 && x + dx >= 0 && x + dx < MINIMAP_SIZE &&
+					y + dy >= 0 && y + dy < MINIMAP_SIZE)
+				mlx_put_pixel(img, x + dx, y + dy, color);
 			dx++;
 		}
 		dy++;
 	}
+}
+
+void	put_enemy_minimap(t_game *game)
+{
+	t_mini	mini;
+	float	angle;
+	int		i;
+
+	i = -1;
+	mini_init(&mini);
+	while (++i < game->enemy_count)
+	{
+		if (!game->enemies[i].alive)
+			continue;
+		mini.map_x = game->enemies[i].x - game->player->x;
+		mini.map_y = game->enemies[i].y - game->player->y;
+		angle = -game->player->angle + NORTH_POV;
+		mini.rdx = mini.map_x * cosf(angle) - mini.map_y * sinf(angle);
+		mini.rdy = mini.map_x * sinf(angle) + mini.map_y * cosf(angle);
+		mini.dx = (int)(mini.rdx * MINIMAP_SCALE / TILE_SIZE);
+		mini.dy = (int)(mini.rdy * MINIMAP_SCALE / TILE_SIZE);
+		if (mini.dx * mini.dx + mini.dy * mini.dy <= MINIMAP_RADIUS * MINIMAP_RADIUS)
+			put_dot(game->minimap_img, mini.dx + MINIMAP_RADIUS, mini.dy + MINIMAP_RADIUS, 0xFF0000FF);
+	}
+}
+
+void	draw_minimap(void *param)
+{
+	t_game	*game;
+
+	game = (t_game *)param;
+	clean_minimap(game);
+	put_minimap(game);
+	put_dot(game->minimap_img, MINIMAP_RADIUS, MINIMAP_RADIUS, 0x00FF00FF);
+	put_enemy_minimap(game);
 }
