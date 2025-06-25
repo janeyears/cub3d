@@ -91,6 +91,7 @@ static void	init_game(t_game *game)
 	game->size_x = 0;
 	game->size_y = 0;
 	game->enemy_count = 0;
+	game->enemy_left = 0;
 	game->frame_count = 0;
 	game->enemies = NULL;
 }

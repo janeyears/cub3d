@@ -33,7 +33,7 @@
 # define PATH_E4 "./textures/4-1.png"
 # define PATH_E5 "./textures/3-1.png"
 # define PATH_E6 "./textures/2-1.png"
-
+# define PATH_COUNT "./textures/counter.png"
 
 typedef struct s_cast
 {
