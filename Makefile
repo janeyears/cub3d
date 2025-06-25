@@ -21,7 +21,7 @@ CFLAGS		:= -Wextra -Wall -Werror -Wunused
 MLX_FLAGS	:= -ldl -lglfw -pthread -lm
 
 HEADERS		:= -I ./mandatory/inc -I ./MLX42/include/MLX42/
-HEADERS_B		:= -I ./bonus/inc -I ./MLX42/include/MLX42/
+HEADERS_B	:= -I ./bonus/inc -I ./MLX42/include/MLX42/
 
 SRCS_PATH	:= ./mandatory/src
 SRCS_PATH_B	:= ./bonus/src
@@ -38,6 +38,8 @@ MAIN		:= main errors
 
 GAME		:= image hook_and_loop movements render_image minimap ray_cast
 
+BONUS		:= image hook_and_loop movements render_image minimap ray_cast enemy enemy_utils
+
 UTILS		:= lst_utils utils free parsing_utils graphic_utils
 
 SRCS	:= $(addsuffix .c, $(addprefix mandatory/src/, $(MAIN))) \
@@ -48,7 +50,7 @@ SRCS	:= $(addsuffix .c, $(addprefix mandatory/src/, $(MAIN))) \
 SRCS_B	:= $(addsuffix .c, $(addprefix bonus/src/, $(MAIN))) \
 			$(addsuffix .c, $(addprefix bonus/src/parsing/, $(PARSING))) \
 			$(addsuffix .c, $(addprefix bonus/src/utils/, $(UTILS))) \
-			$(addsuffix .c, $(addprefix bonus/src/game/, $(GAME)))
+			$(addsuffix .c, $(addprefix bonus/src/game/, $(BONUS))) \
 
 OBJS		:= $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 OBJS_B		:= $(SRCS_B:$(SRCS_PATH_B)/%.c=$(OBJS_PATH_B)/%.o)

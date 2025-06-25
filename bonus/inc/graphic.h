@@ -13,14 +13,10 @@
 
 # define TILE_SIZE 64
 # define ROT_SPEED 2.5
-//# define SPEED 5
 # define TEX_SIZE 1076
 # define MIN_DISTANCE 0.1f
 # define MOUSE_SENSITIVITY 0.003
 
-
-# define WIDTH 1200
-# define HEIGHT 1200
 
 # define W 119
 # define A 97
@@ -29,6 +25,15 @@
 # define LEFT 65361
 # define RIGHT 65363
 # define ESC 65307
+
+# define FRAME_DELAY 10
+# define PATH_E1 "./textures/1-1.png"
+# define PATH_E2 "./textures/2-1.png"
+# define PATH_E3 "./textures/3-1.png"
+# define PATH_E4 "./textures/4-1.png"
+# define PATH_E5 "./textures/3-1.png"
+# define PATH_E6 "./textures/2-1.png"
+
 
 typedef struct s_cast
 {
@@ -71,6 +76,15 @@ void	init_player(t_game *game);
 void	game_loop(void *param);
 void	handle_movement(t_game *game);
 void	handle_mouse_rotation(t_game *game);
+
+void	norm_angle_en(t_game *game, int i);
+void	update_enemy_animation(t_game *game);
+int		place_enemies(t_game *game);
+void	enemy_dist(t_game *game);
+int		get_enemy_coords(t_game *game);
+void	sort_enemies(t_game *game);
+void	render_enemies(t_game *game);
+void	update_enemy_animation(t_game *game);
 
 t_ray	raycast(t_game *game, t_player *player, float angle);
 

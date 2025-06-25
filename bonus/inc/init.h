@@ -3,6 +3,9 @@
 
 # include "cub3d.h"
 
+# define WIDTH 2000
+# define HEIGHT 2000
+
 # define NORTH 0
 # define SOUTH 1
 # define WEST 2
@@ -25,6 +28,24 @@ typedef struct s_ray
 	int				dir;			// N S E W for textures
 }	t_ray;
 
+typedef struct s_enemy
+{
+	double		x;
+	double		y;
+	double		dist;
+	int			frame;       // animation frame
+	int			alive;
+	double		dx;			// distance to player
+	double		dy;
+	double		angle_en;
+	double		distance;
+	int			sprite_size;
+	int			draw_start_y;
+	int			draw_end_y;
+	int			draw_start_x;
+	int			draw_end_x;
+}	t_enemy;
+
 typedef struct	s_game
 {
 	mlx_t			*mlx;
@@ -35,6 +56,11 @@ typedef struct	s_game
 	mlx_image_t		*scene;			// image for rendering
 	mlx_image_t		*img[4];
 	mlx_image_t		*weapon_image;	// weapon image
+	mlx_image_t		*anim[6];
+	double			ray_dists[WIDTH];
+	int				enemy_count;
+	int				frame_count;
+	t_enemy			*enemies;
 	int				size_x; 			// max number of columns
 	int				size_y; 			// number of rows
 	int				color_f;
