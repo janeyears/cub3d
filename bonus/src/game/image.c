@@ -1,17 +1,25 @@
 #include "cub3d.h"
 
-static int	load_resize(t_game *game, char *path, mlx_image_t **img, int size)
+static int	load(t_game *game, char *path, mlx_image_t **img)
 {
-	mlx_texture_t	*txt = mlx_load_png(path);
+	mlx_texture_t	*txt;
 
+	txt = mlx_load_png(path);
 	if (!txt)
 		return (err_msg(ERR_TEXTURE), 1);
 	*img = mlx_texture_to_image(game->mlx, txt);
-	if (!img)
+	if (!img || !*img)
 		return (err_msg("IMAGE TO TEXTURE DEAD \n"), 1);
+	mlx_delete_texture(txt);
+	return (0);
+}
+
+static int	load_resize(t_game *game, char *path, mlx_image_t **img, int size)
+{
+	if (load(game, path, img))
+		return (1);
 	if (!mlx_resize_image(*img, size, size))
 		return (err_msg("RESIZE DEAD \n"), 1);
-	mlx_delete_texture(txt);
 	return (0);
 }
 
@@ -36,6 +44,8 @@ int	upload_wall_textures(t_game *game)
 	if (load_resize(game, PATH_E5, &game->anim[4], TEX_SIZE))
 		return (1);
 	if (load_resize(game, PATH_E6, &game->anim[5], TEX_SIZE))
+		return (1);
+	if (load(game, PATH_COUNT, &game->counter_frame))
 		return (1);
 	return (0);
 }
@@ -78,6 +88,14 @@ int	init_image(t_game *game)
 		return (1);
 	if (mlx_image_to_window(game->mlx, game->minimap_img, 10, HEIGHT - MINIMAP_RADIUS * 2 - 10) == -1)
 		return (1);
+	if (mlx_image_to_window(game->mlx, game->counter_frame,
+			WIDTH - game->counter_frame->width - 10, 10) == -1)
+		return (1);
+	// game->counter = mlx_new_image(game->mlx, 30, 15);
+	// if (!game->counter)
+	// 	return (1);
+	// if (mlx_image_to_window(game->mlx, game->counter, WIDTH - game->counter_frame->width / 2 - 10, 30) == -1)
+	// 	return (1);
 	if (upload_weapon_texture(game, "textures/frog.png") != 0)
 		return (1);
 	return (0);

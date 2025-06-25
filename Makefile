@@ -38,7 +38,7 @@ MAIN		:= main errors
 
 GAME		:= image hook_and_loop movements render_image minimap ray_cast
 
-BONUS		:= image hook_and_loop movements render_image minimap ray_cast enemy enemy_utils
+BONUS		:= image hook_and_loop movements render_image minimap minimap_utils ray_cast enemy enemy_utils
 
 UTILS		:= lst_utils utils free parsing_utils graphic_utils
 

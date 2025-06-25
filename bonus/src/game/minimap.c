@@ -1,38 +1,5 @@
 #include "cub3d.h"
 
-static void	put_pixel_mini(t_game *game, t_mini mini)
-{
-	uint32_t	color;
-	int			x;
-	int			y;
-
-	x = mini.center_x + mini.dx;
-	y = mini.center_y + mini.dy;
-	if (game->map[mini.tile_y][mini.tile_x] == '1')
-		color = 0x444444FF;
-	else if (if_inside(game->map[mini.tile_y][mini.tile_x]))
-		color = 0xAAAAAAFF;
-	else
-		return ;
-	mlx_put_pixel(game->minimap_img, x, y, color);
-}
-
-static void	mini_init(t_mini *mini)
-{
-	mini->center_x = MINIMAP_RADIUS;
-	mini->center_y = MINIMAP_RADIUS;
-	mini->dy = -MINIMAP_RADIUS;
-	mini->dx = 0;
-	mini->map_x = 0;
-	mini->map_y = 0;
-	mini->tile_x = 0;
-	mini->tile_y = 0;
-	mini->rdy = 0;
-	mini->rdx = 0;
-	mini->tile_x = 0;
-	mini->tile_y = 0;
-}
-
 static void	get_tile(t_game *game, t_mini *mini)
 {
 	float	rotation_angle;
@@ -84,44 +51,7 @@ static void	put_minimap(t_game *game)
 	}
 }
 
-void	clean_minimap(t_game *game)
-{
-	int		x = 0;
-	int		y = 0;
-
-	while (y < MINIMAP_SIZE)
-	{
-		x = 0;
-		while (x < MINIMAP_SIZE)
-		{
-			mlx_put_pixel(game->minimap_img, x, y, 0x00000000);
-			x++;
-		}
-		y++;
-	}
-}
-
-void	put_dot(mlx_image_t *img, int x, int y, uint32_t color)
-{
-	int		dx;
-	int		dy;
-
-	dy = -4;
-	while (dy <= 4)
-	{
-		dx = -4;
-		while (dx <= 4)
-		{
-			if (dx * dx + dy * dy <= 16 && x + dx >= 0 && x + dx < MINIMAP_SIZE &&
-					y + dy >= 0 && y + dy < MINIMAP_SIZE)
-				mlx_put_pixel(img, x + dx, y + dy, color);
-			dx++;
-		}
-		dy++;
-	}
-}
-
-void	put_enemy_minimap(t_game *game)
+static void	put_enemy_minimap(t_game *game)
 {
 	t_mini	mini;
 	float	angle;
@@ -140,8 +70,10 @@ void	put_enemy_minimap(t_game *game)
 		mini.rdy = mini.map_x * sinf(angle) + mini.map_y * cosf(angle);
 		mini.dx = (int)(mini.rdx * MINIMAP_SCALE / TILE_SIZE);
 		mini.dy = (int)(mini.rdy * MINIMAP_SCALE / TILE_SIZE);
-		if (mini.dx * mini.dx + mini.dy * mini.dy <= MINIMAP_RADIUS * MINIMAP_RADIUS)
-			put_dot(game->minimap_img, mini.dx + MINIMAP_RADIUS, mini.dy + MINIMAP_RADIUS, 0xFF0000FF);
+		if (mini.dx * mini.dx + mini.dy * mini.dy <= MINIMAP_RADIUS
+				* MINIMAP_RADIUS)
+			put_dot(game->minimap_img, mini.dx + MINIMAP_RADIUS,
+				mini.dy + MINIMAP_RADIUS, 0xFF0000FF);
 	}
 }
 
@@ -155,3 +87,27 @@ void	draw_minimap(void *param)
 	put_dot(game->minimap_img, MINIMAP_RADIUS, MINIMAP_RADIUS, 0x00FF00FF);
 	put_enemy_minimap(game);
 }
+
+void	draw_counter(void *param)
+{
+	t_game		*game;
+	char		*count;
+	static int	old_count;
+
+	game = (t_game *)param;
+	old_count = -1;
+	if (old_count != game->enemy_left)
+	{
+		if (game->counter)
+			mlx_delete_image(game->mlx, game->counter);
+
+		count = ft_itoa(game->enemy_left);
+		if (!count)
+			free_game(game);
+		game->counter = mlx_put_string(game->mlx, count, WIDTH - 95, 30);
+		free(count);
+		old_count = game->enemy_left;
+	}
+}
+
+

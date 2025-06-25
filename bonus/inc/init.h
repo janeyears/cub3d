@@ -53,12 +53,15 @@ typedef struct	s_game
 	t_player		*player;
 	t_ray			*rays;				// array of rays
 	mlx_image_t		*minimap_img;	// minimap
+	mlx_image_t		*counter_frame;		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+	mlx_image_t		*counter;
 	mlx_image_t		*scene;			// image for rendering
 	mlx_image_t		*img[4];
 	mlx_image_t		*weapon_image;	// weapon image
 	mlx_image_t		*anim[6];
 	double			ray_dists[WIDTH];
 	int				enemy_count;
+	int				enemy_left;
 	int				frame_count;
 	t_enemy			*enemies;
 	int				size_x; 			// max number of columns

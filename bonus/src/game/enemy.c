@@ -86,5 +86,6 @@ int	place_enemies(t_game *game)
 	}
 	if (get_enemy_coords(game) < 0)
 		return (-1);
+	game->enemy_left = game->enemy_count;
 	return (1);
 }

@@ -32,6 +32,7 @@ int	main(int argc, char **argv)
 	mlx_close_hook(game.mlx, close_hook, &game);
 	mlx_loop_hook(game.mlx, game_loop, &game);
 	mlx_loop_hook(game.mlx, draw_minimap, &game);
+	mlx_loop_hook(game.mlx, draw_counter, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }
