@@ -19,6 +19,7 @@ static int	check_collision(t_game *game, double new_x, double new_y)
 
 	tile_x = (int)(new_x / TILE_SIZE);
 	tile_y = (int)(new_y / TILE_SIZE);
+	check_enemy_collision(game, new_x, new_y);
 	if (game->map[tile_y][tile_x] == '1')
 		return (0);
 	return (1);

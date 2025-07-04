@@ -85,6 +85,7 @@ int		get_enemy_coords(t_game *game);
 void	sort_enemies(t_game *game);
 void	render_enemies(t_game *game);
 void	update_enemy_animation(t_game *game);
+void	check_enemy_collision(t_game *game, double new_x, double new_y);
 
 t_ray	raycast(t_game *game, t_player *player, float angle);
 

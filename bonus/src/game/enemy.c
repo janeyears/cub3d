@@ -89,3 +89,25 @@ int	place_enemies(t_game *game)
 	game->enemy_left = game->enemy_count;
 	return (1);
 }
+
+void	check_enemy_collision(t_game *game, double new_x, double new_y)
+{
+	int		tile_x = (int)(new_x / TILE_SIZE);
+	int		tile_y = (int)(new_y / TILE_SIZE);
+	int		i;
+
+	i = -1;
+	while (++i < game->enemy_count)
+	{
+		if (!game->enemies[i].alive)
+			continue;
+		int enemy_tile_x = (int)(game->enemies[i].x / TILE_SIZE);
+		int enemy_tile_y = (int)(game->enemies[i].y / TILE_SIZE);
+		if (tile_x == enemy_tile_x && tile_y == enemy_tile_y)
+		{
+			game->enemies[i].alive = 0;
+			game->enemy_left--;
+			game->map[tile_y][tile_x] = '0';
+		}
+	}
+}

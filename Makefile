@@ -58,8 +58,7 @@ OBJS_B		:= $(SRCS_B:$(SRCS_PATH_B)/%.c=$(OBJS_PATH_B)/%.o)
 all: $(NAME)
 
 $(NAME): $(MLX42_PATH) $(MLX42) $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) $(HEADERS) $(LIBFT) $(MLX42) -o $(NAME) -lreadline
-# -fsanitize=address
+	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) $(HEADERS) $(LIBFT) $(MLX42) -o $(NAME)
 	@echo "\033[1;95m💻 $(NAME) building completed...\033[0m"
 
 $(OBJS_PATH):
@@ -87,7 +86,8 @@ $(LIBFT):
 	@echo "\033[1;96m📦 LIBFT building completed...\033[0m"
 
 bonus: $(MLX42_PATH) $(MLX42) $(OBJS_B) $(LIBFT)
-	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS_B) $(HEADERS_B) $(LIBFT) $(MLX42) -o $(NAME_B) -lreadline
+	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS_B) $(HEADERS_B) $(LIBFT) $(MLX42) -o $(NAME_B)
+#-fsanitize=address
 	@echo "\033[1;95m💻 $(NAME_B) building completed...\033[0m"
 
 clean:

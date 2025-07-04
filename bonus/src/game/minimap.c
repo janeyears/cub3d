@@ -91,21 +91,25 @@ void	draw_minimap(void *param)
 void	draw_counter(void *param)
 {
 	t_game		*game;
-	char		*count;
 	static int	old_count;
 
 	game = (t_game *)param;
 	old_count = -1;
+
 	if (old_count != game->enemy_left)
 	{
 		if (game->counter)
 			mlx_delete_image(game->mlx, game->counter);
 
-		count = ft_itoa(game->enemy_left);
-		if (!count)
-			free_game(game);
-		game->counter = mlx_put_string(game->mlx, count, WIDTH - 95, 30);
-		free(count);
+		game->unicorn_amount = ft_itoa(game->enemy_left);
+		if (!game->unicorn_amount)
+		{
+			printf("I am closing and freeing game(not true)");
+			//free_game(game); // do something smarter
+		}
+		game->counter = mlx_put_string(game->mlx, game->unicorn_amount, WIDTH - 95, 30);
+		free(game->unicorn_amount);
+		game->unicorn_amount = NULL;
 		old_count = game->enemy_left;
 	}
 }

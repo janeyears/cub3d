@@ -3,8 +3,8 @@
 
 # include "cub3d.h"
 
-# define WIDTH 2000
-# define HEIGHT 2000
+# define WIDTH 1000
+# define HEIGHT 1000
 
 # define NORTH 0
 # define SOUTH 1
@@ -63,6 +63,7 @@ typedef struct	s_game
 	int				enemy_count;
 	int				enemy_left;
 	int				frame_count;
+	char			*unicorn_amount;
 	t_enemy			*enemies;
 	int				size_x; 			// max number of columns
 	int				size_y; 			// number of rows
