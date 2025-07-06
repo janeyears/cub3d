@@ -33,7 +33,7 @@ void	free_parsing(t_game *game)
 
 void	free_game(t_game *game)
 {
-	int i;
+	int	i;
 
 	free_parsing(game);
 	i = 0;
@@ -43,4 +43,3 @@ void	free_game(t_game *game)
 	mlx_terminate(game->mlx);
 	exit(0);
 }
-

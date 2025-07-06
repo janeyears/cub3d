@@ -10,14 +10,18 @@ void	norm_angle_en(t_game *game, int i)
 
 void	update_enemy_animation(t_game *game)
 {
+	int	i;
+
+	i = 0;
 	game->frame_count++;
-	if (game->frame_count % 2 == 0)
+	if (game->frame_count % 5 == 0)
 	{
-		for (int i = 0; i < game->enemy_count; i++)
+		while (i < game->enemy_count)
 		{
 			game->enemies[i].frame++;
 			if (game->enemies[i].frame >= 6)
 				game->enemies[i].frame = 0;
+			i++;
 		}
 	}
 }
@@ -69,25 +73,24 @@ int	get_enemy_coords(t_game *game)
 	int	i;
 
 	i = 0;
+	if (!game->enemy_count)
+		return (err_msg("To small map for enemies\n"), -1);
 	game->enemies = ft_calloc(game->enemy_count, sizeof(t_enemy));
 	if (!game->enemies)
-		return(err_msg("Enemy add failed \n"), -1);
-	y = 0;
-	while (y < game->size_y)
+		return (err_msg("Enemy add failed \n"), -1);
+	y = -1;
+	while (++y < game->size_y)
 	{
-		x = 0;
-		while (x < (int)ft_strlen(game->map[y]))
+		x = -1;
+		while (++x < (int)ft_strlen(game->map[y]))
 		{
 			if (game->map[y][x] == 'E')
 			{
 				game->enemies[i].x = (x + 0.5) * TILE_SIZE;
 				game->enemies[i].y = (y + 0.5) * TILE_SIZE;
-				game->enemies[i].alive = 1;
-				i++;
+				game->enemies[i++].alive = 1;
 			}
-			x++;
 		}
-		y++;
 	}
 	return (1);
 }

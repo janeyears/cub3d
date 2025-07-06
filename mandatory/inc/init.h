@@ -18,32 +18,31 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	double			hit_x;			//hip point by x
-	double			hit_y;			// hit point by y
-	double			dist;			// dist to wall
-	bool			hit_vert;		// hit vertical - 1, hit horizontal - 0
-	int				dir;			// N S E W for textures
+	double			hit_x;
+	double			hit_y;
+	double			dist;
+	bool			hit_vert;
+	int				dir;
 }	t_ray;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	mlx_t			*mlx;
 	char			**map;
 	t_player		*player;
-	t_ray			*rays;				// array of rays
-	mlx_image_t		*minimap_img;	// minimap
-	mlx_image_t		*scene;			// image for rendering
+	t_ray			*rays;
+	mlx_image_t		*scene;
 	mlx_image_t		*img[4];
-	int				size_x; 			// max number of columns
-	int				size_y; 			// number of rows
+	int				size_x;
+	int				size_y;
 	int				color_f;
 	int				color_c;
-	char*			no_path;
-	char*			so_path;
-	char*			we_path;
-	char*			ea_path;
+	char			*no_path;
+	char			*so_path;
+	char			*we_path;
+	char			*ea_path;
 	int				prev_mouse_x;
-	int				mouse_initialized;		// sprite for animation
+	int				mouse_initialized;
 }	t_game;
 
 #endif

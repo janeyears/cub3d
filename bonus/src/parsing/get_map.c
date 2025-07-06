@@ -62,7 +62,7 @@ static int	read_map(t_list **map, char *fname)
 
 	fd = open(fname, O_RDONLY);
 	if (fd < 0)
-		return (err_msg(ERR_OPEN), -1);
+		return (-1);
 	while (1)
 	{
 		line = get_next_line(fd);

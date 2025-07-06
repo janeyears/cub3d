@@ -10,6 +10,8 @@ t_list	*lstnew_m(void *content)
 	if (!new)
 		return (NULL);
 	new->content = ft_strdup(content);
+	if (!new->content)
+		return (NULL);
 	new->next = NULL;
 	return (new);
 }

@@ -62,7 +62,7 @@ static void	put_enemy_minimap(t_game *game)
 	while (++i < game->enemy_count)
 	{
 		if (!game->enemies[i].alive)
-			continue;
+			continue ;
 		mini.map_x = game->enemies[i].x - game->player->x;
 		mini.map_y = game->enemies[i].y - game->player->y;
 		angle = -game->player->angle + NORTH_POV;
@@ -71,7 +71,7 @@ static void	put_enemy_minimap(t_game *game)
 		mini.dx = (int)(mini.rdx * MINIMAP_SCALE / TILE_SIZE);
 		mini.dy = (int)(mini.rdy * MINIMAP_SCALE / TILE_SIZE);
 		if (mini.dx * mini.dx + mini.dy * mini.dy <= MINIMAP_RADIUS
-				* MINIMAP_RADIUS)
+			* MINIMAP_RADIUS)
 			put_dot(game->minimap_img, mini.dx + MINIMAP_RADIUS,
 				mini.dy + MINIMAP_RADIUS, 0xFF0000FF);
 	}
@@ -95,23 +95,20 @@ void	draw_counter(void *param)
 
 	game = (t_game *)param;
 	old_count = -1;
-
 	if (old_count != game->enemy_left)
 	{
 		if (game->counter)
 			mlx_delete_image(game->mlx, game->counter);
-
 		game->unicorn_amount = ft_itoa(game->enemy_left);
 		if (!game->unicorn_amount)
 		{
-			printf("I am closing and freeing game(not true)");
-			//free_game(game); // do something smarter
+			err_msg(ERR_MALLOC);
+			free_game(game);
 		}
-		game->counter = mlx_put_string(game->mlx, game->unicorn_amount, WIDTH - 95, 30);
+		game->counter = mlx_put_string(game->mlx, game->unicorn_amount,
+				WIDTH - 95, 30);
 		free(game->unicorn_amount);
 		game->unicorn_amount = NULL;
 		old_count = game->enemy_left;
 	}
 }
-
-

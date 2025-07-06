@@ -28,6 +28,6 @@
 # define ERR_MLXINIT "mlx_init has failed\n"
 # define ERR_MLXWIN "image_to_window has failed\n"
 
-void err_msg(char *msg);
+void	err_msg(char *msg);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 12:38:39 by mzhitnik          #+#    #+#             */
-/*   Updated: 2025/05/16 13:09:36 by mzhitnik         ###   ########.fr       */
+/*   Updated: 2025/07/06 14:46:49 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,11 @@ static void	read_from_file(char **big_buffer, int fd)
 	{
 		bytes_read = read(fd, buff, BUFFER_SIZE);
 		if (bytes_read < 0)
-		{
-			free(buff);
-			return ;
-		}
+			return (free(buff));
 		buff[bytes_read] = 0;
 		temp = ft_strjoin(*big_buffer, buff);
+		if (!temp)
+			return (free(*big_buffer), free(buff));
 		free(*big_buffer);
 		*big_buffer = temp;
 		if (ft_strchr(buff, '\n'))

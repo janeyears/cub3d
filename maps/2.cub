@@ -1,20 +1,10 @@
-NO ./textures/dogs.png
-SO ./textures/dogs.png
+NO ./textures/2_houses.png
+SO ./textures/4_animals.png
+WE ./textures/3_forest.png
+EA ./textures/1_flowers.png
 
-
-C 62, 180, 137
-WE ./textures/dogs.png
-EA ./textures/dogs.png
-
-
-
-
-
-F 27, 27, 27
-
-
-
-
+F 126,73,21
+C 0,115,133
 
 
 11111111           11111111

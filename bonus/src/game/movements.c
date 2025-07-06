@@ -6,7 +6,7 @@ static void	rotate_player(t_game *game, int direction)
 		game->player->angle -= ROT_SPEED * game->mlx->delta_time;
 	else if (direction == RIGHT)
 		game->player->angle += ROT_SPEED * game->mlx->delta_time;
-	if (game->player->angle < 0) // Keep angle within [0, 2*PI] for consistency
+	if (game->player->angle < 0)
 		game->player->angle += 2 * M_PI;
 	else if (game->player->angle > 2 * M_PI)
 		game->player->angle -= 2 * M_PI;
@@ -87,7 +87,6 @@ void	handle_mouse_rotation(t_game *game)
 	int	delta_x;
 
 	mlx_get_mouse_pos(game->mlx, &mouse_x, &mouse_y);
-
 	if (!game->mouse_initialized)
 	{
 		game->prev_mouse_x = mouse_x;
@@ -100,11 +99,10 @@ void	handle_mouse_rotation(t_game *game)
 		game->player->angle += 2 * M_PI;
 	else if (game->player->angle > 2 * M_PI)
 		game->player->angle -= 2 * M_PI;
-
 	game->prev_mouse_x = mouse_x;
 }
 
-void	handle_movement(t_game *game)
+void	handle_movement(t_game *game) // NEED REMOVE  PRINTFS
 {
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
 	{

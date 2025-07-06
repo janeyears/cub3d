@@ -50,13 +50,13 @@ int	upload_wall_textures(t_game *game)
 	return (0);
 }
 
-int upload_weapon_texture(t_game *game, char *path)
+int	upload_weapon_texture(t_game *game, char *path)
 {
-	int new_width;
-	int new_height;
-	int pos_x;
-	int pos_y;
-	mlx_texture_t *weapon_texture;
+	int				new_width;
+	int				new_height;
+	int				pos_x;
+	int				pos_y;
+	mlx_texture_t	*weapon_texture;
 
 	weapon_texture = mlx_load_png(path);
 	if (!weapon_texture)
@@ -86,16 +86,12 @@ int	init_image(t_game *game)
 	game->minimap_img = mlx_new_image(game->mlx, MINIMAP_SIZE, MINIMAP_SIZE);
 	if (!game->minimap_img)
 		return (1);
-	if (mlx_image_to_window(game->mlx, game->minimap_img, 10, HEIGHT - MINIMAP_RADIUS * 2 - 10) == -1)
+	if (mlx_image_to_window(game->mlx, game->minimap_img, 10,
+			HEIGHT - MINIMAP_RADIUS * 2 - 10) == -1)
 		return (1);
 	if (mlx_image_to_window(game->mlx, game->counter_frame,
 			WIDTH - game->counter_frame->width - 10, 10) == -1)
 		return (1);
-	// game->counter = mlx_new_image(game->mlx, 30, 15);
-	// if (!game->counter)
-	// 	return (1);
-	// if (mlx_image_to_window(game->mlx, game->counter, WIDTH - game->counter_frame->width / 2 - 10, 30) == -1)
-	// 	return (1);
 	if (upload_weapon_texture(game, "textures/frog.png") != 0)
 		return (1);
 	return (0);

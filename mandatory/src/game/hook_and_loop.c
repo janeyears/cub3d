@@ -6,7 +6,6 @@ void	close_hook(void *data)
 
 	game = (t_game *)data;
 	printf("Window has been closed\n");
-	// mlx_close_window(game->mlx);
 	free_game(game);
 }
 
@@ -19,7 +18,6 @@ void	esc_hook(mlx_key_data_t input, void *data)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 	{
 		printf("Escape key pressed\n");
-		// mlx_close_window(game->mlx);
 		free_game(game);
 	}
 }

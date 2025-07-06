@@ -28,8 +28,8 @@ t_ray	vertical_intersection(t_game *game, t_player *player, float angle)
 		if (cos(angle) < 0)
 			cast.map_x--;
 		cast.map_y = (int)(cast.y / TILE_SIZE);
-		if (cast.map_x < 0 || cast.map_x >= game->size_x || cast.map_y < 0
-			|| cast.map_y >= game->size_y)
+		if (cast.map_y < 0 || cast.map_y >= game->size_y || cast.map_x < 0
+			|| cast.map_x >= (int)ft_strlen(game->map[cast.map_y]))
 			break ;
 		if (game->map[cast.map_y][cast.map_x] == '1')
 		{
@@ -72,8 +72,8 @@ t_ray	horizontal_intersection(t_game *game, t_player *player, float angle)
 		if (sin(angle) < 0)
 			cast.map_y--;
 		cast.map_x = (int)(cast.x / TILE_SIZE);
-		if (cast.map_x < 0 || cast.map_x >= game->size_x || cast.map_y < 0
-			|| cast.map_y >= game->size_y)
+		if (cast.map_y < 0 || cast.map_y >= game->size_y || cast.map_x < 0
+			|| cast.map_x >= (int)ft_strlen(game->map[cast.map_y]))
 			break ;
 		if (game->map[cast.map_y][cast.map_x] == '1')
 		{
@@ -98,14 +98,14 @@ t_ray	raycast(t_game *game, t_player *player, float angle)
 	if (horz.dist < vert.dist)
 	{
 		if (sin(angle) > 0)
-			horz.dir = 1;	// flip for South walls
+			horz.dir = 1;
 		else
-			horz.dir = 0;	// flip for Noth walls
+			horz.dir = 0;
 		return (horz);
 	}
 	if (cos(angle) < 0)
-		vert.dir = 2;		// flip for West walls
+		vert.dir = 2;
 	else
-		vert.dir = 3;		// flip for East walls
+		vert.dir = 3;
 	return (vert);
 }

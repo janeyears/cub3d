@@ -6,18 +6,15 @@
 # define EAST_POV 0			    // pointing right
 # define SOUTH_POV M_PI_2	    // pointing down (positive Y in screen coords)
 # define WEST_POV M_PI		    // pointing left  
-# define NORTH_POV 3*M_PI_2	    // pointing up (negative Y in screen coords)
+# define NORTH_POV 4.71238898038f  // 3 * π/2
 
-
-# define FOV (M_PI / 3.0f)
+# define FOV 1.04719755120f        // π / 3
 
 # define TILE_SIZE 64
 # define ROT_SPEED 2.5
-//# define SPEED 5
 # define TEX_SIZE 1076
 # define MIN_DISTANCE 0.1f
 # define MOUSE_SENSITIVITY 0.003
-
 
 # define WIDTH 1200
 # define HEIGHT 1200
@@ -42,26 +39,12 @@ typedef struct s_cast
 
 typedef struct s_column
 {
-	t_ray ray;        // already has hit_x, hit_y, dist, dir, hit_vert
-	int wall_height;
-	int wall_start;
-	int wall_end;
-	int tex_x;
+	t_ray	ray;
+	int		wall_height;
+	int		wall_start;
+	int		wall_end;
+	int		tex_x;
 }	t_column;
-
-typedef struct s_mini
-{
-	int		center_x;
-	int		center_y;
-	int		dy;
-	int		dx;
-	float	map_x;
-	float	map_y;
-	int		tile_x;
-	int		tile_y;
-	float	rdx;
-	float	rdy;
-}	t_mini;
 
 int		init_image(t_game *game);
 void	close_hook(void *game);
