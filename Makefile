@@ -36,11 +36,11 @@ PARSING		:= get_map config map_val
 
 MAIN		:= main errors
 
-GAME		:= image hook_and_loop movements render_image minimap ray_cast
+GAME		:= image hook_and_loop movements render_image ray_cast
 
 BONUS		:= image hook_and_loop movements render_image minimap minimap_utils ray_cast enemy enemy_utils
 
-UTILS		:= lst_utils utils free parsing_utils graphic_utils
+UTILS		:= lst_utils utils free parsing_utils graphic_utils game_utils
 
 SRCS	:= $(addsuffix .c, $(addprefix mandatory/src/, $(MAIN))) \
 			$(addsuffix .c, $(addprefix mandatory/src/parsing/, $(PARSING))) \

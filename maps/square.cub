@@ -3,8 +3,9 @@ SO ./textures/4_animals.png
 WE ./textures/3_forest.png
 EA ./textures/1_flowers.png
 
-F 27, 27, 27
-C 62, 180, 137
+F 126,73,21
+C 0,115,133
+
 
 11111111
 100110N1

@@ -11,6 +11,7 @@ int	init_game(t_game *game)
 	game->rays = NULL;
 	game->mouse_initialized = 0;
 	game->prev_mouse_x = 0;
+	game->enemy_left = game->enemy_count;
 	return (0);
 }
 
@@ -21,9 +22,9 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (err_msg(ERR_USAGE), 1);
 	if (get_map(&game, argv[1]) < 0)
-		return (err_msg("Can't get map\n"), 1);
-	if (place_enemies(&game) < 0)
 		return (1);
+	if (place_enemies(&game) < 0)
+		return (free_parsing(&game), 1);
 	if (init_game(&game) != 0)
 		return (1);
 	if (init_image(&game) == 1)

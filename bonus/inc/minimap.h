@@ -3,9 +3,9 @@
 
 # include "cub3d.h"
 
-#define MINIMAP_SCALE 10           // pixels per tile
-#define MINIMAP_RADIUS 124         // radius in pixels
-#define MINIMAP_SIZE (MINIMAP_RADIUS * 2)
+# define MINIMAP_SCALE 10
+# define MINIMAP_RADIUS 124
+# define MINIMAP_SIZE 248
 
 void	draw_minimap(void *param);
 void	draw_counter(void *param);

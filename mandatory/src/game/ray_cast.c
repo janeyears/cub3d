@@ -98,14 +98,14 @@ t_ray	raycast(t_game *game, t_player *player, float angle)
 	if (horz.dist < vert.dist)
 	{
 		if (sin(angle) > 0)
-			horz.dir = 1;	// flip for South walls
+			horz.dir = 1;
 		else
-			horz.dir = 0;	// flip for Noth walls
+			horz.dir = 0;
 		return (horz);
 	}
 	if (cos(angle) < 0)
-		vert.dir = 2;		// flip for West walls
+		vert.dir = 2;
 	else
-		vert.dir = 3;		// flip for East walls
+		vert.dir = 3;
 	return (vert);
 }
