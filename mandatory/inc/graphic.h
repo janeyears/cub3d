@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   graphic.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/07 14:17:03 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/07 14:19:38 by ekashirs         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GRAPHIC_H
 # define GRAPHIC_H
 
 # include "cub3d.h"
 
-# define EAST_POV 0			    // pointing right
-# define SOUTH_POV M_PI_2	    // pointing down (positive Y in screen coords)
-# define WEST_POV M_PI		    // pointing left  
-# define NORTH_POV 4.71238898038f  // 3 * π/2
+# define EAST_POV 0
+# define SOUTH_POV M_PI_2
+# define WEST_POV M_PI
+# define NORTH_POV 4.71238898038f
 
-# define FOV 1.04719755120f        // π / 3
+# define FOV 1.04719755120f
 
 # define TILE_SIZE 64
 # define ROT_SPEED 2.5

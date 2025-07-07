@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_cast.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/07 14:17:54 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/07 14:17:55 by ekashirs         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	vert_init(t_player *player, float angle, t_cast *cast, t_ray *ray)
@@ -28,8 +40,8 @@ t_ray	vertical_intersection(t_game *game, t_player *player, float angle)
 		if (cos(angle) < 0)
 			cast.map_x--;
 		cast.map_y = (int)(cast.y / TILE_SIZE);
-		if (cast.map_x < 0 || cast.map_x >= game->size_x || cast.map_y < 0
-			|| cast.map_y >= game->size_y)
+		if (cast.map_y < 0 || cast.map_y >= game->size_y || cast.map_x < 0
+			|| cast.map_x >= (int)ft_strlen(game->map[cast.map_y]))
 			break ;
 		if (game->map[cast.map_y][cast.map_x] == '1')
 		{
@@ -72,8 +84,8 @@ t_ray	horizontal_intersection(t_game *game, t_player *player, float angle)
 		if (sin(angle) < 0)
 			cast.map_y--;
 		cast.map_x = (int)(cast.x / TILE_SIZE);
-		if (cast.map_x < 0 || cast.map_x >= game->size_x || cast.map_y < 0
-			|| cast.map_y >= game->size_y)
+		if (cast.map_y < 0 || cast.map_y >= game->size_y || cast.map_x < 0
+			|| cast.map_x >= (int)ft_strlen(game->map[cast.map_y]))
 			break ;
 		if (game->map[cast.map_y][cast.map_x] == '1')
 		{

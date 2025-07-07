@@ -1,4 +1,16 @@
-#include "cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   image_bonus.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/07 14:15:40 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/07 14:15:41 by ekashirs         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d_bonus.h"
 
 static int	load(t_game *game, char *path, mlx_image_t **img)
 {
@@ -9,7 +21,7 @@ static int	load(t_game *game, char *path, mlx_image_t **img)
 		return (err_msg(ERR_TEXTURE), 1);
 	*img = mlx_texture_to_image(game->mlx, txt);
 	if (!img || !*img)
-		return (err_msg("IMAGE TO TEXTURE DEAD \n"), 1);
+		return (err_msg(ERR_IMAGE), 1);
 	mlx_delete_texture(txt);
 	return (0);
 }
@@ -19,7 +31,7 @@ static int	load_resize(t_game *game, char *path, mlx_image_t **img, int size)
 	if (load(game, path, img))
 		return (1);
 	if (!mlx_resize_image(*img, size, size))
-		return (err_msg("RESIZE DEAD \n"), 1);
+		return (err_msg(ERR_RESIZE), 1);
 	return (0);
 }
 
@@ -60,7 +72,7 @@ int	upload_weapon_texture(t_game *game, char *path)
 
 	weapon_texture = mlx_load_png(path);
 	if (!weapon_texture)
-		return (printf("Failed to load weapon texture\n"), 1);
+		return (err_msg(ERR_TEXTURE), 1);
 	new_width = weapon_texture->width * 0.35;
 	new_height = weapon_texture->height * 0.35;
 	pos_x = (WIDTH - new_width) / 2;
@@ -68,11 +80,11 @@ int	upload_weapon_texture(t_game *game, char *path)
 	game->weapon_image = mlx_texture_to_image(game->mlx, weapon_texture);
 	mlx_delete_texture(weapon_texture);
 	if (!game->weapon_image)
-		return (printf("Failed to create weapon image\n"), 1);
+		return (err_msg(ERR_IMAGE), 1);
 	if (!mlx_resize_image(game->weapon_image, new_width, new_height))
-		return (printf("Failed to resize weapon image\n"), 1);
+		return (err_msg(ERR_RESIZE), 1);
 	if (mlx_image_to_window(game->mlx, game->weapon_image, pos_x, pos_y) == -1)
-		return (printf("Failed to display weapon image\n"), 1);
+		return (err_msg(ERR_DISPLAY), 1);
 	return (0);
 }
 

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 14:16:54 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:16:55 by ekashirs         ###   ########.fr       */
+/*   Created: 2025/07/07 14:14:31 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/07 14:14:34 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include <MLX42.h>
 # include <stdio.h>
@@ -20,11 +20,12 @@
 # include <stdbool.h>
 # include <math.h>
 
-# include "errors.h"
+# include "errors_bonus.h"
 # include "libft.h"
-# include "init.h"
-# include "utils.h"
-# include "parsing.h"
-# include "graphic.h"
+# include "init_bonus.h"
+# include "utils_bonus.h"
+# include "parsing_bonus.h"
+# include "graphic_bonus.h"
+# include "minimap_bonus.h"
 
 #endif

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   free_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 14:18:17 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:18:18 by ekashirs         ###   ########.fr       */
+/*   Created: 2025/07/07 14:16:13 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/07 14:16:14 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	free_arr(char **arr)
 {
@@ -45,7 +45,10 @@ void	free_parsing(t_game *game)
 
 void	free_game(t_game *game)
 {
-	mlx_terminate(game->mlx);
 	free_parsing(game);
+	free(game->enemies);
+	if (game->unicorn_amount)
+		free(game->unicorn_amount);
+	mlx_terminate(game->mlx);
 	exit(0);
 }

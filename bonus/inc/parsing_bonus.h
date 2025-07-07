@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   parsing_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 14:17:28 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:17:29 by ekashirs         ###   ########.fr       */
+/*   Created: 2025/07/07 14:15:17 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/07 14:15:19 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#ifndef PARSING_BONUS_H
+# define PARSING_BONUS_H
 
-# include "cub3d.h"
+# include "cub3d_bonus.h"
 
 typedef struct s_point
 {

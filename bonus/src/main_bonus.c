@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 14:18:43 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:18:44 by ekashirs         ###   ########.fr       */
+/*   Created: 2025/07/07 14:16:42 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/07 14:16:43 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int	init_game(t_game *game)
 {
@@ -23,6 +23,7 @@ int	init_game(t_game *game)
 	game->rays = NULL;
 	game->mouse_initialized = 0;
 	game->prev_mouse_x = 0;
+	game->enemy_left = game->enemy_count;
 	return (0);
 }
 
@@ -34,6 +35,8 @@ int	main(int argc, char **argv)
 		return (err_msg(ERR_USAGE), 1);
 	if (get_map(&game, argv[1]) < 0)
 		return (1);
+	if (place_enemies(&game) < 0)
+		return (free_parsing(&game), 1);
 	if (init_game(&game) != 0)
 		return (1);
 	if (init_image(&game) == 1)
@@ -44,6 +47,8 @@ int	main(int argc, char **argv)
 	mlx_key_hook(game.mlx, esc_hook, &game);
 	mlx_close_hook(game.mlx, close_hook, &game);
 	mlx_loop_hook(game.mlx, game_loop, &game);
+	mlx_loop_hook(game.mlx, draw_minimap, &game);
+	mlx_loop_hook(game.mlx, draw_counter, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

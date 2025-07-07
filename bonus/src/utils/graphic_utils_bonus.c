@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphic_utils.c                                    :+:      :+:    :+:   */
+/*   graphic_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 14:18:25 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:18:26 by ekashirs         ###   ########.fr       */
+/*   Created: 2025/07/07 14:16:21 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/07 14:16:22 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 double	move_sin(double val, double vector, double time)
 {

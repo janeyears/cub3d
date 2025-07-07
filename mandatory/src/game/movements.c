@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movements.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/07 14:17:50 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/07 14:21:56 by ekashirs         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	rotate_player(t_game *game, int direction)
@@ -10,18 +22,6 @@ static void	rotate_player(t_game *game, int direction)
 		game->player->angle += 2 * M_PI;
 	else if (game->player->angle > 2 * M_PI)
 		game->player->angle -= 2 * M_PI;
-}
-
-static int	check_collision(t_game *game, double new_x, double new_y)
-{
-	int	tile_x;
-	int	tile_y;
-
-	tile_x = (int)(new_x / TILE_SIZE);
-	tile_y = (int)(new_y / TILE_SIZE);
-	if (game->map[tile_y][tile_x] == '1')
-		return (0);
-	return (1);
 }
 
 static int	move_player_horiz(t_game *game, int direction)
@@ -101,44 +101,18 @@ void	handle_mouse_rotation(t_game *game)
 	game->prev_mouse_x = mouse_x;
 }
 
-void	handle_movement(t_game *game) // NEED REMOVE  PRINTFS
+void	handle_movement(t_game *game)
 {
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
-	{
-		if (move_player_vertic(game, S) == 0)
-			printf("Down key pressed.\n");
-		else
-			printf("Collision detected, cannot move down\n");
-	}
+		move_player_vertic(game, S);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
-	{
-		if (move_player_horiz(game, A) == 0)
-			printf("Left key pressed.\n");
-		else
-			printf("Collision detected, cannot move left\n");
-	}
+		move_player_horiz(game, A);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
-	{
-		if (move_player_vertic(game, W) == 0)
-			printf("Up key pressed.\n");
-		else
-			printf("Collision detected, cannot move up\n");
-	}
+		move_player_vertic(game, W);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
-	{
-		if (move_player_horiz(game, D) == 0)
-			printf("Right key pressed\n");
-		else
-			printf("Collision detected, cannot move right\n");
-	}
+		move_player_horiz(game, D);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-	{
 		rotate_player(game, LEFT);
-		printf("Left arrow key pressed\n");
-	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-	{
 		rotate_player(game, RIGHT);
-		printf("Right arrow key pressed\n");
-	}
 }

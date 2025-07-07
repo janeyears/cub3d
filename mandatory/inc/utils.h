@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/07 14:17:35 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/07 14:22:18 by ekashirs         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef UTILS_H
 # define UTILS_H
 
@@ -29,6 +41,7 @@ void	get_map_width(t_game *game);
 
 double	move_cos(double val, double vector, double time);
 double	move_sin(double val, double vector, double time);
+int		check_collision(t_game *game, double new_x, double new_y);
 
 int		get_pixel_color(mlx_image_t *img, int tex_x, int tex_y);
 int		get_color_code(int *color);

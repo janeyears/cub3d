@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   errors_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 14:16:54 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:16:55 by ekashirs         ###   ########.fr       */
+/*   Created: 2025/07/07 14:16:37 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/07 14:16:38 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "cub3d_bonus.h"
 
-# include <MLX42.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include <sys/time.h>
-# include <stdbool.h>
-# include <math.h>
+void	err_msg(char *msg)
+{
+	char	*red;
+	char	*reset;
 
-# include "errors.h"
-# include "libft.h"
-# include "init.h"
-# include "utils.h"
-# include "parsing.h"
-# include "graphic.h"
-
-#endif
+	red = "\033[1;31m";
+	reset = "\033[0m";
+	write(2, red, 7);
+	ft_putendl_fd("Error", 2);
+	ft_putendl_fd(msg, 2);
+	write(2, reset, 4);
+}

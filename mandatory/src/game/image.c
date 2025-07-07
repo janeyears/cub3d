@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   image.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/07 14:17:46 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/07 14:17:47 by ekashirs         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static int	load_resize(t_game *game, char *path, mlx_image_t **img)
@@ -9,9 +21,9 @@ static int	load_resize(t_game *game, char *path, mlx_image_t **img)
 		return (err_msg(ERR_TEXTURE), 1);
 	*img = mlx_texture_to_image(game->mlx, txt);
 	if (!img)
-		return (err_msg("IMAGE TO TEXTURE DEAD \n"), 1);
+		return (err_msg(ERR_IMAGE), 1);
 	if (!mlx_resize_image(*img, TEX_SIZE, TEX_SIZE))
-		return (err_msg("RESIZE DEAD \n"), 1);
+		return (err_msg(ERR_RESIZE), 1);
 	mlx_delete_texture(txt);
 	return (0);
 }

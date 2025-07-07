@@ -38,19 +38,25 @@ MAIN		:= main errors
 
 GAME		:= image hook_and_loop movements render_image ray_cast
 
-BONUS		:= image hook_and_loop movements render_image minimap minimap_utils ray_cast enemy enemy_utils
-
 UTILS		:= lst_utils utils free parsing_utils graphic_utils game_utils
+
+PARSING_B	:= get_map_bonus config_bonus map_val_bonus
+
+MAIN_B		:= main_bonus errors_bonus
+
+GAME_B		:= enemy_bonus enemy_utils_bonus image_bonus hook_and_loop_bonus minimap_bonus minimap_utils_bonus movements_bonus render_image_bonus ray_cast_bonus
+
+UTILS_B		:= lst_utils_bonus utils_bonus free_bonus parsing_utils_bonus graphic_utils_bonus game_utils_bonus
 
 SRCS	:= $(addsuffix .c, $(addprefix mandatory/src/, $(MAIN))) \
 			$(addsuffix .c, $(addprefix mandatory/src/parsing/, $(PARSING))) \
 			$(addsuffix .c, $(addprefix mandatory/src/utils/, $(UTILS))) \
 			$(addsuffix .c, $(addprefix mandatory/src/game/, $(GAME)))
 
-SRCS_B	:= $(addsuffix .c, $(addprefix bonus/src/, $(MAIN))) \
-			$(addsuffix .c, $(addprefix bonus/src/parsing/, $(PARSING))) \
-			$(addsuffix .c, $(addprefix bonus/src/utils/, $(UTILS))) \
-			$(addsuffix .c, $(addprefix bonus/src/game/, $(BONUS))) \
+SRCS_B	:= $(addsuffix .c, $(addprefix bonus/src/, $(MAIN_B))) \
+			$(addsuffix .c, $(addprefix bonus/src/parsing/, $(PARSING_B))) \
+			$(addsuffix .c, $(addprefix bonus/src/utils/, $(UTILS_B))) \
+			$(addsuffix .c, $(addprefix bonus/src/game/, $(GAME_B))) \
 
 OBJS		:= $(SRCS:$(SRCS_PATH)/%.c=$(OBJS_PATH)/%.o)
 OBJS_B		:= $(SRCS_B:$(SRCS_PATH_B)/%.c=$(OBJS_PATH_B)/%.o)

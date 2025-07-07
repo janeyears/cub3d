@@ -1,4 +1,16 @@
-#include "cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_cast_bonus.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/07 14:15:53 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/07 14:15:55 by ekashirs         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d_bonus.h"
 
 static void	vert_init(t_player *player, float angle, t_cast *cast, t_ray *ray)
 {

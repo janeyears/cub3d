@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 14:16:54 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:16:55 by ekashirs         ###   ########.fr       */
+/*   Created: 2025/07/07 14:16:34 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/07 14:16:35 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "cub3d_bonus.h"
 
-# include <MLX42.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include <sys/time.h>
-# include <stdbool.h>
-# include <math.h>
+int	file_check(char *fname)
+{
+	return (!ft_strchr(fname, '.')
+		|| ft_strncmp((ft_strrchr(fname, '.')), ".cub\0", 5));
+}
 
-# include "errors.h"
-# include "libft.h"
-# include "init.h"
-# include "utils.h"
-# include "parsing.h"
-# include "graphic.h"
+int	skip_spaces(char *str)
+{
+	int	i;
 
-#endif
+	i = 0;
+	while (str[i] == ' ')
+	{
+		i++;
+	}
+	return (i);
+}

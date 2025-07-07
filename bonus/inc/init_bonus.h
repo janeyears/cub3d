@@ -1,7 +1,19 @@
-#ifndef INIT_H
-# define INIT_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_bonus.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/07 14:14:52 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/07 14:14:55 by ekashirs         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# include "cub3d.h"
+#ifndef INIT_BONUS_H
+# define INIT_BONUS_H
+
+# include "cub3d_bonus.h"
 
 # define WIDTH 1000
 # define HEIGHT 1000

@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   minimap_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 14:16:54 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:16:55 by ekashirs         ###   ########.fr       */
+/*   Created: 2025/07/07 14:15:11 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/07 14:15:14 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef MINIMAP_BONUS_H
+# define MINIMAP_BONUS_H
 
-# include <MLX42.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include <sys/time.h>
-# include <stdbool.h>
-# include <math.h>
+# include "cub3d_bonus.h"
 
-# include "errors.h"
-# include "libft.h"
-# include "init.h"
-# include "utils.h"
-# include "parsing.h"
-# include "graphic.h"
+# define MINIMAP_SCALE 10
+# define MINIMAP_RADIUS 124
+# define MINIMAP_SIZE 248
+
+void	draw_minimap(void *param);
+void	draw_counter(void *param);
+
+void	mini_init(t_mini *mini);
+void	clean_minimap(t_game *game);
+void	put_dot(mlx_image_t *img, int x, int y, uint32_t color);
+void	put_pixel_mini(t_game *game, t_mini mini);
 
 #endif

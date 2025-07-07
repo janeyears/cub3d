@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.h                                           :+:      :+:    :+:   */
+/*   errors_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 14:16:59 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:17:00 by ekashirs         ###   ########.fr       */
+/*   Created: 2025/07/07 14:14:38 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/07 14:20:36 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERRORS_H
-# define ERRORS_H
+#ifndef ERRORS_BONUS_H
+# define ERRORS_BONUS_H
 
-# include "cub3d.h"
+# include "cub3d_bonus.h"
 
 # define ERR_USAGE "Usage: ./cub3d maps/map.cub\n"
 # define ERR_MALLOC "Memory allocation has failed\n"
@@ -32,15 +32,18 @@
 # define ERR_SYMBOL "Invalid symbol in the map\n"
 # define ERR_SPACE "There are empty space in the map\n"
 # define ERR_WALLS "The map is not surrounded by walls\n"
+# define SMALL_MAP "Map is too small to add enemies\n"
+# define ADD_ENEMY "Couldn't add enemy\n"
 
 # define ERR_TEXTURE "Couldn't upload texture\n"
 # define ERR_IMAGE "Couldn't convert texture to image\n"
-# define INIT_IMAGE "Function init_image has failed\n"
 # define ERR_RESIZE "Function mlx_resize has failed\n"
+# define ERR_DISPLAY "Function mlx_image_to_window has failed\n"
 
 # define ERR_SIZE "Game width or height is too big\n"
 # define ERR_MLXINIT "mlx_init has failed\n"
 # define ERR_MLXWIN "image_to_window has failed\n"
+# define INIT_IMAGE "Function init_image has failed\n"
 
 void	err_msg(char *msg);
 

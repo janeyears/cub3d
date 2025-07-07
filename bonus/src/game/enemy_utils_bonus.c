@@ -1,4 +1,16 @@
-#include "cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   enemy_utils_bonus.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/07 14:15:31 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/07 14:15:32 by ekashirs         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d_bonus.h"
 
 void	norm_angle_en(t_game *game, int i)
 {
@@ -74,10 +86,10 @@ int	get_enemy_coords(t_game *game)
 
 	i = 0;
 	if (!game->enemy_count)
-		return (err_msg("To small map for enemies\n"), -1);
+		return (err_msg(SMALL_MAP), -1);
 	game->enemies = ft_calloc(game->enemy_count, sizeof(t_enemy));
 	if (!game->enemies)
-		return (err_msg("Enemy add failed \n"), -1);
+		return (err_msg(ADD_ENEMY), -1);
 	y = -1;
 	while (++y < game->size_y)
 	{

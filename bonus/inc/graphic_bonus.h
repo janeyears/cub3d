@@ -1,14 +1,26 @@
-#ifndef GRAPHIC_H
-# define GRAPHIC_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   graphic_bonus.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/07 14:14:45 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/07 14:19:17 by ekashirs         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# include "cub3d.h"
+#ifndef GRAPHIC_BONUS_H
+# define GRAPHIC_BONUS_H
 
-# define EAST_POV 0			    // pointing right
-# define SOUTH_POV M_PI_2	    // pointing down (positive Y in screen coords)
-# define WEST_POV M_PI		    // pointing left  
-# define NORTH_POV 4.71238898038f  // 3 * π/2
+# include "cub3d_bonus.h"
 
-# define FOV 1.04719755120f        // π / 3
+# define EAST_POV 0
+# define SOUTH_POV M_PI_2
+# define WEST_POV M_PI
+# define NORTH_POV 4.71238898038f
+
+# define FOV 1.04719755120f
 
 # define TILE_SIZE 64
 # define ROT_SPEED 2.5
