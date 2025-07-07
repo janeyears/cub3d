@@ -6,12 +6,14 @@
 /*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:17:58 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:17:59 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/07 15:12:18 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*Cast a ray for a screen column, correct the fish-eye distortion,
+calculate wall height and texture X coordinate*/
 static t_column	prepare_column(t_game *game, float ray_angle, float proj_dist)
 {
 	t_column	col;
@@ -60,6 +62,8 @@ static int	get_column_color(t_game *game, t_column *col, int y)
 		return (game->color_f);
 }
 
+/*Render a vertical column on the screen at position `x` by drawing
+ceiling, wall (with texture), and floor pixels*/
 static void	draw_column(t_game *game, int x, float ray_angle, float proj_dist)
 {
 	t_column	col;
@@ -76,6 +80,8 @@ static void	draw_column(t_game *game, int x, float ray_angle, float proj_dist)
 	}
 }
 
+/*Render the entire 3D scene by casting rays for each screen column, 
+calculating projection, and drawing the result*/
 void	render_scene(t_game *game)
 {
 	float	proj_dist;

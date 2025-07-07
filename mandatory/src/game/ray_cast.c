@@ -6,12 +6,14 @@
 /*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:17:54 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:17:55 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/07 15:12:36 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*Initialize vertical raycasting parameters:
+set initial intersection point and step increments for vertical grid lines*/
 static void	vert_init(t_player *player, float angle, t_cast *cast, t_ray *ray)
 {
 	ray->dist = 1000000;
@@ -27,6 +29,8 @@ static void	vert_init(t_player *player, float angle, t_cast *cast, t_ray *ray)
 	cast->y = player->y + (cast->x - player->x) * tan(angle);
 }
 
+/*Find the closest vertical wall intersection by stepping through vertical
+grid lines. Return the ray hit info if a wall is found, else a default ray*/
 t_ray	vertical_intersection(t_game *game, t_player *player, float angle)
 {
 	t_cast	cast;
@@ -56,6 +60,8 @@ t_ray	vertical_intersection(t_game *game, t_player *player, float angle)
 	return (ray);
 }
 
+/*Initialize horizontal raycasting parameters: set initial intersection 
+point and step increments for horizontal grid lines*/
 static void	hor_init(t_player *player, float angle, t_cast *cast, t_ray *ray)
 {
 	ray->dist = 1000000;
@@ -71,6 +77,8 @@ static void	hor_init(t_player *player, float angle, t_cast *cast, t_ray *ray)
 	cast->x = player->x + (cast->y - player->y) / tan(angle);
 }
 
+/*Find the closest horizontal wall intersection by stepping through horizontal 
+grid lines. Return the ray hit info if a wall is found, else a default ray*/
 t_ray	horizontal_intersection(t_game *game, t_player *player, float angle)
 {
 	t_cast	cast;
@@ -100,6 +108,9 @@ t_ray	horizontal_intersection(t_game *game, t_player *player, float angle)
 	return (ray);
 }
 
+/*Cast a ray at a given angle, checking both horizontal and 
+vertical intersections, then return the closest wall hit 
+with direction information*/
 t_ray	raycast(t_game *game, t_player *player, float angle)
 {
 	t_ray	horz;
