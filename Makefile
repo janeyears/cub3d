@@ -40,7 +40,8 @@ SRCS	:= $(addsuffix .c, $(addprefix mandatory/src/, $(MAIN))) \
 			$(addsuffix .c, $(addprefix mandatory/src/utils/, $(UTILS))) \
 			$(addsuffix .c, $(addprefix mandatory/src/game/, $(GAME)))
 
-OBJS := $(addprefix $(OBJS_PATH)/, $(notdir $(SRCS:.c=.o)))
+OBJS := $(SRCS:mandatory/src/%=$(OBJS_PATH)/%)
+OBJS := $(OBJS:.c=.o)
 
 ################################## BONUS ######################################
 
@@ -63,7 +64,8 @@ SRCS_B	:= $(addsuffix .c, $(addprefix bonus/src/, $(MAIN_B))) \
 			$(addsuffix .c, $(addprefix bonus/src/utils/, $(UTILS_B))) \
 			$(addsuffix .c, $(addprefix bonus/src/game/, $(GAME_B))) \
 
-OBJS_B		:= $(addprefix $(OBJS_PATH_B)/, $(notdir $(SRCS_B:.c=.o)))
+OBJS_B := $(SRCS_B:bonus/src/%=$(OBJS_PATH_B)/%)
+OBJS_B := $(OBJS_B:.c=.o)
 
 ################################ MANDATORY ####################################
 
@@ -73,11 +75,9 @@ $(NAME): $(MLX42_PATH) $(MLX42) $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS) $(LIBFT) $(MLX42) -o $(NAME)
 	@echo "\033[1;95m💻 $(NAME) building completed...\033[0m"
 
-$(OBJS_PATH):
-	@mkdir -p $(OBJS_PATH)
-
-$(OBJS_PATH)/%.o: | $(OBJS_PATH)
-	@$(CC) $(CFLAGS) $(HEADERS) -c $(filter %/$*.c, $(SRCS)) -o $@
+$(OBJS_PATH)/%.o: mandatory/src/%.c
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
 
 ################################## BONUS ######################################
 
@@ -87,11 +87,9 @@ $(NAME_B): $(MLX42_PATH) $(MLX42) $(OBJS_B) $(LIBFT)
 	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS_B) $(LIBFT) $(MLX42) -o $(NAME_B)
 	@echo "\033[1;95m💻 $(NAME_B) building completed...\033[0m"
 
-$(OBJS_PATH_B):
-	@mkdir -p $(OBJS_PATH_B)
-
-$(OBJS_PATH_B)/%.o: | $(OBJS_PATH_B)
-	@$(CC) $(CFLAGS) $(HEADERS_B) -c $(filter %/$*.c, $(SRCS_B)) -o $@
+$(OBJS_PATH_B)/%.o: bonus/src/%.c
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) $(HEADERS_B) -c $< -o $@
 
 ###############################################################################
 

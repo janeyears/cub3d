@@ -6,7 +6,7 @@
 /*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:16:13 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:16:14 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/08 15:18:09 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,10 @@ void	free_game(t_game *game)
 		free(game->unicorn_amount);
 	mlx_terminate(game->mlx);
 	exit(0);
+}
+
+void	end_game(t_game *game)
+{
+	ft_putendl_fd("You saved the world from unicorns. Congratulations!", 1);
+	free_game(game);
 }

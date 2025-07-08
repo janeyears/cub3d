@@ -1,0 +1,12 @@
+NO ./textures/2_houses.png
+SO ./textures/4_animals.png
+WE ./textures/3_forest.png
+EA ./textures/1_flowers.png
+
+F 126,73,21
+C 0,115,133
+
+111
+101
+1N1
+111

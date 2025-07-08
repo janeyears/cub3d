@@ -6,7 +6,7 @@
 /*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:14:31 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:14:34 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/08 14:22:44 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 # define CUB3D_BONUS_H
 
 # include <MLX42.h>
-# include <stdio.h>
 # include <fcntl.h>
 # include <sys/time.h>
-# include <stdbool.h>
 # include <math.h>
 
 # include "errors_bonus.h"

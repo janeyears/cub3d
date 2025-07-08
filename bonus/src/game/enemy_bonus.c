@@ -6,7 +6,7 @@
 /*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:15:27 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:15:28 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/08 14:39:40 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	place_enemies(t_game *game)
 		{
 			if (game->map[y][x] == '0')
 			{
-				if (custom_rand(&seed) % 100 < 10)
+				if (custom_rand(&seed) % 100 < 100)
 				{
 					game->map[y][x] = 'E';
 					game->enemy_count++;
@@ -127,6 +127,8 @@ void	check_enemy_collision(t_game *game, double new_x, double new_y)
 			game->enemies[i].alive = 0;
 			game->enemy_left--;
 			game->map[tile_y][tile_x] = '0';
+			if (game->enemy_left == 0)
+				end_game(game);
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:14:45 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:19:17 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/08 14:19:27 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ void	enemy_dist(t_game *game);
 int		get_enemy_coords(t_game *game);
 void	sort_enemies(t_game *game);
 void	render_enemies(t_game *game);
-void	update_enemy_animation(t_game *game);
 void	check_enemy_collision(t_game *game, double new_x, double new_y);
 
 t_ray	raycast(t_game *game, t_player *player, float angle);
