@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_and_loop.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:17:42 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:17:43 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/08 15:30:56 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ void	game_loop(void *param)
 
 	game = (t_game *)param;
 	handle_movement(game);
-	handle_mouse_rotation(game);
 	render_scene(game);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:17:46 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/08 15:22:18 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/08 15:50:44 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	load_resize(t_game *game, char *path, mlx_image_t **img)
 	if (!txt)
 		return (err_msg(ERR_TEXTURE), 1);
 	*img = mlx_texture_to_image(game->mlx, txt);
-	if (!img)
+	if (!*img)
 		return (err_msg(ERR_IMAGE), 1);
 	if (!mlx_resize_image(*img, TEX_SIZE, TEX_SIZE))
 		return (err_msg(ERR_RESIZE), 1);

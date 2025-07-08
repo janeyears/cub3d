@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:16:13 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/08 15:18:09 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/08 15:44:55 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,17 @@ void	free_parsing(t_game *game)
 void	free_game(t_game *game)
 {
 	free_parsing(game);
-	free(game->enemies);
+	if (game->enemies)
+		free(game->enemies);
 	if (game->unicorn_amount)
 		free(game->unicorn_amount);
+	mlx_terminate(game->mlx);
+	exit(0);
+}
+
+void	free_texture(t_game *game)
+{
+	free_parsing(game);
 	mlx_terminate(game->mlx);
 	exit(0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:15:40 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:15:41 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/08 15:45:58 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,18 +92,18 @@ int	init_image(t_game *game)
 {
 	game->scene = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	if (!game->scene)
-		return (1);
+		return (err_msg(ERR_DISPLAY), 1);
 	if (mlx_image_to_window(game->mlx, game->scene, 0, 0) == -1)
-		return (1);
+		return (err_msg(ERR_DISPLAY), 1);
 	game->minimap_img = mlx_new_image(game->mlx, MINIMAP_SIZE, MINIMAP_SIZE);
 	if (!game->minimap_img)
-		return (1);
+		return (err_msg(ERR_DISPLAY), 1);
 	if (mlx_image_to_window(game->mlx, game->minimap_img, 10,
 			HEIGHT - MINIMAP_RADIUS * 2 - 10) == -1)
-		return (1);
+		return (err_msg(ERR_DISPLAY), 1);
 	if (mlx_image_to_window(game->mlx, game->counter_frame,
 			WIDTH - game->counter_frame->width - 10, 10) == -1)
-		return (1);
+		return (err_msg(ERR_DISPLAY), 1);
 	if (upload_weapon_texture(game, "textures/frog.png") != 0)
 		return (1);
 	return (0);

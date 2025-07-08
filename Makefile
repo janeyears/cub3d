@@ -84,7 +84,7 @@ $(OBJS_PATH)/%.o: mandatory/src/%.c
 bonus: $(NAME_B)
 
 $(NAME_B): $(MLX42_PATH) $(MLX42) $(OBJS_B) $(LIBFT)
-	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS_B) $(LIBFT) $(MLX42) -o $(NAME_B)
+	$(CC) $(CFLAGS) $(MLX_FLAGS) $(OBJS_B) $(LIBFT) $(MLX42) -o $(NAME_B) -fsanitize=address
 	@echo "\033[1;95m💻 $(NAME_B) building completed...\033[0m"
 
 $(OBJS_PATH_B)/%.o: bonus/src/%.c

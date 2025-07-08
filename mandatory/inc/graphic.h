@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:17:03 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:19:38 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/08 15:31:12 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int		upload_wall_textures(t_game *game);
 void	init_player(t_game *game);
 void	game_loop(void *param);
 void	handle_movement(t_game *game);
-void	handle_mouse_rotation(t_game *game);
 
 t_ray	raycast(t_game *game, t_player *player, float angle);
 

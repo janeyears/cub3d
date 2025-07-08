@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:16:42 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:16:43 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/08 15:45:22 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,7 @@ int	main(int argc, char **argv)
 	if (init_game(&game) != 0)
 		return (1);
 	if (init_image(&game) == 1)
-	{
-		err_msg(INIT_IMAGE);
-		free_game(&game);
-	}
+		free_texture(&game);
 	mlx_key_hook(game.mlx, esc_hook, &game);
 	mlx_close_hook(game.mlx, close_hook, &game);
 	mlx_loop_hook(game.mlx, game_loop, &game);

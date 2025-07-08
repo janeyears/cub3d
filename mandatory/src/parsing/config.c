@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:18:03 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:18:04 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/08 15:53:32 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	get_path(t_list *map, char **path, char *prefix)
 	*path = ft_substr(map->content, skip_spaces(map->content) + 3,
 			ft_strlen(map->content) - 4);
 	if (!*path)
-		return (-1);
+		return (err_msg(ERR_MALLOC), -1);
 	return (1);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:15:22 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/08 14:36:21 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/08 15:45:08 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void			free_arr(char **arr);
 void			free_game(t_game *game);
 void			free_parsing(t_game *game);
 void			end_game(t_game *game);
+void			free_texture(t_game *game);
 
 // Linked list utils
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:15:27 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/08 14:39:40 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/08 15:58:09 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	place_enemies(t_game *game)
 		{
 			if (game->map[y][x] == '0')
 			{
-				if (custom_rand(&seed) % 100 < 100)
+				if (custom_rand(&seed) % 100 < UNUM)
 				{
 					game->map[y][x] = 'E';
 					game->enemy_count++;
