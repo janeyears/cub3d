@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:17:03 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/08 15:31:12 by mzhitnik         ###   ########.fr       */
+/*   Updated: 2025/07/09 12:52:38 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@
 # define D 100
 # define LEFT 65361
 # define RIGHT 65363
-# define ESC 65307
+
+# define COLLISION_BUFFER 5
 
 typedef struct s_cast
 {

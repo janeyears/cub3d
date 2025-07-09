@@ -6,7 +6,7 @@
 /*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:16:17 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:22:52 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/09 12:55:51 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,28 @@ unsigned int	custom_rand(unsigned int *seed)
 	return ((*seed >> 16) & 0x7FFF);
 }
 
-int	check_collision(t_game *game, double new_x, double new_y)
+int check_collision(t_game *game, double new_x, double new_y)
 {
-	int	tile_x;
-	int	tile_y;
+	int tile_x;
+	int tile_y;
 
-	tile_x = (int)(new_x / TILE_SIZE);
-	tile_y = (int)(new_y / TILE_SIZE);
+	tile_x = (int)((new_x - COLLISION_BUFFER) / TILE_SIZE);
+	tile_y = (int)((new_y - COLLISION_BUFFER) / TILE_SIZE);
+	check_enemy_collision(game, new_x, new_y);
+	if (game->map[tile_y][tile_x] == '1')
+		return (0);
+	tile_x = (int)((new_x + COLLISION_BUFFER) / TILE_SIZE);
+	tile_y = (int)((new_y - COLLISION_BUFFER) / TILE_SIZE);
+	check_enemy_collision(game, new_x, new_y);
+	if (game->map[tile_y][tile_x] == '1')
+		return (0);
+	tile_x = (int)((new_x - COLLISION_BUFFER) / TILE_SIZE);
+	tile_y = (int)((new_y + COLLISION_BUFFER) / TILE_SIZE);
+	check_enemy_collision(game, new_x, new_y);
+	if (game->map[tile_y][tile_x] == '1')
+		return (0);
+	tile_x = (int)((new_x + COLLISION_BUFFER) / TILE_SIZE);
+	tile_y = (int)((new_y + COLLISION_BUFFER) / TILE_SIZE);
 	check_enemy_collision(game, new_x, new_y);
 	if (game->map[tile_y][tile_x] == '1')
 		return (0);

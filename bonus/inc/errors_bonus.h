@@ -6,7 +6,7 @@
 /*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:14:38 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/08 14:34:45 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/09 13:11:50 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define ERR_OPEN "Couldn't open and read the map"
 # define ERR_IDENT "Invalid identifier in the map file"
 # define ERR_TWOID "Duplicate of identifier has been found"
+# define ERR_PATH "Invalid path to texture"
 
 # define ERR_RGB "RGB should have 3 values"
 # define ERR_RGBRANGE "RGB colors must be in range [0,255]"

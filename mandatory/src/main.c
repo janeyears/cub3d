@@ -6,14 +6,39 @@
 /*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:18:43 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 15:09:17 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/09 13:10:09 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+int check_paths(t_game *game)
+{
+	int fd;
+
+	fd = open(game->no_path, O_RDONLY);
+	if (fd < 0)
+		return (1);
+	close(fd);
+	fd = open(game->so_path, O_RDONLY);
+	if (fd < 0)
+		return (1);
+	close(fd);
+	fd = open(game->we_path, O_RDONLY);
+	if (fd < 0)
+		return (1);
+	close(fd);
+	fd = open(game->ea_path, O_RDONLY);
+	if (fd < 0)
+		return (1);
+	close(fd);
+	return (0);
+}
+
 int	init_game(t_game *game)
 {
+	if (check_paths(game) != 0)
+		return (free_parsing(game), err_msg(ERR_PATH), 1);
 	game->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", false);
 	if (!game->mlx)
 		return (free_parsing(game), err_msg(ERR_MLXINIT), 1);

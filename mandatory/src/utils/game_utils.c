@@ -6,7 +6,7 @@
 /*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:18:21 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:22:42 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/09 12:51:29 by ekashirs         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,25 @@ void	init_player(t_game *game)
 	get_player_pov(&game);
 }
 
-int	check_collision(t_game *game, double new_x, double new_y)
+int check_collision(t_game *game, double new_x, double new_y)
 {
-	int	tile_x;
-	int	tile_y;
+	int tile_x;
+	int tile_y;
 
-	tile_x = (int)(new_x / TILE_SIZE);
-	tile_y = (int)(new_y / TILE_SIZE);
+	tile_x = (int)((new_x - COLLISION_BUFFER) / TILE_SIZE);
+	tile_y = (int)((new_y - COLLISION_BUFFER) / TILE_SIZE);
+	if (game->map[tile_y][tile_x] == '1')
+		return (0);
+	tile_x = (int)((new_x + COLLISION_BUFFER) / TILE_SIZE);
+	tile_y = (int)((new_y - COLLISION_BUFFER) / TILE_SIZE);
+	if (game->map[tile_y][tile_x] == '1')
+		return (0);
+	tile_x = (int)((new_x - COLLISION_BUFFER) / TILE_SIZE);
+	tile_y = (int)((new_y + COLLISION_BUFFER) / TILE_SIZE);
+	if (game->map[tile_y][tile_x] == '1')
+		return (0);
+	tile_x = (int)((new_x + COLLISION_BUFFER) / TILE_SIZE);
+	tile_y = (int)((new_y + COLLISION_BUFFER) / TILE_SIZE);
 	if (game->map[tile_y][tile_x] == '1')
 		return (0);
 	return (1);
