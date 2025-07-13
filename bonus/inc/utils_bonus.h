@@ -6,7 +6,7 @@
 /*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:15:22 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/08 15:45:08 by mzhitnik         ###   ########.fr       */
+/*   Updated: 2025/07/09 17:02:23 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ bool			if_inside(char c);
 bool			is_player(char c);
 void			set_player(t_game *game, int x, int y);
 void			get_map_width(t_game *game);
+int				is_map(const char *curr);
+int				check_fill(t_game *game);
 
 // Game utils
 

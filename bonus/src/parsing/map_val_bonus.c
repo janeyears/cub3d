@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_val_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 14:16:09 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:16:10 by ekashirs         ###   ########.fr       */
+/*   Created: 2025/07/07 14:18:12 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/09 17:28:55 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,14 @@ static void	check_char(t_game *game, t_count *count)
 int	composition(t_game *game)
 {
 	t_count	count;
+	int	y;
 
+	y = 0;
+	while (y < game->size_y)
+	{
+		if (!is_map(game->map[y++]))
+			return (err_msg(ERR_MAP), -1);
+	}
 	count.player = 0;
 	count.allowed = true;
 	check_char(game, &count);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 14:16:06 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:16:07 by ekashirs         ###   ########.fr       */
+/*   Created: 2025/07/07 14:18:07 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/09 17:28:49 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,10 @@ static int	config(t_game *game, t_list **map)
 	curr = *map;
 	while (curr)
 	{
-		if (game->no_path && game->so_path && game->we_path && game->ea_path
-			&& game->color_f && game->color_c)
-			break ;
 		while (curr && ((char *)(curr->content))[0] == '\n')
 			lst_del_first(&curr);
+		if (is_map((char *)(curr->content)))
+			break ;
 		if (!curr)
 		{
 			*map = curr;
@@ -90,36 +89,35 @@ static int	read_map(t_list **map, char *fname)
 	return (1);
 }
 
-static void	init_game(t_game *game)
+static int	init_game(t_game *game, char *fname)
 {
+	if (!fname || file_check(fname))
+		return (err_msg(ERR_NOTCUB), -1);
 	game->no_path = NULL;
 	game->so_path = NULL;
 	game->we_path = NULL;
 	game->ea_path = NULL;
 	game->player = NULL;
-	game->color_f = 0;
-	game->color_c = 0;
+	game->color_f = -1;
+	game->color_c = -1;
 	game->map = NULL;
 	game->size_x = 0;
 	game->size_y = 0;
-	game->enemy_count = 0;
-	game->counter = 0;
-	game->enemy_left = 0;
-	game->frame_count = 0;
-	game->enemies = NULL;
+	return (0);
 }
 
 int	get_map(t_game *game, char *fname)
 {
 	t_list	*map;
 
-	init_game(game);
-	if (!fname || file_check(fname))
-		return (err_msg(ERR_NOTCUB), -1);
+	if (init_game(game, fname) < 0)
+		return (-1);
 	map = NULL;
 	if (read_map(&map, fname) < 0)
 		return (err_msg(ERR_OPEN), -1);
 	if (config(game, &map) < 0)
+		return (ft_lstclear(&map, free), free_parsing(game), -1);
+	if (check_fill(game) < 0)
 		return (ft_lstclear(&map, free), free_parsing(game), -1);
 	game->size_y = ft_lstsize(map);
 	game->map = list_to_arr(map);
@@ -128,7 +126,7 @@ int	get_map(t_game *game, char *fname)
 		return (free_parsing(game), err_msg(ERR_MALLOC), -1);
 	game->player = ft_calloc(1, sizeof(t_player));
 	if (!game->player)
-		return (free_parsing(game), err_msg(ERR_MALLOC), -1);
+		return (err_msg(ERR_MALLOC), -1);
 	if (composition(game) < 0)
 		return (free_parsing(game), -1);
 	if (map_val(game) < 0)

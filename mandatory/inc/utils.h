@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:17:35 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:22:18 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/09 16:50:42 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ bool	if_inside(char c);
 bool	is_player(char c);
 void	set_player(t_game *game, int x, int y);
 void	get_map_width(t_game *game);
+int		is_map(const char *curr);
+int		check_fill(t_game *game);
 
 // Game utils
 

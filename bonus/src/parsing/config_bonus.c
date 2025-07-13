@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 14:16:02 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:16:03 by ekashirs         ###   ########.fr       */
+/*   Created: 2025/07/07 14:18:03 by ekashirs          #+#    #+#             */
+/*   Updated: 2025/07/09 17:28:42 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,28 @@
 
 int	get_path(t_list *map, char **path, char *prefix)
 {
+	int	shift;
+
 	if (*path)
-		return (err_msg(ERR_TWOID), -1);
+		return (err_msg(ERR_IDENT), -1);
 	if (ft_strncmp(map->content, prefix, 3))
 		return (err_msg(ERR_IDENT), -1);
-	*path = ft_substr(map->content, skip_spaces(map->content) + 3,
-			ft_strlen(map->content) - 4);
+	shift =  skip_spaces(map->content + 3);
+	*path = ft_substr(map->content, shift + 3,
+			ft_strlen(map->content) - 4 - shift);
 	if (!*path)
-		return (-1);
+		return (err_msg(ERR_MALLOC), -1);
 	return (1);
 }
 
 int	copy_num(char *str, int *i)
 {
-	char	sub[4];
+	char	*sub;
 	int		j;
 	int		num;
 
 	j = 0;
+	sub = ft_calloc(ft_strlen(str), sizeof(char));
 	*i += skip_spaces(&str[*i]);
 	if (str[*i] == ',')
 		(*i)++;
@@ -42,7 +46,8 @@ int	copy_num(char *str, int *i)
 		sub[j++] = str[(*i)++];
 	sub[j] = '\0';
 	num = ft_atoi(sub);
-	if (num < 0 || num > 255 || j > 3)
+	free(sub);
+	if (num < 0 || num > 255)
 		return (err_msg(ERR_RGBRANGE), -1);
 	return (num);
 }
@@ -85,8 +90,8 @@ int	parse_color(t_list **curr, const char *prefix, int *target)
 {
 	if (!ft_strncmp((*curr)->content, prefix, ft_strlen(prefix)))
 	{
-		if (*target)
-			return (err_msg(ERR_TWOID), -1);
+		if (*target != -1)
+			return (err_msg(ERR_IDENT), -1);
 		*target = set_color((*curr)->content + ft_strlen(prefix));
 		if (*target < 0)
 			return (-1);
