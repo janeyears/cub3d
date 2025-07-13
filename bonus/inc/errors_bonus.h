@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:14:38 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/09 13:11:50 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/13 14:11:02 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@
 # define ERR_NOTCUB "Map is not a .cub file"
 
 # define ERR_OPEN "Couldn't open and read the map"
-# define ERR_IDENT "Invalid identifier in the map file"
-# define ERR_TWOID "Duplicate of identifier has been found"
+# define ERR_IDENT "Misconfigured map file"
+# define ERR_MAP "Wrong map format"
+# define ERR_MISSID "Missing identifier in map file"
 # define ERR_PATH "Invalid path to texture"
 
 # define ERR_RGB "RGB should have 3 values"

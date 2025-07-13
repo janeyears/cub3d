@@ -6,13 +6,36 @@
 /*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:16:42 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/13 14:05:48 by mzhitnik         ###   ########.fr       */
+/*   Updated: 2025/07/13 14:14:25 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-int	init_game(t_game *game)
+static int	check_paths(t_game *game)
+{
+	int fd;
+
+	fd = open(game->no_path, O_RDONLY);
+	if (fd < 0)
+		return (1);
+	close(fd);
+	fd = open(game->so_path, O_RDONLY);
+	if (fd < 0)
+		return (1);
+	close(fd);
+	fd = open(game->we_path, O_RDONLY);
+	if (fd < 0)
+		return (1);
+	close(fd);
+	fd = open(game->ea_path, O_RDONLY);
+	if (fd < 0)
+		return (1);
+	close(fd);
+	return (0);
+}
+
+static int	init_game(t_game *game)
 {
 	if (check_paths(game) != 0)
 		return (free_parsing(game), err_msg(ERR_PATH), 1);
