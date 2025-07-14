@@ -6,7 +6,7 @@
 /*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:18:03 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/14 12:38:10 by mzhitnik         ###   ########.fr       */
+/*   Updated: 2025/07/14 15:31:28 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	copy_num(char *str, int *i)
 
 	j = 0;
 	sub = ft_calloc(ft_strlen(str), sizeof(char));
+	if (!sub)
+		return (err_msg(ERR_MALLOC), -1);
 	*i += skip_spaces(&str[*i]);
 	if (str[*i] == ',')
 		(*i)++;
@@ -52,7 +54,7 @@ int	copy_num(char *str, int *i)
 	return ((int)num);
 }
 
-int	set_color(char *str)
+int	set_color(char *str, uint64_t **target)
 {
 	int		colors[3];
 	int		i;
@@ -72,7 +74,8 @@ int	set_color(char *str)
 		return (err_msg(ERR_RGB), -1);
 	if (str[i] && !(str[i] == '\n' || str[i] == '\0'))
 		return (err_msg(ERR_IDENT), -1);
-	return (get_color_code(colors));
+	**target = get_color_code(colors);
+	return (1);
 }
 
 int	parse_texture(t_list **curr, char *prefix, char **target)
@@ -86,14 +89,16 @@ int	parse_texture(t_list **curr, char *prefix, char **target)
 	return (0);
 }
 
-int	parse_color(t_list **curr, const char *prefix, int *target)
+int	parse_color(t_list **curr, const char *prefix, uint64_t **target)
 {
 	if (!ft_strncmp((*curr)->content, prefix, ft_strlen(prefix)))
 	{
-		if (*target != -1)
+		if (*target != NULL)
 			return (err_msg(ERR_IDENT), -1);
-		*target = set_color((*curr)->content + ft_strlen(prefix));
-		if (*target < 0)
+		*target = ft_calloc(1, sizeof(uint64_t));
+		if (!*target)
+			return (err_msg(ERR_MALLOC), -1);
+		if (set_color((*curr)->content + ft_strlen(prefix), target) < 0)
 			return (-1);
 		return (1);
 	}

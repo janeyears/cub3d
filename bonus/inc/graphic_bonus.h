@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:14:45 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/09 12:59:10 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/14 15:12:56 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define PATH_E6 "./textures/2-1.png"
 # define PATH_COUNT "./textures/counter.png"
 
-# define UNUM 10
+# define UNUM 100
 
 typedef struct s_cast
 {

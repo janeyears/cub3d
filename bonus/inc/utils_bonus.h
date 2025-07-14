@@ -6,7 +6,7 @@
 /*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:15:22 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/14 12:24:30 by mzhitnik         ###   ########.fr       */
+/*   Updated: 2025/07/14 15:30:02 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ double			move_cos(double val, double vector, double time);
 double			move_sin(double val, double vector, double time);
 int				check_collision(t_game *game, double new_x, double new_y);
 
-int				get_pixel_color(mlx_image_t *img, int tex_x, int tex_y);
-int				get_color_code(int *color);
+uint64_t		get_pixel_color(mlx_image_t *img, int tex_x, int tex_y);
+uint64_t		get_color_code(int *color);
 
 unsigned int	custom_rand(unsigned int *seed);
 

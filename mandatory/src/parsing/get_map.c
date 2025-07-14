@@ -6,7 +6,7 @@
 /*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:18:07 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/09 16:54:42 by mzhitnik         ###   ########.fr       */
+/*   Updated: 2025/07/14 15:05:14 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ static int	init_game(t_game *game, char *fname)
 	game->we_path = NULL;
 	game->ea_path = NULL;
 	game->player = NULL;
-	game->color_f = -1;
-	game->color_c = -1;
+	game->color_f = NULL;
+	game->color_c = NULL;
 	game->map = NULL;
 	game->size_x = 0;
 	game->size_y = 0;

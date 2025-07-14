@@ -6,7 +6,7 @@
 /*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:16:13 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/08 15:44:55 by mzhitnik         ###   ########.fr       */
+/*   Updated: 2025/07/14 15:12:32 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ void	free_parsing(t_game *game)
 		free(game->ea_path);
 	if (game->player)
 		free(game->player);
+	if (game->color_c)
+		free(game->color_c);
+	if (game->color_f)
+		free(game->color_f);
 	if (game->map)
 		free_arr(game->map);
 }

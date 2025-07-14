@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic_utils_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:16:21 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:16:22 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/14 15:30:34 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ double	move_cos(double val, double vector, double time)
 	return (val + cos(vector) * TILE_SIZE * time);
 }
 
-int	get_pixel_color(mlx_image_t *img, int tex_x, int tex_y)
+uint64_t	get_pixel_color(mlx_image_t *img, int tex_x, int tex_y)
 {
 	uint8_t	*pixel;
 
@@ -30,7 +30,10 @@ int	get_pixel_color(mlx_image_t *img, int tex_x, int tex_y)
 	return ((pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3]);
 }
 
-int	get_color_code(int *color)
+uint64_t	get_color_code(int *color)
 {
-	return ((color[0] << 24) |(color[1] << 16) | (color[2] << 8) | 0xFF);
+	return (((uint64_t)color[0] << 24)
+		| ((uint64_t)color[1] << 16)
+		| ((uint64_t)color[2] << 8)
+		| 0xFF);
 }

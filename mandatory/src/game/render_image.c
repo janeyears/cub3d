@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_image.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:17:58 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 15:12:18 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/14 15:31:54 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ static t_column	prepare_column(t_game *game, float ray_angle, float proj_dist)
 
 static int	get_column_color(t_game *game, t_column *col, int y)
 {
-	int	tex_y;
-	int	tex_x;
-	int	color;
+	int			tex_y;
+	int			tex_x;
+	uint64_t	color;
 
 	if (y < col->wall_start)
-		return (game->color_c);
+		return (*game->color_c);
 	else if (y < col->wall_end)
 	{
 		tex_y = (y - col->wall_start) * TEX_SIZE / col->wall_height;
@@ -59,7 +59,7 @@ static int	get_column_color(t_game *game, t_column *col, int y)
 		return (color);
 	}
 	else
-		return (game->color_f);
+		return (*game->color_f);
 }
 
 /*Render a vertical column on the screen at position `x` by drawing
@@ -68,7 +68,7 @@ static void	draw_column(t_game *game, int x, float ray_angle, float proj_dist)
 {
 	t_column	col;
 	int			y;
-	int			color;
+	uint64_t	color;
 
 	col = prepare_column(game, ray_angle, proj_dist);
 	y = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:17:06 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:17:07 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/14 14:00:43 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ typedef struct s_game
 	mlx_image_t		*img[4];
 	int				size_x;
 	int				size_y;
-	int				color_f;
-	int				color_c;
+	uint64_t		*color_f;
+	uint64_t		*color_c;
 	char			*no_path;
 	char			*so_path;
 	char			*we_path;

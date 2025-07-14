@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:18:17 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:18:18 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/14 14:51:23 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ void	free_parsing(t_game *game)
 		free(game->ea_path);
 	if (game->player)
 		free(game->player);
+	if (game->color_c)
+		free(game->color_c);
+	if (game->color_f)
+		free(game->color_f);
 	if (game->map)
 		free_arr(game->map);
 }

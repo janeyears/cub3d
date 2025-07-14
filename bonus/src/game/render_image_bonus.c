@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_image_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:15:57 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/07 14:15:58 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/14 15:30:57 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ static t_column	prepare_column(t_game *game, float ray_angle, float proj_dist)
 
 static int	get_column_color(t_game *game, t_column *col, int y)
 {
-	int	tex_y;
-	int	tex_x;
-	int	color;
+	int			tex_y;
+	int			tex_x;
+	uint64_t	color;
 
 	if (y < col->wall_start)
-		return (game->color_c);
+		return (*game->color_c);
 	else if (y < col->wall_end)
 	{
 		tex_y = (y - col->wall_start) * TEX_SIZE / col->wall_height;
@@ -57,7 +57,7 @@ static int	get_column_color(t_game *game, t_column *col, int y)
 		return (color);
 	}
 	else
-		return (game->color_f);
+		return (*game->color_f);
 }
 
 static void	draw_column(t_game *game, int x, float ray_angle, float proj_dist)

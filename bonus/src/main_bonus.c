@@ -6,7 +6,7 @@
 /*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:16:42 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/14 12:03:28 by mzhitnik         ###   ########.fr       */
+/*   Updated: 2025/07/14 15:22:19 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	check_paths(t_game *game)
 static int	init_game(t_game *game)
 {
 	if (check_paths(game) != 0)
-		return (free_parsing(game), err_msg(ERR_PATH), 1);
+		return (free(game->enemies), free_parsing(game), err_msg(ERR_PATH), 1);
 	game->mlx = mlx_init(WIDTH, HEIGHT, "cub3d", false);
 	if (!game->mlx)
 		return (free_parsing(game), err_msg(ERR_MLXINIT), 1);

@@ -6,7 +6,7 @@
 /*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:18:35 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/14 12:23:34 by mzhitnik         ###   ########.fr       */
+/*   Updated: 2025/07/14 14:56:20 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	is_map(const char *curr)
 int	check_fill(t_game *game)
 {
 	if (!game->no_path || !game->so_path || !game->we_path || !game->no_path
-		|| !game->ea_path || game->color_f == -1 || game->color_c == -1)
+		|| !game->ea_path || !game->color_f || !game->color_c)
 		return (err_msg(ERR_MISSID), -1);
 	return (0);
 }
