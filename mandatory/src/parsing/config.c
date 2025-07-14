@@ -6,12 +6,11 @@
 /*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:18:03 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/14 12:25:46 by mzhitnik         ###   ########.fr       */
+/*   Updated: 2025/07/14 12:38:05 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdio.h>
 
 int	get_path(t_list *map, char **path, char *prefix)
 {
@@ -47,7 +46,6 @@ int	copy_num(char *str, int *i)
 		sub[j++] = str[(*i)++];
 	sub[j] = '\0';
 	num = ft_atol(sub);
-	printf("%lld\n", num);
 	free(sub);
 	if (num < 0 || num > 255)
 		return (err_msg(ERR_RGBRANGE), -1);

@@ -6,7 +6,7 @@
 /*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:18:03 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/14 12:25:33 by mzhitnik         ###   ########.fr       */
+/*   Updated: 2025/07/14 12:38:10 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	copy_num(char *str, int *i)
 		sub[j++] = str[(*i)++];
 	sub[j] = '\0';
 	num = ft_atol(sub);
-	printf("%d\n", num);
 	free(sub);
 	if (num < 0 || num > 255)
 		return (err_msg(ERR_RGBRANGE), -1);
