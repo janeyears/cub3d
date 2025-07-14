@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:18:21 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/09 12:51:29 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/14 12:06:01 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void	init_player(t_game *game)
 	get_player_pov(&game);
 }
 
-int check_collision(t_game *game, double new_x, double new_y)
+int	check_collision(t_game *game, double new_x, double new_y)
 {
-	int tile_x;
-	int tile_y;
+	int	tile_x;
+	int	tile_y;
 
 	tile_x = (int)((new_x - COLLISION_BUFFER) / TILE_SIZE);
 	tile_y = (int)((new_y - COLLISION_BUFFER) / TILE_SIZE);

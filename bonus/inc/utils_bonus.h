@@ -6,7 +6,7 @@
 /*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:15:22 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/09 17:02:23 by mzhitnik         ###   ########.fr       */
+/*   Updated: 2025/07/14 12:24:30 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void			free_game(t_game *game);
 void			free_parsing(t_game *game);
 void			end_game(t_game *game);
 void			free_texture(t_game *game);
+long long		ft_atol(const char *str);
 
 // Linked list utils
 

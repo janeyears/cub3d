@@ -6,15 +6,15 @@
 /*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:18:43 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/13 13:59:55 by mzhitnik         ###   ########.fr       */
+/*   Updated: 2025/07/14 12:05:26 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int check_paths(t_game *game)
+int	check_paths(t_game *game)
 {
-	int fd;
+	int	fd;
 
 	fd = open(game->no_path, O_RDONLY);
 	if (fd < 0)

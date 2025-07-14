@@ -1,7 +1,7 @@
-F 126,73,21
+F 0000000000000000126,73,21
 C 0,115,133
 
-NO ./textures/2_houses.png
+NO               ./textures/2_houses.png
 SO ./textures/4_animals.png
 
 
@@ -16,10 +16,8 @@ SO ./textures/4_animals.png
 
 WE ./textures/3_forest.png
 EA ./textures/1_flowers.png
-
-
-
 111
+101
 101
 1N1
 111

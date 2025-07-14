@@ -6,7 +6,7 @@
 /*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:18:35 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/09 17:01:28 by mzhitnik         ###   ########.fr       */
+/*   Updated: 2025/07/14 12:23:34 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,31 @@ int	check_fill(t_game *game)
 		|| !game->ea_path || game->color_f == -1 || game->color_c == -1)
 		return (err_msg(ERR_MISSID), -1);
 	return (0);
+}
+
+long long	ft_atol(const char *str)
+{
+	size_t		i;
+	int			sign;
+	long long	num;
+
+	num = 0;
+	sign = 1;
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -sign;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		num = num * 10 + (str[i] - '0');
+		i++;
+	}
+	return (num * sign);
 }

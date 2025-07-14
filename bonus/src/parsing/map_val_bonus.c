@@ -6,7 +6,7 @@
 /*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:18:12 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/09 17:28:55 by mzhitnik         ###   ########.fr       */
+/*   Updated: 2025/07/14 12:05:13 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	check_char(t_game *game, t_count *count)
 int	composition(t_game *game)
 {
 	t_count	count;
-	int	y;
+	int		y;
 
 	y = 0;
 	while (y < game->size_y)

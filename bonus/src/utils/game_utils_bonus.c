@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_utils_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekashirs <ekashirs@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:16:17 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/09 12:55:51 by ekashirs         ###   ########.fr       */
+/*   Updated: 2025/07/14 12:04:07 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ unsigned int	custom_rand(unsigned int *seed)
 	return ((*seed >> 16) & 0x7FFF);
 }
 
-int check_collision(t_game *game, double new_x, double new_y)
+int	check_collision(t_game *game, double new_x, double new_y)
 {
-	int tile_x;
-	int tile_y;
+	int	tile_x;
+	int	tile_y;
 
 	tile_x = (int)((new_x - COLLISION_BUFFER) / TILE_SIZE);
 	tile_y = (int)((new_y - COLLISION_BUFFER) / TILE_SIZE);

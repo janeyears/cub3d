@@ -6,7 +6,7 @@
 /*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:16:42 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/13 14:14:25 by mzhitnik         ###   ########.fr       */
+/*   Updated: 2025/07/14 12:03:28 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	check_paths(t_game *game)
 {
-	int fd;
+	int	fd;
 
 	fd = open(game->no_path, O_RDONLY);
 	if (fd < 0)

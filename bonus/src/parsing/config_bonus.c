@@ -6,7 +6,7 @@
 /*   By: mzhitnik <mzhitnik@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 14:18:03 by ekashirs          #+#    #+#             */
-/*   Updated: 2025/07/09 17:28:42 by mzhitnik         ###   ########.fr       */
+/*   Updated: 2025/07/14 12:25:33 by mzhitnik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	get_path(t_list *map, char **path, char *prefix)
 		return (err_msg(ERR_IDENT), -1);
 	if (ft_strncmp(map->content, prefix, 3))
 		return (err_msg(ERR_IDENT), -1);
-	shift =  skip_spaces(map->content + 3);
+	shift = skip_spaces(map->content + 3);
 	*path = ft_substr(map->content, shift + 3,
 			ft_strlen(map->content) - 4 - shift);
 	if (!*path)
@@ -30,9 +30,9 @@ int	get_path(t_list *map, char **path, char *prefix)
 
 int	copy_num(char *str, int *i)
 {
-	char	*sub;
-	int		j;
-	int		num;
+	char		*sub;
+	int			j;
+	long long	num;
 
 	j = 0;
 	sub = ft_calloc(ft_strlen(str), sizeof(char));
@@ -45,11 +45,12 @@ int	copy_num(char *str, int *i)
 	while (ft_isdigit(str[*i]))
 		sub[j++] = str[(*i)++];
 	sub[j] = '\0';
-	num = ft_atoi(sub);
+	num = ft_atol(sub);
+	printf("%d\n", num);
 	free(sub);
 	if (num < 0 || num > 255)
 		return (err_msg(ERR_RGBRANGE), -1);
-	return (num);
+	return ((int)num);
 }
 
 int	set_color(char *str)
