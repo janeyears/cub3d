@@ -1,19 +1,67 @@
-# cub3d
+## 🚀 Project Overview
+The goal of cub3d is to create a simple 3D game engine inspired by Wolfenstein 3D. Using raycasting and the MLX42 graphics library, the project renders a 3D view from a 2D map, allowing the player to navigate a maze-like world. This project strengthens understanding of:
 
-## The RayCaster with miniLibX
+Raycasting techniques for 3D rendering
 
-### Key Concepts:
+Graphics rendering with MLX42
 
-Raycasting:
+Event handling and player input
 
-- It's a 2D-to-3D rendering technique, where rays are cast from a viewpoint (often the camera or the player's position in a game).
+Map parsing and validation
 
-- The idea is to simulate how light rays would travel through a scene and find the first object (like walls) they hit.
+Game logic and collision handling
 
-- This technique is commonly used in early 3D games like Wolfenstein 3D.
+## 📁 Project Structure
+### ✅ Mandatory Part
 
-miniLibX:
+Parse and validate a .cub map file.
 
-- miniLibX is a small library used in C programming to handle graphics, windows, and basic graphical operations. It was originally created for projects related to 42 (a coding school), where students often use it for graphical projects.
+Render a 3D view using raycasting from a 2D map.
 
-- It allows developers to draw pixels, handle user input (like keyboard and mouse events), and create windows to display graphics.
+Implement player movement and rotation.
+
+Handle wall collisions and prevent invalid moves.
+
+Support textures for walls and colors for floor/ceiling.
+
+Close the game when the player presses ESC or clicks the close button.
+
+### 🗺️ Map Specifications
+The map is defined in a .cub file and must include:
+
+1 for walls
+
+0 for empty space
+
+N, S, E, or W for player starting position (direction included)
+
+Texture paths for walls (north, south, east, west)
+
+RGB values for floor and ceiling colors
+
+🔧 Compilation & Usage
+The project includes a Makefile for building the game.
+
+make
+./cub3d maps/example.cub
+
+
+### 🎮 Controls
+
+W / A / S / D: Move forward / left / backward / right
+
+← / →: Rotate camera left / right
+
+ESC: Exit the game
+
+### 🧠 What We Learned
+
+Implementing a raycasting algorithm to simulate 3D graphics
+
+Using MLX42 for real-time rendering
+
+Managing player input and smooth movement/rotation
+
+Parsing and validating complex configuration files
+
+Handling textures, colors, and collision detection
